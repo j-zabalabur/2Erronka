@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2024 a las 10:12:19
+-- Tiempo de generación: 25-10-2024 a las 11:26:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -26,6 +26,17 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `sneakify`;
 CREATE DATABASE `sneakify`;
 USE `sneakify`;
+
+--
+-- Estructura de tabla para la tabla `deskontu_kodeak`
+--
+
+CREATE TABLE `deskontu_kodeak` (
+  `kodea` varchar(255) NOT NULL,
+  `deskontua` int(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `erabiltzaileak`
@@ -89,13 +100,19 @@ CREATE TABLE `produktuak` (
   `prezioa` double DEFAULT NULL,
   `eragina` varchar(255) DEFAULT NULL,
   `argazkia` varchar(255) DEFAULT NULL,
-  `beherapena` int(2) DEFAULT NULL,
+  `beherapena` int(2) DEFAULT 0,
   `deskripzioa` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `deskontu_kodeak`
+--
+ALTER TABLE `deskontu_kodeak`
+  ADD PRIMARY KEY (`kodea`);
 
 --
 -- Indices de la tabla `erabiltzaileak`

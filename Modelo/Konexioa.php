@@ -6,7 +6,7 @@ class Konexioa {
         $this->con = new \mysqli('localhost', 'root', '', 'sneakify');
         
         if ($this->con->connect_error) {
-            die("Konexioak huts egin du: " . $this->conexion->connect_error);
+            die("Konexioak huts egin du: " . $this->con->connect_error);
         }
 
     }

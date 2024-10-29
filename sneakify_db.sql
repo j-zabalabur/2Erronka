@@ -61,7 +61,7 @@ CREATE TABLE `erabiltzaileak` (
 CREATE TABLE `eskaerak` (
   `id` int(11) NOT NULL,
   `id_erabiltzailea` int(11) DEFAULT NULL,
-  `egoera` enum('Eskuratuta','Entregatzeke') NOT NULL DEFAULT 'Entregatzeke',
+  `egoera` enum('Bidalita','Entregatzeke') NOT NULL DEFAULT 'Entregatzeke',
   `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

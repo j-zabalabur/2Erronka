@@ -1,9 +1,10 @@
 <?php
 require_once("vista/header.php");
 require_once("vista/footer.php");
+require_once("vista/main.php");
 
-main::htmlHead();
-header::htmlHeader();
+ElementuKomunak::htmlHead();
+ElementuKomunak::htmlHeader();
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] : null;
 $action = isset($_GET['action']) ? $_GET['action'] : 'hasiera';
@@ -16,8 +17,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'hasiera';
 
         $controllerFullName = $controller."Controller";
         $controllerObject = new $controllerFullName;
-        $controllerObject.ekintzaKudeatzailea($action);
+        $controllerObject->ekintzaKudeatzailea($action);
     }
 
-footer::htmlFooter();
+ElementuKomunak::htmlFooter();
 ?>

@@ -1,23 +1,5 @@
 <?php
-class Konexioa {
-    private $con;
+
+class Konexioa{
     
-    public function __construct(){
-        $this->con = new \mysqli('localhost', 'root', '', 'sneakify');
-        
-        if ($this->con->connect_error) {
-            die("Konexioak huts egin du: " . $this->con->connect_error);
-        }
-
-    }
-
-    public function getCon(){
-        return $this->con;
-    }
-
-    public function closeCon(){
-        $this->con->close();
-    }   
- 
 }
-?>

@@ -1,6 +1,6 @@
 <?php
 include_once('Konexioa.php');
 
-class Erabiltzailea {
+class Erabiltzailea extends Konexioa{
 
 }

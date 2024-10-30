@@ -1,6 +1,6 @@
 <?php
 include_once('Konexioa.php');
 
-class Produktua{
+class Produktua extends Konexioa{
     
 }

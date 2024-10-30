@@ -6,4 +6,8 @@ class Konexioa{
     public function __construct(){
         $this->con = new mysqli('localhost', 'root', '', 'sneakify');        
     }
+
+    public function getCon(){
+        return $this->con;
+    }
 }

@@ -1,0 +1,39 @@
+.admin-panel {
+    display: flex;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ESTO DEL BUTTON ES PROVISIONAL, PARA TENER UN EJEMPLO VISUAL 
+LOS BOTONES SERAN DE BOOTSTRAP Y
+COGERAN LOS ESTILOS DEL GLOBAL CSS  */
+.sidebar button {
+    background-color: #95bf47;
+    color: #FFFFFF;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #5e5e5e;
+}
+
+.taula_container {
+    width: 80%;
+    padding: 20px;
+    background-color: #FFFFFF;
+}
+
+.taula {
+    display: none;
+}

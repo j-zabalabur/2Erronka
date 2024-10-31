@@ -20,7 +20,7 @@ public static function htmlHeader(){?>
     <header>
     <!-- HEADERRA HEMEN -->
     
-    
+    <h1>HEADER</h1>
     
     
     
@@ -33,14 +33,16 @@ public static function htmlFooter(){?>
     </main>
     <footer>
     <!-- FOOTERRA HEMEN -->
-    
+    <h1>FOOTER</h1>
+
     
     
         
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="????????????????"></script>
+    <script src="js/script.js"></script>
+    <script src="js/admin_dashboard.js"></script>
 
     </body>
     </html>

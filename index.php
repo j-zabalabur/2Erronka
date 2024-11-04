@@ -20,3 +20,4 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'hasiera';
     }
 
 ElementuKomunak::htmlFooter();
+?>

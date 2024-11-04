@@ -15,8 +15,8 @@ class ElementuKomunak {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
                 <style>
                     <?php 
-                    require_once("../vista/Css/global.css");
-                    require_once("../vista/Css/admin.css");
+                    require_once("Css/global.css");
+                    require_once("Css/admin.css");
                     ?>
                 </style>
             </head>
@@ -60,7 +60,7 @@ public static function htmlHeader(){?>
 
 
 public static function htmlFooter(){?>
-    </main>
+    
     <footer>
     <!-- FOOTERRA HEMEN -->
     <h1>FOOTER</h1>

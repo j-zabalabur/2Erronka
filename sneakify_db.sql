@@ -43,7 +43,7 @@ CREATE TABLE `deskontu_kodeak` (
 --
 
 CREATE TABLE `erabiltzaileak` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `izena` varchar(255) DEFAULT NULL,
   `abizena` varchar(255) DEFAULT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `erabiltzaileak` (
 --
 
 CREATE TABLE `eskaerak` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `id_erabiltzailea` int(11) DEFAULT NULL,
   `egoera` enum('Bidalita','Entregatzeke') NOT NULL DEFAULT 'Entregatzeke',
   `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -96,7 +96,7 @@ CREATE TABLE `orga_lerroak` (
 --
 
 CREATE TABLE `produktuak` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `izena` varchar(255) DEFAULT NULL,
   `prezioa` double DEFAULT NULL,
   `eragina` varchar(255) DEFAULT NULL,

@@ -102,6 +102,7 @@ CREATE TABLE `produktuak` (
   `eragina` varchar(255) DEFAULT NULL,
   `argazkia` varchar(255) DEFAULT NULL,
   `beherapena` int(2) DEFAULT 0,
+  `nabarmendua` varchar(255) DEFAULT NULL,
   `deskripzioa` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -19,7 +19,6 @@ public static function htmlHead(){?>
     <?php
 }
 
-
 public static function htmlHeader(){?>
     <header>
         <a href="index.php">

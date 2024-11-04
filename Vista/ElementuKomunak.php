@@ -9,7 +9,15 @@ public static function htmlHead(){?>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Sneakify - Marka onenen oinetakoak prezio onenean</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-            <link rel="stylesheet" href="views/css/global.css">
+            <style>
+                <?php 
+                require_once("views/css/global.css");
+                require_once("views/css/admin.css");
+
+                
+                ?>
+            </style>
+
         </head>
         <body>
     <?php
@@ -41,8 +49,12 @@ public static function htmlFooter(){?>
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/admin_dashboard.js"></script>
+    <script>
+    <?php 
+    require_once("js/script.js");
+    require_once("js/admin_dashboard.js");
+    ?>
+    </script>
 
     </body>
     </html>

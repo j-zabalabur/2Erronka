@@ -13,12 +13,8 @@ class ElementuKomunak {
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-                <style>
-                    <?php 
-                    require_once("Css/global.css");
-                    require_once("Css/admin.css");
-                    ?>
-                </style>
+                <link rel="stylesheet" href="Vista/Css/global.css">
+                <link rel="stylesheet" href="Vista/Css/admin.css">
             </head>
             <body>
         <?php
@@ -28,7 +24,7 @@ class ElementuKomunak {
 public static function htmlHeader(){?>
     <header>
         <a href="index.php">
-            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
+            <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
         </a>
 
         <div class="dropdown">

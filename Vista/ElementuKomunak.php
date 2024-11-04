@@ -13,7 +13,12 @@ class ElementuKomunak {
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-                <link rel="stylesheet" href="vista/Css/global.css">
+                <style>
+                    <?php 
+                    require_once("../vista/Css/global.css");
+                    require_once("../vista/Css/admin.css");
+                    ?>
+                </style>
             </head>
             <body>
         <?php
@@ -23,7 +28,7 @@ class ElementuKomunak {
 public static function htmlHeader(){?>
     <header>
         <a href="index.php">
-            <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
+            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
         </a>
 
         <div class="dropdown">
@@ -69,7 +74,7 @@ public static function htmlFooter(){?>
 
     <script>
         <?php require_once("js/script.js");?>
-        <?php require_once("js/admin-dashboard.js");?>
+        <?php require_once("js/admin_dashboard.js");?>
     </script>
 
     </body>

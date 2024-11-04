@@ -24,6 +24,7 @@ public static function htmlHeader(){?>
     <!-- HEADERRA HEMEN -->
     
     <h1>HEADER</h1>
+    <h1>HEADER</h1>
     
     
     
@@ -35,6 +36,8 @@ public static function htmlHeader(){?>
 public static function htmlFooter(){?>
     <footer>
     <!-- FOOTERRA HEMEN -->
+    <h1>FOOTER</h1>
+
     <h1>FOOTER</h1>
 
     

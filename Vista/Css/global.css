@@ -35,6 +35,11 @@ header{
     }
 
     .dropdown{
+
+        .dropdown-menu{
+            --bs-dropdown-link-active-bg: var(--button-bg-hover);
+        }
+
         #erab-icon-container{
             display: flex;
             justify-content: center;
@@ -51,5 +56,14 @@ header{
             
         }
     
+        #izen-abizenak{
+            font-size: 24px;
+        }
+
+        li:last-child{
+            a{
+                color: red;
+            }
+        }
     }
 }

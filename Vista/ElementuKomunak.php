@@ -28,7 +28,7 @@ class ElementuKomunak {
 public static function htmlHeader(){?>
     <header>
         <a href="index.php">
-            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
+            <img id="logo" src="../vista/Img/SNEAKIFY.webp" alt="logo">
         </a>
 
         <div class="dropdown">

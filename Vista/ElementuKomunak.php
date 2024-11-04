@@ -10,8 +10,8 @@ public static function htmlHead(){?>
             <title>Sneakify - Marka onenen oinetakoak prezio onenean</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
-            <?php require_once("views/css/global.css");?>
-            <?php require_once("views/css/admin.css");?>
+                <?php require_once("views/css/global.css");?>
+                <?php require_once("views/css/admin.css");?>
             </style>
         </head>
         <body>
@@ -56,12 +56,6 @@ public static function htmlFooter(){?>
     </html>
     <?php
 }
-
-
-
-
-
-
 
 
 }

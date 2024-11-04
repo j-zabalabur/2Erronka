@@ -10,7 +10,7 @@ $controller = isset($_GET['controller']) ? $_GET['controller'] : null;
 $action = isset($_GET['action']) ? $_GET['action'] : 'hasiera';
 
     if ($controller==null){
-        main::hasierakoOrria();
+        hasieraOrria::hasierakoOrria();
 
     } else {
         require_once("controlador/".$controller."Controller.php");

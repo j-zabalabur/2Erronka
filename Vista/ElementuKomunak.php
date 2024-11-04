@@ -31,13 +31,22 @@ public static function htmlHeader(){?>
                 <i id="erab-icon" class="bi bi-person"></i>
             </span>
 
-            <ul class="dropdown-menu">
-                <li><h2 class="dropdown-header">Dropdown header</h2></li>
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <p id="izen-abizenak" class="dropdown-header">Nombre Apellido</p>
+                <p id="email" class="dropdown-header">posta@gmail.com</p>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                    <i class="bi bi-bag"></i>
+                        Orga
+                    </a>
+                </li>
+                <li><a class="dropdown-item" href="#">
+                <i class="bi bi-box-arrow-left"></i>
+                    Saioa Itxi
+                </a></li>
             </ul>
-</div>
+        </div>
         
         
     </header>

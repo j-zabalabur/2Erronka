@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2024 a las 11:26:52
+-- Tiempo de generación: 05-11-2024 a las 10:41:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -21,11 +21,11 @@ SET time_zone = "+00:00";
 -- Base de datos: `sneakify`
 --
 
--- --------------------------------------------------------
-
 DROP DATABASE IF EXISTS `sneakify`;
 CREATE DATABASE `sneakify`;
 USE `sneakify`;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `deskontu_kodeak`
@@ -33,7 +33,7 @@ USE `sneakify`;
 
 CREATE TABLE `deskontu_kodeak` (
   `kodea` varchar(255) NOT NULL,
-  `deskontua` int(2) DEFAULT NULL
+  `deskontua` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -44,12 +44,12 @@ CREATE TABLE `deskontu_kodeak` (
 
 CREATE TABLE `erabiltzaileak` (
   `id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `izena` varchar(255) DEFAULT NULL,
-  `abizena` varchar(255) DEFAULT NULL,
-  `pasahitza` varchar(255) DEFAULT NULL,
-  `administratzailea` tinyint(4) DEFAULT NULL,
-  `helbidea` varchar(255) DEFAULT NULL
+  `email` varchar(255) NOT NULL,
+  `izena` varchar(255) NOT NULL,
+  `abizena` varchar(255) NOT NULL,
+  `pasahitza` varchar(255) NOT NULL,
+  `administratzailea` tinyint(4) NOT NULL,
+  `helbidea` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -60,7 +60,8 @@ CREATE TABLE `erabiltzaileak` (
 
 CREATE TABLE `eskaerak` (
   `id` int(11) NOT NULL,
-  `id_erabiltzailea` int(11) DEFAULT NULL,
+  `id_erabiltzailea` int(11) NOT NULL,
+  `egoera` enum('Bidalita','Entregatzeke') NOT NULL DEFAULT 'Entregatzeke',
   `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -71,9 +72,9 @@ CREATE TABLE `eskaerak` (
 --
 
 CREATE TABLE `eskaera_lerroak` (
-  `id_eskaera` int(11) DEFAULT NULL,
-  `id_produktua` int(11) DEFAULT NULL,
-  `kopurua` int(11) DEFAULT NULL
+  `id_eskaera` int(11) NOT NULL,
+  `id_produktua` int(11) NOT NULL,
+  `kopurua` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,9 +84,9 @@ CREATE TABLE `eskaera_lerroak` (
 --
 
 CREATE TABLE `orga_lerroak` (
-  `id_erabiltzailea` int(11) DEFAULT NULL,
-  `id_produktua` int(11) DEFAULT NULL,
-  `kopurua` int(11) DEFAULT NULL
+  `id_erabiltzailea` int(11) NOT NULL,
+  `id_produktua` int(11) NOT NULL,
+  `kopurua` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,11 +97,12 @@ CREATE TABLE `orga_lerroak` (
 
 CREATE TABLE `produktuak` (
   `id` int(11) NOT NULL,
-  `izena` varchar(255) DEFAULT NULL,
-  `prezioa` double DEFAULT NULL,
-  `eragina` varchar(255) DEFAULT NULL,
-  `argazkia` varchar(255) DEFAULT NULL,
+  `izena` varchar(255) NOT NULL,
+  `prezioa` double NOT NULL,
+  `eragina` varchar(255) NOT NULL,
+  `argazkia` longblob NOT NULL,
   `beherapena` int(2) DEFAULT 0,
+  `nabarmendua` longblob DEFAULT NULL,
   `deskripzioa` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -147,6 +149,28 @@ ALTER TABLE `orga_lerroak`
 ALTER TABLE `produktuak`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `izena` (`izena`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `erabiltzaileak`
+--
+ALTER TABLE `erabiltzaileak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `eskaerak`
+--
+ALTER TABLE `eskaerak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `produktuak`
+--
+ALTER TABLE `produktuak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

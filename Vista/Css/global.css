@@ -1,0 +1,69 @@
+:root{
+    --background: #fff;
+    --text: #000;
+    --text-sec: #5e5e5e;
+    --button-bg: #95bf47;
+    --button-bg-hover: #5e8e3e;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto';
+}
+
+body{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--background);
+}
+
+header{
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+
+    #logo{
+        width: 250px;
+    }
+
+    .dropdown{
+
+        .dropdown-menu{
+            --bs-dropdown-link-active-bg: var(--button-bg-hover);
+        }
+
+        #erab-icon-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            background-color: var(--button-bg);
+    
+            #erab-icon{
+                font-size: 2rem;
+                color:var(--button-bg-hover);
+            }
+            
+        }
+    
+        #izen-abizenak{
+            font-size: 24px;
+        }
+
+        li:last-child{
+            a{
+                color: red;
+            }
+        }
+    }
+}

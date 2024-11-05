@@ -2,7 +2,7 @@
 class AdminDashboard {
 
     public static function panelNagusia(){?>
-        <div class="admin-panel">
+            <div class="admin-panel">
         <aside class="sidebar">
             <!--TODO Los botones seran bootstrap y seguiran la estetica del global.css-->
             <button onclick="erakutsiTaula('produktuak')">Produktuak</button>
@@ -14,7 +14,7 @@ class AdminDashboard {
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button>Erregistroa gehitu</button>
+                <p>Hemen produktu guztiak kudeatu ditzakezu...</p>
             </section>
 
             <section id="erabiltzaileak" class="taula">

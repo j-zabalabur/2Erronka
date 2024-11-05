@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2024 a las 11:26:52
+-- Tiempo de generación: 05-11-2024 a las 10:41:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -22,10 +22,6 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
-DROP DATABASE IF EXISTS `sneakify`;
-CREATE DATABASE `sneakify`;
-USE `sneakify`;
 
 --
 -- Estructura de tabla para la tabla `deskontu_kodeak`
@@ -149,6 +145,28 @@ ALTER TABLE `orga_lerroak`
 ALTER TABLE `produktuak`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `izena` (`izena`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `erabiltzaileak`
+--
+ALTER TABLE `erabiltzaileak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `eskaerak`
+--
+ALTER TABLE `eskaerak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `produktuak`
+--
+ALTER TABLE `produktuak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

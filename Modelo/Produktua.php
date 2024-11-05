@@ -3,18 +3,13 @@ include_once('Konexioa.php');
 
 class Produktua extends Konexioa{
     public function produktuakIkusi(){
-        $query = $this->getCon()->query("SELECT * FROM produktuak");
-        $response = $query->fetch_assoc();
+        $query = $this->getCon()->query('SELECT * FROM produktuak');
         $array = [];
 
-        if(is_array($response) && count($response) > 0){
-            if($lerroa = $response){
-                $array[] = $lerroa;
-            }
-
-            return $array;
+        while($lerroa = $query->fetch_assoc()){
+            $array[] = $lerroa;
         }
 
-        return null;
+        echo json_encode($array);
     }
 }

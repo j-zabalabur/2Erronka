@@ -24,7 +24,6 @@ body{
 header{
     display: flex;
     position: sticky;
-    z-index: 1;
     top: 0;
     justify-content: space-between;
     align-items: center;
@@ -36,36 +35,34 @@ header{
         width: 250px;
     }
 
-    .dropdown{
+    .dropdown-menu.dropdown-menu-end{
+        --bs-dropdown-link-active-bg: var(--button-bg-hover);
+    }
 
-        .dropdown-menu{
-            --bs-dropdown-link-active-bg: var(--button-bg-hover);
-        }
+    #erab-icon-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:50px;
+        height:50px;
+        border-radius: 50%;
+        background-color: var(--button-bg);
 
-        #erab-icon-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width:50px;
-            height:50px;
-            border-radius: 50%;
-            background-color: var(--button-bg);
-    
-            #erab-icon{
-                font-size: 2rem;
-                color:var(--button-bg-hover);
-            }
-            
+        #erab-icon{
+            font-size: 2rem;
+            color:var(--button-bg-hover);
         }
-    
-        #izen-abizenak{
-            font-size: 24px;
-        }
+        
+    }
 
-        li:last-child{
-            a{
-                color: red;
-            }
+    #izen-abizenak{
+        font-size: 24px;
+    }
+
+    li:last-child{
+        a{
+            color: red;
         }
     }
+
 }

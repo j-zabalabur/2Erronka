@@ -7,9 +7,13 @@ class Produktua extends Konexioa{
         $array = [];
 
         while($lerroa = $query->fetch_assoc()){
+            // Argazkiak base64 formatura pasatzen ditu
+            $argazkia_base64 = base64_encode($lerroa['argazkia']);
+            $lerroa['argazkia'] = $argazkia_base64;
+
             $array[] = $lerroa;
         }
         
-        return json_encode($array);
+        echo json_encode($array);
     }
 }

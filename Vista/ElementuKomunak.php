@@ -65,11 +65,11 @@ public static function htmlFooter(){?>
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="Vista/Js/produktuak.js"></script>
     <script>
         <?php require_once("js/script.js");?>
         <?php require_once("js/admin_dashboard.js");?>
-    </script>
+    </>
 
     </body>
     </html>

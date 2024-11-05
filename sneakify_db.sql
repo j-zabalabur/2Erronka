@@ -33,7 +33,7 @@ USE `sneakify`;
 
 CREATE TABLE `deskontu_kodeak` (
   `kodea` varchar(255) NOT NULL,
-  `deskontua` int(2) DEFAULT NULL
+  `deskontua` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -44,12 +44,12 @@ CREATE TABLE `deskontu_kodeak` (
 
 CREATE TABLE `erabiltzaileak` (
   `id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `izena` varchar(255) DEFAULT NULL,
-  `abizena` varchar(255) DEFAULT NULL,
-  `pasahitza` varchar(255) DEFAULT NULL,
-  `administratzailea` tinyint(4) DEFAULT NULL,
-  `helbidea` varchar(255) DEFAULT NULL
+  `email` varchar(255) NOT NULL,
+  `izena` varchar(255) NOT NULL,
+  `abizena` varchar(255) NOT NULL,
+  `pasahitza` varchar(255) NOT NULL,
+  `administratzailea` tinyint(4) NOT NULL,
+  `helbidea` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -60,7 +60,7 @@ CREATE TABLE `erabiltzaileak` (
 
 CREATE TABLE `eskaerak` (
   `id` int(11) NOT NULL,
-  `id_erabiltzailea` int(11) DEFAULT NULL,
+  `id_erabiltzailea` int(11) NOT NULL,
   `egoera` enum('Bidalita','Entregatzeke') NOT NULL DEFAULT 'Entregatzeke',
   `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -72,9 +72,9 @@ CREATE TABLE `eskaerak` (
 --
 
 CREATE TABLE `eskaera_lerroak` (
-  `id_eskaera` int(11) DEFAULT NULL,
-  `id_produktua` int(11) DEFAULT NULL,
-  `kopurua` int(11) DEFAULT NULL
+  `id_eskaera` int(11) NOT NULL,
+  `id_produktua` int(11) NOT NULL,
+  `kopurua` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,9 +84,9 @@ CREATE TABLE `eskaera_lerroak` (
 --
 
 CREATE TABLE `orga_lerroak` (
-  `id_erabiltzailea` int(11) DEFAULT NULL,
-  `id_produktua` int(11) DEFAULT NULL,
-  `kopurua` int(11) DEFAULT NULL
+  `id_erabiltzailea` int(11) NOT NULL,
+  `id_produktua` int(11) NOT NULL,
+  `kopurua` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -97,12 +97,12 @@ CREATE TABLE `orga_lerroak` (
 
 CREATE TABLE `produktuak` (
   `id` int(11) NOT NULL,
-  `izena` varchar(255) DEFAULT NULL,
-  `prezioa` double DEFAULT NULL,
-  `eragina` varchar(255) DEFAULT NULL,
-  `argazkia` varchar(255) DEFAULT NULL,
+  `izena` varchar(255) NOT NULL,
+  `prezioa` double NOT NULL,
+  `eragina` varchar(255) NOT NULL,
+  `argazkia` longblob NOT NULL,
   `beherapena` int(2) DEFAULT 0,
-  `nabarmendua` varchar(255) DEFAULT NULL,
+  `nabarmendua` longblob DEFAULT NULL,
   `deskripzioa` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

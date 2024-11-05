@@ -13,7 +13,7 @@ class Produktua extends Konexioa{
 
             $array[] = $lerroa;
         }
-        
+        header("Content-Type: application/json");
         echo json_encode($array);
     }
 }

@@ -5,6 +5,9 @@ require_once("../vista/AdminDashboard.php");
 ElementuKomunak::htmlHead();
 ElementuKomunak::htmlHeader();
 
+
+
+
 AdminDashboard::panelNagusia();
 
 ElementuKomunak::htmlFooter();

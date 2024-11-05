@@ -15,7 +15,6 @@ class AdminDashboard {
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
                 <button>Erregistroa gehitu</button>
-
             </section>
 
             <section id="erabiltzaileak" class="taula">

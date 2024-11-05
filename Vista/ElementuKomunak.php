@@ -22,7 +22,7 @@ class ElementuKomunak {
     
 
 public static function htmlHeader(){?>
-    <header>
+    <header class="z-3">
         <a href="index.php">
             <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
         </a>
@@ -32,7 +32,7 @@ public static function htmlHeader(){?>
                 <i id="erab-icon" class="bi bi-person"></i>
             </span>
 
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end z-3">
                 <p id="izen-abizenak" class="dropdown-header">Nombre Apellido</p>
                 <p id="email" class="dropdown-header">posta@gmail.com</p>
                 <li><hr class="dropdown-divider"></li>
@@ -48,8 +48,6 @@ public static function htmlHeader(){?>
                 </a></li>
             </ul>
         </div>
-        
-        
     </header>
     <?php
 }

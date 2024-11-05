@@ -28,6 +28,9 @@ class hasieraOrria{
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <div id="produktuak">
+        
+      </div>
         <?php
     }
 }

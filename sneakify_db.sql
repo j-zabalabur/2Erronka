@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Base de datos: `sneakify`
 --
 
+DROP DATABASE IF EXISTS `sneakify`;
+CREATE DATABASE `sneakify`;
+USE `sneakify`;
+
 -- --------------------------------------------------------
 
 --

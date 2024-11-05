@@ -7,7 +7,4 @@
             document.getElementById(kategoria).style.display = 'block';
         }
 
-        // Hasieran "Produktuak" taula erakutsiko du
-        document.addEventListener('DOMContentLoaded', function() {
-            erakutsiTaula('produktuak');
-        });
+        

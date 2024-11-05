@@ -9,7 +9,7 @@ class Produktua extends Konexioa{
         while($lerroa = $query->fetch_assoc()){
             $array[] = $lerroa;
         }
-
-        echo json_encode($array);
+        
+        return json_encode($array);
     }
 }

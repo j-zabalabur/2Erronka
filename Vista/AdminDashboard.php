@@ -77,17 +77,59 @@
 
             <section id="erabiltzaileak" class="taula">
                 <h2>Erabiltzaileak</h2>
-                <p>Kategoriak kudeatzeko aukera...</p>
+                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <table class="table table-hover table-resposive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emaitzaProduktuak">
+                        <!-- ILARAK HEMEN AGERTUKO DIRA -->
+                    </tbody>
+                </table>
             </section>
 
             <section id="eskariak" class="taula">
                 <h2>Eskariak</h2>
-                <p>Erabiltzaile guztiak kudeatu...</p>
+                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <table class="table table-hover table-resposive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emaitzaProduktuak">
+                        <!-- ILARAK HEMEN AGERTUKO DIRA -->
+                    </tbody>
+                </table>
             </section>
 
             <section id="deskontu_kodeak" class="taula">
                 <h2>Deskontu Kodeak</h2>
-                <p>Bezeroen eskariak kudeatu...</p>
+                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <table class="table table-hover table-resposive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emaitzaDeskontuKodeak">
+                        <!-- ILARAK HEMEN AGERTUKO DIRA -->
+                    </tbody>
+                </table>
             </section>
 
         </main>

@@ -1,5 +1,5 @@
 <?php
-include_once('DeskontuKodea.php');
+include_once('../Modelo/DeskontuKodea.php');
 
         $deskontuKodeaController = new DeskontuKodea();
         $deskontuKodeak = $deskontuKodeaController->getDeskontuKodeak();

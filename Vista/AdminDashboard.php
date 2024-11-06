@@ -21,10 +21,9 @@
         <a href="index.php">
             <img id="logo" src="img/SNEAKIFY.webp" alt="logo">
         </a>
-
         <div class="dropdown">
-            <span id="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
-                <i id="erab-icon" class="bi bi-person"></i>
+            <span class="icon-container admin" data-bs-toggle="dropdown" aria-expanded="false">
+                <i id="admin-icon" class="bi bi-person-lock"></i>
             </span>
 
             <ul class="dropdown-menu dropdown-menu-end">
@@ -49,6 +48,7 @@
         <div class="admin-panel">
         <aside class="sidebar">
             <!--TODO Los botones seran bootstrap y seguiran la estetica del global.css-->
+            <h1>Admin Dashboard</h1>
             <button onclick="erakutsiTaula('produktuak')">Produktuak</button>
             <button onclick="erakutsiTaula('erabiltzaileak')">Erabiltzaileak</button>
             <button onclick="erakutsiTaula('eskariak')">Eskariak</button>
@@ -58,7 +58,7 @@
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-warning">Erregistro berria sortu</button>
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
                         <tr>

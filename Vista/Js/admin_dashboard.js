@@ -6,23 +6,41 @@
             });
             document.getElementById(kategoria).style.display = 'block';
 
-            deskontuKodeakIkusi();
+            datuakKargatu(kategoria);
 
         }
 
+        function datuakKargatu(kategoria){
+            switch (kategoria){
+            case 'deskontu_kodeak':
+                deskontuKodeakIkusi();
+                break;
+
+                default:
+            }
+        }
+
+
+
+
+
+
+
+
+
         async function deskontuKodeakIkusi(){
-            await fetch("http://localhost/2Erronka/Controlador/DeskontuKodeakIkusi.php")
+            await fetch("http://localhost/ariketak/2Erronka/Controlador/DeskontuKodeakIkusi.php")
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('emaitzaDeskontuKodeak').innerHTML = "";
                     data.forEach(item => {
                         ilara = `
                             <tr>
-                                <td>${data.kodea}</td>
-                                <td>${data.deskontua}</td>
+                                <td>${item.kodea}</td>
+                                <td>${item.deskontua}</td>
                                 <td>
-                                    <button type='button' class='btn btn-success' onclick=aldatu('${data.kodea}')>Aldatu</button>
-                                    <button type='button' class='btn btn-danger' onclick=ezabatu('${data.kodea}')>Ezabatu</button>
+                                    <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
+                                    <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
                                 </td>
                             </tr>
                         `;

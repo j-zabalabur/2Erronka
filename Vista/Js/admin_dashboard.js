@@ -18,9 +18,6 @@
             case 'erabiltzaileak':
                 erabiltzaileakIkusi();
                 break;
-            case 'eskaerak':
-                eskaerakIkusi();
-                break;
             case 'produktuak':
                 produktuakIkusi();
                 break;

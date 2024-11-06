@@ -17,6 +17,8 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
                 <img src="data:image/jpeg;base64, ${item.argazkia}">
                 <div class="produktu-informazioa">
                     <a href="produktua.php?id=${item.id}" class="produktu-izena">${item.izena}</a>
+                    <span class="badge text-bg-dark eragina">${item.eragina}</span>
+                    
                     <div class="produktu-prezioa-info">
                         <del class="produktu-prezioa ${(item.beherapena != 0) ? "d-flex" : "d-none"}"><p>${item.prezioa}€</p></del>
                         <p class="produktu-prezioa position-relative">${(item.beherapena != 0) ? prezioa_beheratua : item.prezioa}€</p>

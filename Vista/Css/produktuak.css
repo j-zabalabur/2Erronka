@@ -61,6 +61,10 @@ body{
                 }
             }
 
+            .eragina{
+                margin: 10px 0;
+            }
+
             .produktu-prezioa-info{
                 display: flex;
                 align-items: center;

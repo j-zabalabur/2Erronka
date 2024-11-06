@@ -2,20 +2,18 @@
 include_once('Konexioa.php');
 
 class DeskontuKodea extends Konexioa{
-    public function produktuakIkusi(){
+    public function getDeskontuKodeak(){
         $query = $this->getCon()->query("SELECT * FROM deskontu_kodeak");
-        $response = $query->fetch_assoc();
         $array = [];
 
-        if(is_array($response) && count($response) > 0){
-            if($lerroa = $response){
+        if ($query){
+            while ($lerroa = $query->fetch_assoc()) {
                 $array[] = $lerroa;
             }
-
-            return $array;
         }
+            return $array;
 
-        return null;
+
     }
 }
 ?>

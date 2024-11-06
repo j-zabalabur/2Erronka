@@ -119,11 +119,9 @@
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
+                            <th>Kodea</th>
+                            <th>Deskontua</th>
+                            <th>Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaDeskontuKodeak">

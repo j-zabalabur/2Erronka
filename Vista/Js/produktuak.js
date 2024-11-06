@@ -8,7 +8,8 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
         let prezioa_beheratua = 0
 
         if(item.beherapena != 0){
-            prezioa_beheratua = item.prezioa - (item.prezioa * item.beherapena) / 100
+            // Gehienez 2 zenbaki dezimal egon ahal dira
+            prezioa_beheratua = Math.floor((item.prezioa - (item.prezioa * item.beherapena) / 100) * 100) / 100 
         }
 
         const card = `

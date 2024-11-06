@@ -51,7 +51,7 @@
             <h1>Admin Dashboard</h1>
             <button onclick="erakutsiTaula('produktuak')">Produktuak</button>
             <button onclick="erakutsiTaula('erabiltzaileak')">Erabiltzaileak</button>
-            <button onclick="erakutsiTaula('eskariak')">Eskariak</button>
+            <button onclick="erakutsiTaula('eskaerak')">Eskaerak</button>
             <button onclick="erakutsiTaula('deskontu_kodeak')">Deskontu kodeak</button>
         </aside>
 
@@ -82,20 +82,22 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
+                            <th>Emaila</th>
+                            <th>Izena</th>
+                            <th>Abizena</th>
+                            <th>Admin</th>
+                            <th>Helbidea</th>
+                            <th>Aukerak</th>
                         </tr>
                     </thead>
-                    <tbody id="emaitzaProduktuak">
+                    <tbody id="emaitzaErabiltzaileak">
                         <!-- ILARAK HEMEN AGERTUKO DIRA -->
                     </tbody>
                 </table>
             </section>
 
-            <section id="eskariak" class="taula">
-                <h2>Eskariak</h2>
+            <section id="eskaerak" class="taula">
+                <h2>Eskaerak</h2>
                 <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
@@ -107,7 +109,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="emaitzaProduktuak">
+                    <tbody id="emaitzaEskaerak">
                         <!-- ILARAK HEMEN AGERTUKO DIRA -->
                     </tbody>
                 </table>

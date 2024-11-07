@@ -19,8 +19,23 @@ class hasieraOrria{
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <!-- Bilaketa filtroa -->
+      <div id="filtroa">
+        <select name="ordenatu" id="ordenatu-filtroa">
+          <option value="" selected>--Opzio bat aukeratu--</option>
+          <option value="">Prezioa: txikienetik handienera</option>
+          <option value="">Prezioa: handienetik txikienera</option>
+        </select>
+        <select name="eragina" id="eragina-filtroa">
+          <option value="" selected>--Eragin bat aukeratu--</option>
+          <option value="Adidas">Adidas</option>
+          <option value="Nike">Nike</option>
+        </select>
+        <!-- range input-a hemen -->
+        <!-- Bilaketa barra hemen -->
+      </div>
       <div id="produktuak">
-        
+        <!-- Produktuak hemen -->
       </div>
         <?php
     }

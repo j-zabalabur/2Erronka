@@ -24,6 +24,7 @@ body{
 
 #filtroa{
     display: flex;
+    justify-content: center;
     align-items: center;
     background-color: #fff;
     padding: 20px 30px;
@@ -62,7 +63,7 @@ body{
             color: var(--text-sec);
         }
 
-        input[type="range"]{
+        #prezioa-range{
             appearance: none;
             height: 5px;
             background: var(--button-bg);
@@ -81,32 +82,60 @@ body{
             }
         }
 
-        input[type="number"]{
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
-            color: #333;
-            outline: none;
+        #prezioa-zenbakia-container{
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            #prezioa-number{
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 14px;
+                text-align: center;
+                color: var(--text-sec);
+                outline: none;
+            }
+
+            span{
+                font-size: 14px;
+                color: var(--text-sec);
+            }
+    
         }
     }
 
-    input[type="text"]{
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 14px;
-        width: 160px;
-        outline: none;
-        color: #333;
+    #bilatzailea{
+        position: relative;
+        
+        input{
+            padding: 8px 12px;
+            padding-right: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            color: var(--text);
 
-        &::placeholder{
-            color:var(--text-sec);
+            &::placeholder{
+                color:var(--text-sec);
+            }
+
+            &:focus{
+                border-color: var(--input-border-color-focus);
+            }
         }
 
-        &:focus{
-            border-color: var(--input-border-color-focus);
+        #testua-ezabatu{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color:#999;
+            cursor: pointer;
+            display:none;
         }
     }
 }

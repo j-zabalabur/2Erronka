@@ -11,12 +11,15 @@ function produktua_sortu(item){
             <img src="data:image/jpeg;base64, ${item.argazkia}">
             <div class="produktu-informazioa">
                 <p class="produktu-izena">${item.izena}</p>
-                <span class="badge text-bg-dark eragina">${item.eragina}</span>
+                <span">
+                    <span class="badge text-bg-dark eragina">${item.eragina}</span>
+                    ${(item.beherapena != 0) ? `<span class="badge rounded-pill text-bg-danger">-${item.beherapena}%</span>` : ''}
+                </span>
+                
                 
                 <div class="produktu-prezioa-info">
                     ${(item.beherapena != 0) ? `<del class="produktu-prezioa"><p>${item.prezioa}€</p></del>` : ''}
                     <p class="produktu-prezioa position-relative">${(item.beherapena != 0) ? prezioa_beheratua : item.prezioa}€</p>
-                    ${(item.beherapena != 0) ? `<span class="badge rounded-pill text-bg-danger">-${item.beherapena}%</span>` : ''}
                 </div>
             </div>
         </a>

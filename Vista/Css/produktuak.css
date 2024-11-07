@@ -55,6 +55,13 @@ body{
                 color:var(--text);
                 text-decoration: none;
                 font-size: 18px;
+                /* Card-a baino luzeagoak diren textuak mozten dira eta puntu suspensiboengatik aldatzen dira */
+                overflow: hidden;
+                max-width: 100%;
+                text-overflow: ellipsis;
+                width: fit-content;
+                white-space: nowrap;
+
 
                 &:hover{
                     text-decoration: 2px underline black;

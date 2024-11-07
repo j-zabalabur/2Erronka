@@ -1,19 +1,22 @@
 .admin-panel {
     display: flex;
+    flex-direction: row;
 }
 
 .sidebar {
     width: 20%;
+    min-width:250px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 /* ESTO DEL BUTTON ES PROVISIONAL, PARA TENER UN EJEMPLO VISUAL 
 LOS BOTONES SERAN DE BOOTSTRAP Y
 COGERAN LOS ESTILOS DEL GLOBAL CSS  */
 .sidebar button {
-    background-color: #95bf47;
+    background-color: var(--button-bg);
     color: #FFFFFF;
     padding: 10px;
     margin: 5px 0;
@@ -25,15 +28,25 @@ COGERAN LOS ESTILOS DEL GLOBAL CSS  */
 }
 
 .sidebar button:hover {
-    background-color: #5e5e5e;
+    background-color: var(--button-bg-hover);
 }
 
 .taula_container {
     width: 80%;
     padding: 20px;
     background-color: #FFFFFF;
+    border-left: solid 2px  black;
+
 }
 
 .taula {
     display: none;
+}
+
+.sub-table { 
+    display: none; 
+}
+        
+.expand-btn { 
+    cursor: pointer; 
 }

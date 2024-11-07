@@ -1,9 +1,9 @@
 <?php
 include_once('Konexioa.php');
 
-class Erabiltzailea extends Konexioa{
-    public function getErabiltzaileak(){
-        $query = $this->getCon()->query("SELECT * FROM erabiltzaileak");
+class DeskontuKodea extends Konexioa{
+    public function getDeskontuKodeak(){
+        $query = $this->getCon()->query("SELECT * FROM deskontu_kodeak");
         $array = [];
 
         if ($query){

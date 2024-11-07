@@ -13,10 +13,10 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
         }
 
         const card = `
-            <div class="card">
+            <a href="produktua.php?id=${item.id}" class="card">
                 <img src="data:image/jpeg;base64, ${item.argazkia}">
                 <div class="produktu-informazioa">
-                    <a href="produktua.php?id=${item.id}" class="produktu-izena">${item.izena}</a>
+                    <p class="produktu-izena">${item.izena}</p>
                     <span class="badge text-bg-dark eragina">${item.eragina}</span>
                     
                     <div class="produktu-prezioa-info">
@@ -25,8 +25,7 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
                         <span class="badge rounded-pill text-bg-danger ${(item.beherapena != 0) ? "d-flex" : "d-none"}">-${item.beherapena}%</span>
                     </div>
                 </div>
-                
-            </div>
+            </a>
         `
         document.getElementById('produktuak').innerHTML += card
 

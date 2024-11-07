@@ -35,31 +35,49 @@ function range_input_txertatu(){
         const prezioa = parseFloat(t.innerText.replace('€', ''))
         prezioak.push(prezioa)
     })
-
+    // Prezio txikiena eta prezio handiena borobiltzen dira
     const min = Math.floor(Math.min.apply(Math, prezioak))
     const max = Math.ceil(Math.max.apply(Math, prezioak))
 
     const range = `
-    <div id="rango-container">
-        <span id="prezio-rango-container">
-            <p>${min}€</p>
-            <p>${max}€</p>
-        </span>
-        <input type="range" id="rango" value="${min}" min="${min}" max="${max}">
-        <span><input type="number" min="${min} max="${max}" value="${min}"><p>€</p></span>
+    <div id="slider-section">
+        <div id="prezioak-label">
+            <span class="prezioa-label">${min}€</span>
+            <span class="prezioa-label">${max}€</span>
+        </div>
+        <input type="range" min="${min}" max="${max}" value="${min}" id="prezioa-range">
+        <div id="prezioa-zenbakia-container">
+            <input type="number" min="${min}" max="${max}" value="${min}" id="prezioa-number">
+            <span class="currency-symbol">€</span>
+        </div>
     </div>
     `
     document.getElementById('filtroa').innerHTML += range
-
-    document.querySelector('#rango-container input[type="range"]').addEventListener('change', function(e){
-        document.querySelector('#rango-container input[type="number"]').value = e.target.value
+    
+    document.getElementById('prezioa-range').addEventListener('change', function(e){
+        document.getElementById('prezioa-range').value = e.target.value
     })
 }
 
 function biltzailea_txertatu(){
-    const biltzailea = `<input type="text" name="bilatu" id="bilatu">`
+    const biltzailea = `
+        <div id="bilatzailea">
+            <input type="text" placeholder="Bilatu..." class="styled-input" id="search-input">
+            <span id="testua-ezabatu">×</span>
+        </div>
+    `
     document.getElementById('filtroa').innerHTML += biltzailea
 
+    document.querySelector('#bilatzailea input').addEventListener('input', function(e){
+        if(e.target.value != ""){
+            document.getElementById('testua-ezabatu').style.display = "block"
+        }
+    })
+
+    document.getElementById('testua-ezabatu').addEventListener('click', function(){
+        document.querySelector('#bilatzailea input').value = ""
+        document.getElementById('testua-ezabatu').style.display = "none"
+    })
 }
 
 async function produktuak_ikusi(){
@@ -85,13 +103,5 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
     biltzailea_txertatu()
 })
 }
-
-document.querySelector('header').addEventListener('scroll', function(){
-    if(window.scrollY > 5){
-        document.querySelector('header').classList.add('scroll')
-    }else{
-        document.querySelector('header').classList.remove('scroll')
-    }
-})
 
 produktuak_ikusi()

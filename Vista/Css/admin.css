@@ -43,9 +43,6 @@ COGERAN LOS ESTILOS DEL GLOBAL CSS  */
     display: none;
 }
 
-.sub-table { 
-    display: none; 
-}
         
 .expand-btn { 
     cursor: pointer; 

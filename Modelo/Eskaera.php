@@ -8,6 +8,7 @@ class Eskaera extends Konexioa{
             er.izena AS erab_izena,
             er.abizena,
             el.id_produktua,
+            el.kopurua,
             e.egoera,
             e.data,
             p.izena,

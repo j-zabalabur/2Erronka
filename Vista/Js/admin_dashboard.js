@@ -18,6 +18,9 @@
             case 'erabiltzaileak':
                 erabiltzaileakIkusi();
                 break;
+            case 'eskaerak':
+                eskaerakIkusi();
+                break;
                 default:
             }
         }
@@ -30,28 +33,26 @@
 
 
 
-        async function deskontuKodeakIkusi(){
-            await fetch("http://localhost/ariketak/2Erronka/Controlador/DeskontuKodeakIkusi.php")
+
+        
+        async function eskaerakIkusi(){
+            await fetch("http://localhost/ariketak/2Erronka/Controlador/EskaerakIkusi.php")
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('emaitzaDeskontuKodeak').innerHTML = "";
+                    document.getElementById('emaitzaEskaerak').innerHTML = "";
+                    guztira=0;
                     data.forEach(item => {
+                        prezioa=item.prezioa-(item.prezioa*item.beherapena)/100;
+                        guztira+=prezioa;
+                        console.log(item);
                         ilara = `
-                            <tr>
-                                <td>${item.kodea}</td>
-                                <td>${item.deskontua}</td>
-                                <td>
-                                    <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
-                                    <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
-                                </td>
-                            </tr>
+                            
                         `;
                         console.log(ilara);
-                        document.getElementById('emaitzaDeskontuKodeak').innerHTML+= ilara;
+                        document.getElementById('emaitzaEskaerak').innerHTML+= ilara;
                     })
                 })
         }
-
         async function erabiltzaileakIkusi(){
             await fetch("http://localhost/ariketak/2Erronka/Controlador/ErabiltzaileakIkusi.php")
                 .then(response => response.json())

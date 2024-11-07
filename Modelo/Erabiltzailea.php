@@ -16,3 +16,4 @@ class Erabiltzailea extends Konexioa{
 
     }
 }
+?>

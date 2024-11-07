@@ -1,4 +1,6 @@
-        // Aukeratutako taula erakutsiko du eta besteak ezkutatu
+
+       
+       // Aukeratutako taula erakutsiko du eta besteak ezkutatu
         function erakutsiTaula(kategoria) {
             const taulak = document.querySelectorAll('.taula');
             taulak.forEach(taula => {
@@ -24,9 +26,6 @@
                 default:
             }
         }
-
-
-
 
 
 
@@ -62,18 +61,40 @@
                 .then(data => {
                     document.getElementById('emaitzaEskaerak').innerHTML = "";
                     guztira=0;
+                    id_eskaera=0;
                     data.forEach(item => {
                         prezioa=item.prezioa-(item.prezioa*item.beherapena)/100;
                         guztira+=prezioa;
                         console.log(item);
-                        ilara = `
-                            
-                        `;
-                        console.log(ilara);
+                        if(id_eskaera!=item.id_eskera){
+                            id_eskaera=item.id_eskera;
+                            ilara = `
+                              
+                                  `;
+                            document.getElementById('emaitzaEskaerak').innerHTML+= ilara;
+                        } 
+                        else {
+                            ilara=`
+                            <tr>
+                                <table>
+                                    <tr>
+                                        <td>${item.id_eskaera}</td>
+                                        <td>${item.erab_izena}</td>
+                                        <td>${item.abizena}</td>
+                                        <td>${item.data}</td>
+                                        <td>${item.egoera}</td>
+                                    </tr>
+                                </table>
+                            </tr>`;
                         document.getElementById('emaitzaEskaerak').innerHTML+= ilara;
+
+                        }
+                        // document.getElementById('emaitzaEskaerak').innerHTML+= ilara;
                     })
                 })
         }
+
+
         async function erabiltzaileakIkusi(){
             await fetch("http://localhost/ariketak/2Erronka/Controlador/ErabiltzaileakIkusi.php")
                 .then(response => response.json())

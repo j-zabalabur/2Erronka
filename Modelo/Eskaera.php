@@ -5,7 +5,11 @@ class Eskaera extends Konexioa{
     public function getEskaerak(){
         $query = $this->getCon()->query("SELECT 
             e.id AS id_eskaera,
+            er.izena AS erab_izena,
+            er.abizena,
             el.id_produktua,
+            e.egoera,
+            e.data,
             p.izena,
             p.prezioa,
             p.eragina,
@@ -13,6 +17,8 @@ class Eskaera extends Konexioa{
             p.deskripzioa
             FROM 
             eskaerak e
+            JOIN
+            erabiltzaileak er ON e.id_erabiltzailea=er.id
             JOIN 
             eskaera_lerroak el ON e.id = el.id_eskaera
             JOIN 

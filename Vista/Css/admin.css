@@ -42,3 +42,11 @@ COGERAN LOS ESTILOS DEL GLOBAL CSS  */
 .taula {
     display: none;
 }
+
+.sub-table { 
+    display: none; 
+}
+        
+.expand-btn { 
+    cursor: pointer; 
+}

@@ -20,6 +20,42 @@ body{
     }
 }
 
+#filtroa{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    background-color: #000;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 10px;
+
+    #rango-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0;
+        
+        span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            p{
+                color: white;
+            }
+        }
+    
+        #prezio-rango-container{
+            display: flex;
+            justify-content: space-between;
+            p{
+                color:white;
+            }
+        }
+    }
+}
+
 #produktuak{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -34,6 +70,7 @@ body{
         flex-direction: column;
         box-shadow: 0 5px 5px gray;
         transition:.2s;
+        text-decoration: none;
 
         &:hover{
             box-shadow: 0 5px 5px #95bf47;
@@ -61,15 +98,10 @@ body{
                 text-overflow: ellipsis;
                 width: fit-content;
                 white-space: nowrap;
-
-
-                &:hover{
-                    text-decoration: 2px underline black;
-                }
             }
 
             .eragina{
-                margin: 10px 0;
+                margin-bottom: 10px;
             }
 
             .produktu-prezioa-info{

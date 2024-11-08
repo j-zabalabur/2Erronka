@@ -49,45 +49,18 @@ body{
         }
     }
 
-    #slider-section {
+    #minmax-section{
         display: flex;
-        flex-direction: column;
         align-items: center;
         gap: 10px;
 
-        #prezioak-label {
+        span{
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-size: 14px;
-            color: var(--text-sec);
-        }
-
-        #prezioa-range{
-            appearance: none;
-            height: 5px;
-            background: var(--button-bg);
-            outline: none;
-            border-radius: 5px;
-            cursor: pointer;
-            
-            /*range inputaren borobilaren estiloa aldatzen du, Chrome nabigatzailean bakarrik nabarmenduko da*/
-            &::-webkit-slider-thumb{
-                appearance: none;
-                width: 14px;
-                height: 14px;
-                background-color: var(--button-bg-hover);
-                border-radius: 50%;
-                cursor: pointer;
-            }
-        }
-
-        #prezioa-zenbakia-container{
-            display: flex;
+            justify-content: center;
             align-items: center;
             position: relative;
 
-            #prezioa-number{
+            input{
                 padding: 5px;
                 border: 1px solid #ddd;
                 border-radius: 8px;
@@ -95,13 +68,18 @@ body{
                 text-align: center;
                 color: var(--text-sec);
                 outline: none;
+
+                &:focus{
+                    border-color:var(--input-border-color-focus);
+                    outline: none;
+                }
             }
 
-            span{
-                font-size: 14px;
+            p{
+                font-size: 16px;
                 color: var(--text-sec);
+                margin-top: 10px;
             }
-    
         }
     }
 
@@ -143,7 +121,8 @@ body{
 #produktuak{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    column-gap: 10px;
+    row-gap: 25px;
     width: 95%;
     margin-top: 20px;
     padding: 0 20px;

@@ -111,6 +111,26 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
     document.querySelector("#minmax-section span input").addEventListener("change", function(e){
         // TODO Metodoa amaitu
     })  
+
+    const cards  = document.querySelectorAll('#produktuak .card')
+
+    document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e){
+        if(e.target.value == 0){
+            document.getElementById('produktuak').innerHTML = ""
+            cards.forEach(card => {
+                document.getElementById('produktuak').appendChild(card)
+            })
+        }
+    
+        if(e.target.value == 1){
+          // TODO Txikienetik handienera ordenatu  
+        }
+    
+        if(e.target.value == 2){
+        // TODO Handienetik txikienera ordenatu
+        }
+    })
+
     })
 }
 

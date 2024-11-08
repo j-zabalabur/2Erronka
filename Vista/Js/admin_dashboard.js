@@ -76,87 +76,18 @@
                         //Eskari berria, taula hasieratu
                         if(id_eskaera===0){
                             id_eskaera=item.id_eskaera;
-                            burua = `
-                                <tr>
-                                    <td>${item.id_eskaera}</td>
-                                    <td>${item.erab_izena}</td>
-                                    <td>${item.abizena}</td>
-                                    <td>${item.data}</td>
-                                    <td>${item.egoera}</td>
-                                    <td>
-                                        <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
-                                        <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
-                                        <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
-                                    </td>
-
-                                </tr>
-                                <tr class="sub-table" id="${id_eskaera}" style="display: none;">                                    
-                                    <td colspan="6">
-                                        <table class="table table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>Produktua</th>
-                                                    <th>Marka</th>
-                                                    <th>Kopurua</th>
-                                                    <th>Prezioa</th>
-                                                    <th>Beherapena</th>
-                                                    <th>Azken prezioa</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="eskaeraLerroak${id_eskaera}">
-                                                
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                                `;
-                            document.getElementById('emaitzaEskaerak').innerHTML+= burua;
+                            //Taularen burua inprimatu
+                            eskaeraTaulaBurua(item, id_eskaera);
 
                             //Eskaria amaitu da, taula itxi
                         } else if (id_eskaera!=item.id_eskaera){
-                            amaiera = `
-                                <tr>
-                                    <td colspan="5" style="text-align: right;"><strong>Prezioa guztira:</strong></td>
-                                    <td>${guztira} €</td>
-                                </tr>`;
-                            document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
+                            //Taula amaiera inprimatu
+                            eskaeraTaulaAmaiera(id_eskaera, guztira);
+
 
                             id_eskaera=item.id_eskaera;
-                            burua = `
-                                <tr>
-                                    <td>${item.id_eskaera}</td>
-                                    <td>${item.erab_izena}</td>
-                                    <td>${item.abizena}</td>
-                                    <td>${item.data}</td>
-                                    <td>${item.egoera}</td>
-                                    <td>
-                                        <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
-                                        <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
-                                        <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
-                                    </td>
-
-                                </tr>
-                                <tr class="sub-table" id="${id_eskaera}" style="display: none;">                                    
-                                    <td colspan="6">
-                                        <table class="table table-sm">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>Produktua</th>
-                                                    <th>Marka</th>
-                                                    <th>Prezioa</th>
-                                                    <th>Kopurua</th>
-                                                    <th>Beherapena</th>
-                                                    <th>Azken prezioa</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="eskaeraLerroak${id_eskaera}">
-                                                
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                                `;
-                            document.getElementById('emaitzaEskaerak').innerHTML+= burua;
+                            //Taularen burua inprimatu
+                            eskaeraTaulaBurua(item, id_eskaera);
                             } 
                         
                         //Eskariko ilarak gehitu
@@ -172,12 +103,8 @@
                         document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= ilara;
                         
                     })
-                    amaiera = `
-                                <tr>
-                                    <td colspan="5" style="text-align: right;"><strong>Prezioa guztira:</strong></td>
-                                    <td>${guztira} €</td>
-                                </tr>`;
-                            document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
+                    eskaeraTaulaAmaiera(id_eskaera, guztira);
+
                 })
         }
 
@@ -217,4 +144,54 @@
                 })
         }
 
-        
+
+        //Eskaera taula inprimatzeko metodoak
+        //Taula hasiera
+        function eskaeraTaulaBurua(item, id_eskaera){
+            burua = `
+            <tr>
+                <td>${item.id_eskaera}</td>
+                <td>${item.erab_izena}</td>
+                <td>${item.abizena}</td>
+                <td>${item.data}</td>
+                <td>${item.egoera}</td>
+                <td>
+                    <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
+                    <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
+                    <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
+                </td>
+
+            </tr>
+            <tr class="sub-table" id="${id_eskaera}" style="display: none;">                                    
+                <td colspan="6">
+                    <table class="table table-sm table-active">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Produktua</th>
+                                <th>Marka</th>
+                                <th>Prezioa</th>
+                                <th>Kopurua</th>
+                                <th>Beherapena</th>
+                                <th>Azken prezioa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eskaeraLerroak${id_eskaera}">
+                            
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            `;
+        document.getElementById('emaitzaEskaerak').innerHTML+= burua;
+
+
+        }
+        //Taula amaiera
+        function eskaeraTaulaAmaiera(id_eskaera, guztira){
+            amaiera = `
+            <tr>
+                <td colspan="5" style="text-align: right;"><strong>Prezioa guztira:</strong></td>
+                <td>${guztira} €</td>
+            </tr>`;
+        document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
+        }

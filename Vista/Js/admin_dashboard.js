@@ -1,13 +1,4 @@
-    // Función para alternar la visibilidad de la fila de productos
-    function toggleProductos(idEskaera) {
-        const target = $("#" + idEskaera);  // Seleccionamos la fila de productos por su ID
-
-        // Comprobamos si el elemento existe
-        if (target.length) {
-            target.slideToggle();  // Usamos slideToggle para un efecto más suave
-        }
-    }
-       
+        //====================PANEL BAKOITZAREN BISTARATZEA HASI=================================
        // Aukeratutako taula erakutsiko du eta besteak ezkutatu
         function erakutsiTaula(kategoria) {
             const taulak = document.querySelectorAll('.taula');
@@ -34,12 +25,13 @@
                 default:
             }
         }
+        //====================PANEL BAKOITZAREN BISTARATZEA AMAITU=================================
 
 
 
-
+        //==================================IKUSI FUNTZIONALITATEAK HASI=====================================
         async function deskontuKodeakIkusi(){
-            await fetch("http://localhost/ariketak/2Erronka/Controlador/DeskontuKodeakIkusi.php")
+            await fetch("../Controlador/DeskontuKodeakIkusi.php")
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('emaitzaDeskontuKodeak').innerHTML = "";
@@ -59,12 +51,19 @@
                     })
                 })
         }
+        
+        // Eskaera taulako datuen xehetasunak ezkutatu/erakusteko metodoa
+        function toggleProductos(idEskaera) {
+            const target = $("#" + idEskaera); 
 
-
+            if (target.length) {
+                target.slideToggle();
+            }
+        }
 
         
         async function eskaerakIkusi(){
-            await fetch("http://localhost/ariketak/2Erronka/Controlador/EskaerakIkusi.php")
+            await fetch("../Controlador/EskaerakIkusi.php")
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('emaitzaEskaerak').innerHTML = "";
@@ -110,7 +109,7 @@
 
 
         async function erabiltzaileakIkusi(){
-            await fetch("http://localhost/ariketak/2Erronka/Controlador/ErabiltzaileakIkusi.php")
+            await fetch("../Controlador/ErabiltzaileakIkusi.php")
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('emaitzaErabiltzaileak').innerHTML = "";
@@ -133,8 +132,8 @@
                         ilara +=`</td>
                                 <td>${item.helbidea}</td>
                                 <td>
-                                    <button type='button' class='btn btn-info' onclick=aldatu('${item.id}')>Aldatu</button>
-                                    <button type='button' class='btn btn-danger' onclick=ezabatu('${item.id}')>Ezabatu</button>
+                                    <button type='button' class='btn btn-info' onclick=erabiltzaileaAldatu('${item.id}')>Aldatu</button>
+                                    <button type='button' class='btn btn-danger' onclick=erabiltzaileaEzabatu('${item.id}')>Ezabatu</button>
                                 </td>
                             </tr>
                         `;
@@ -143,9 +142,17 @@
                     })
                 })
         }
+        //==================================IKUSI FUNTZIONALITATEEN AMAIERA=====================================
+
+        //==================================ALDATU FUNTZIONALITATEEN HASIERA=====================================
 
 
-        //Eskaera taula inprimatzeko metodoak
+
+
+
+        //==================================ALDATU FUNTZIONALITATEEN AMAIERA=====================================
+
+        //===============================ESKAERA TAULA INPRIMATZEKO METODOAK HASI===============================
         //Taula hasiera
         function eskaeraTaulaBurua(item, id_eskaera){
             burua = `
@@ -195,3 +202,4 @@
             </tr>`;
         document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
         }
+        //===============================ESKAERA TAULA INPRIMATZEKO METODOAK AMAITU===============================

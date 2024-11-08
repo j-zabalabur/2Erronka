@@ -12,9 +12,7 @@
     text-align: center;
 }
 
-/* ESTO DEL BUTTON ES PROVISIONAL, PARA TENER UN EJEMPLO VISUAL 
-LOS BOTONES SERAN DE BOOTSTRAP Y
-COGERAN LOS ESTILOS DEL GLOBAL CSS  */
+
 .sidebar button {
     background-color: var(--button-bg);
     color: #FFFFFF;
@@ -41,4 +39,15 @@ COGERAN LOS ESTILOS DEL GLOBAL CSS  */
 
 .taula {
     display: none;
+}
+
+.eskaeraTaula{
+    background-color: grey;
+}
+        
+.expand-btn { 
+    cursor: pointer; 
+}
+.thead-light{
+    background-color: grey;
 }

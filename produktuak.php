@@ -14,7 +14,7 @@
 </head>
 <body>
 <header class="z-3">
-        <a href="index.php">
+        <a href="produktuak.php">
             <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
         </a>
 
@@ -28,7 +28,7 @@
                 <p id="email" class="dropdown-header">posta@gmail.com</p>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="Vista/orga.html">
                     <i class="bi bi-bag"></i>
                         Orga
                     </a>
@@ -60,15 +60,15 @@
       <!-- Bilaketa filtroa -->
       <div id="filtroa">
         <select>
-          <option value="1" selected>--Opzio bat aukeratu--</option>
+          <option value="0" selected>--Opzio bat aukeratu--</option>
           <option value="1">Prezioa: txikienetik handienera</option>
           <option value="2">Prezioa: handienetik txikienera</option>
         </select>
         
         <select>
-            <option>--Eragin bat aukeratu--</option>
-            <option>Adidas</option>
-            <option>Nike</option>
+            <option value="0">--Eragin bat aukeratu--</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Nike">Nike</option>
         </select>
         <!-- Range input-a hemen -->
         <!-- Bilaketa barra hemen -->
@@ -76,9 +76,28 @@
       <div id="produktuak">
         <!-- Produktuak hemen -->
       </div>
-      <footer>
+    <footer>
     <!-- FOOTERRA HEMEN -->
-    <h1>FOOTER</h1>
+        <a href="produktuak.php">
+            <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
+            <div id="sare-sozialak">
+                <a href="#">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-telegram"></i>
+                </a>
+            </div>
+        </a>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="Vista/Js/produktuak.js"></script>

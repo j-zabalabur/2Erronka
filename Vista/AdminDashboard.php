@@ -15,6 +15,11 @@
                 require_once("Css/admin.css");
                 ?>
             </style>
+            <script>
+                if (!localStorage.getItem('saioaHasita')){
+                    location.href = "saioaHasi.html";
+                }
+            </script>
         </head>
         <body>
         <header>
@@ -27,16 +32,10 @@
             </span>
 
             <ul class="dropdown-menu dropdown-menu-end">
-                <p id="izen-abizenak" class="dropdown-header">Nombre Apellido</p>
-                <p id="email" class="dropdown-header">posta@gmail.com</p>
+                <p id="izen-abizenak" class="dropdown-header"></p>
+                <p id="email" class="dropdown-header"></p>
                 <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#">
-                    <i class="bi bi-bag"></i>
-                        Orga
-                    </a>
-                </li>
-                <li><a class="dropdown-item" href="#">
+                <li><a id="saioaItxi" class="dropdown-item" href="./saioaHasi.html">
                 <i class="bi bi-box-arrow-left"></i>
                     Saioa Itxi
                 </a></li>

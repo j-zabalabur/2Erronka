@@ -15,5 +15,13 @@ class Erabiltzailea extends Konexioa{
 
 
     }
+
+    public static function insertErabiltzailea($email, $izena, $abizena, $pasahitza, $admin, $helbidea){
+        $konexioa = new Erabiltzailea();
+        $sentencia = $konexioa->getCon()->prepare("INSERT INTO erabiltzaileak (email, izena, abizena, pasahitza, administratzailea, helbidea) VALUES (?, ?, ?, ?, ?, ?)");
+        $sentencia->bind_param("ssssis", $email, $izena, $abizena, $pasahitza, $admin, $helbidea);
+        $sentencia->execute();
+        $sentencia->close();
+    }
 }
 ?>

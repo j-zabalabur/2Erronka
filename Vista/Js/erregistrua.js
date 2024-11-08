@@ -19,16 +19,16 @@ let izenaOndo, abizenaOndo, helbideaOndo, emailOndo, pasahitzaOndo, pasahitzaErr
 $izena.addEventListener('blur', ()=>{
     if ($izena.value.trim() == ""){
         $izena.classList.add('mal');
-        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes dejar vacío este campo';
+        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
         $izena.value = $izena.value.trim();
         izenaOndo = false;
     }else if (/[^a-zA-Z]/.test($izena.value)){
         $izena.classList.add('mal');
-        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Solo pueden haber letras y sin espacios';
+        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Letrak bakarrik egon daitezke eta hutsunerik gabe';
         izenaOndo = false;
     }else if ($izena.value.length > 15){
         $izena.classList.add('mal');
-        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> El nombre solo puede tener 15 caracteres';
+        $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Izenak 15 karaktere izan ditzake soilik';
         izenaOndo = false
     }else{
         $izena.classList.remove('mal');
@@ -40,16 +40,16 @@ $izena.addEventListener('blur', ()=>{
 $abizena.addEventListener('blur', ()=>{
     if ($abizena.value.trim() == ""){
         $abizena.classList.add('mal');
-        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes dejar vacío este campo';
+        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
         $abizena.value = $abizena.value.trim();
         abizenaOndo = false;
     }else if (/[^a-zA-Z]/.test($abizena.value)){
         $abizena.classList.add('mal');
-        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Solo pueden haber letras y sin espacios';
+        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Letrak bakarrik egon daitezke eta hutsunerik gabe';
         abizenaOndo = false;
     }else if ($abizena.value.length > 15){
         $abizena.classList.add('mal');
-        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> El nombre solo puede tener 15 caracteres';
+        $abizenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Abizenak 15 karaktere izan ditzake soilik';
         abizenaOndo = false;
     }else{
         $abizena.classList.remove('mal');
@@ -61,12 +61,12 @@ $abizena.addEventListener('blur', ()=>{
 $helbidea.addEventListener('blur', ()=>{
     if ($helbidea.value.trim() == ""){
         $helbidea.classList.add('mal');
-        $helbideaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes dejar vacío este campo';
+        $helbideaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
         $helbidea.value = $helbidea.value.trim();
         helbideaOndo = false;
     }else if (/[^a-zA-Z0-9-.,/\\\s]/.test($helbidea.value)){
         $helbidea.classList.add('mal');
-        $helbideaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> El formato está mal';
+        $helbideaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Formatua txarto dago';
         helbideaOndo = false;
     }else{
         $helbidea.classList.remove('mal');
@@ -78,7 +78,7 @@ $helbidea.addEventListener('blur', ()=>{
 $email.addEventListener('blur', ()=>{
     if ($email.value.trim() == ""){
         $email.classList.add('mal');
-        $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes dejar vacío este campo';
+        $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
         $email.value = $email.value.trim();
         emailOndo = false;
     }else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.value)){
@@ -87,7 +87,7 @@ $email.addEventListener('blur', ()=>{
         emailOndo = true;
     }else{
         $email.classList.add('mal');
-        $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Introduce un email válido';
+        $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Sartu baliozko email bat';
         emailOndo = false;
     }
 });
@@ -95,12 +95,12 @@ $email.addEventListener('blur', ()=>{
 $pasahitza.addEventListener('blur', ()=>{
     if ($pasahitza.value.trim() == ""){
         $pasahitza.classList.add('mal');
-        $pasahitzaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes dejar vacío este campo';
+        $pasahitzaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
         $pasahitza.value = $pasahitza.value.trim();
         pasahitzaOndo = false;
     }else if(/[\s]/.test($pasahitza.value)){
         $pasahitza.classList.add('mal');
-        $pasahitzaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> No puedes introducir espacios';
+        $pasahitzaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin dira hutsuneak utzi';
         pasahitzaOndo = false;
     }else{
         $pasahitza.classList.remove('mal');

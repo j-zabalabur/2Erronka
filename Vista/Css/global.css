@@ -36,7 +36,7 @@ header{
     width: 100%;
     padding: 10px 15px;
     background-color: var(--background);
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid lightgray;
 
     #logo{
         width: 250px;
@@ -72,4 +72,37 @@ header{
         }
     }
 
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--background);
+    margin-top: 25px;
+    border-top: 1px solid lightgray;
+    padding: 10px 0;
+
+    #logo{
+        width: 250px;
+    }
+
+    #sare-sozialak{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        
+        a{
+            text-decoration: none;
+            margin: 0 10px;
+            color:var(--text);
+            font-size: 30px;
+            transition:.2s;
+
+            &:hover{
+                color:var(--button-bg);
+            }
+        }
+    }
 }

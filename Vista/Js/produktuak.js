@@ -28,7 +28,7 @@ function produktua_sortu(item){
     return card 
 }
 
-function range_input_txertatu(){
+function minmax_input_txertatu(){
     let prezioak_textua = document.querySelectorAll('p.produktu-prezioa')
     let prezioak = []
     prezioak_textua.forEach(t => {
@@ -39,24 +39,19 @@ function range_input_txertatu(){
     const min = Math.floor(Math.min.apply(Math, prezioak))
     const max = Math.ceil(Math.max.apply(Math, prezioak))
 
-    const range = `
-    <div id="slider-section">
-        <div id="prezioak-label">
-            <span class="prezioa-label">${min}€</span>
-            <span class="prezioa-label">${max}€</span>
-        </div>
-        <input type="range" min="${min}" max="${max}" value="${min}" id="prezioa-range">
-        <div id="prezioa-zenbakia-container">
-            <input type="number" min="${min}" max="${max}" value="${min}" id="prezioa-number">
-            <span class="currency-symbol">€</span>
-        </div>
+    const minmax = `
+    <div id="minmax-section">
+        <span>
+            <input type="number" min="${min}" max="${max}" value="${min}">
+            <p>€</p>
+        </span>
+        <span>
+            <input type="number" min="${min}" max="${max}" value="${max}">
+            <p>€</p>
+        </span>
     </div>
-    `
-    document.getElementById('filtroa').innerHTML += range
-    
-    document.getElementById('prezioa-range').addEventListener('change', function(e){
-        document.getElementById('prezioa-range').value = e.target.value
-    })
+    `;
+    document.getElementById('filtroa').innerHTML += minmax;
 }
 
 function biltzailea_txertatu(){
@@ -72,11 +67,22 @@ function biltzailea_txertatu(){
         if(e.target.value != ""){
             document.getElementById('testua-ezabatu').style.display = "block"
         }
+
+        document.querySelectorAll('.produktu-informazioa .produktu-izena').forEach(izena => {
+            if(!izena.innerText.includes(e.target.value.toUpperCase())){
+                izena.parentNode.parentNode.style.display="none"
+            }else{
+                izena.parentNode.parentNode.style.display="flex"
+            }
+        })
     })
 
     document.getElementById('testua-ezabatu').addEventListener('click', function(){
         document.querySelector('#bilatzailea input').value = ""
         document.getElementById('testua-ezabatu').style.display = "none"
+        document.querySelectorAll('#produktuak .card').forEach(card => {
+            card.style.display = "flex"
+        })
     })
 }
 
@@ -99,9 +105,13 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
         }
     })
 
-    range_input_txertatu()
+    minmax_input_txertatu()
     biltzailea_txertatu()
-})
+
+    document.querySelector("#minmax-section span input").addEventListener("change", function(e){
+        // TODO Metodoa amaitu
+    })  
+    })
 }
 
 produktuak_ikusi()

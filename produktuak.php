@@ -68,8 +68,6 @@
         
         <select>
             <option value="0">--Eragin bat aukeratu--</option>
-            <option value="Adidas">Adidas</option>
-            <option value="Nike">Nike</option>
         </select>
         <!-- Range input-a hemen -->
         <!-- Bilaketa barra hemen -->

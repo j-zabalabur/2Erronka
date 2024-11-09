@@ -86,11 +86,27 @@ function biltzailea_txertatu(){
     })
 }
 
+async function produktuak_ikusi_txikienetik_handienera(){
+    await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusiTxikienetikHandienera.php")
+    .then(response => response.json())
+    .then(data => {
+        if(document.getElementById('produktuak').innerHTML != ""){
+            document.getElementById('produktuak').innerHTML = ""
+        }
+
+        data.forEach(item => {
+            document.getElementById('produktuak').innerHTML += produktua_sortu(item)
+        })
+    })
+}
+
 async function produktuak_ikusi(){
 await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
 .then(response => response.json())
 .then(data => {
-    console.log(data)
+    if(document.getElementById('produktuak').innerHTML != ""){
+        document.getElementById('produktuak').innerHTML = ""
+    }
 
     data.forEach(item => {
         document.getElementById('produktuak').innerHTML += produktua_sortu(item)
@@ -110,10 +126,10 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
 
     document.querySelector("#minmax-section span input").addEventListener("change", function(e){
         // TODO Metodoa amaitu
-    })  
-
-    const cards  = document.querySelectorAll('#produktuak .card')
-
+    })
+    
+    const cards = document.querySelectorAll('#produktuak .card')
+    
     document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e){
         if(e.target.value == 0){
             document.getElementById('produktuak').innerHTML = ""
@@ -123,14 +139,14 @@ await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
         }
     
         if(e.target.value == 1){
-          // TODO Txikienetik handienera ordenatu  
+          // TODO Txikienetik handienera ordenatu
+          produktuak_ikusi_txikienetik_handienera()  
         }
     
         if(e.target.value == 2){
         // TODO Handienetik txikienera ordenatu
         }
     })
-
     })
 }
 

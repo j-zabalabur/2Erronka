@@ -25,6 +25,7 @@ function produktua_sortu(item){
         </a>
     `
 
+    bannera_txertatu(item)
     return card 
 }
 
@@ -39,8 +40,8 @@ function minmax_input_txertatu(){
     const min = Math.floor(Math.min.apply(Math, prezioak))
     const max = Math.ceil(Math.max.apply(Math, prezioak))
 
-    const minmax = `
-    <div id="minmax-section">
+    const minmax = 
+    `<div id="minmax-section">
         <span>
             <input type="number" min="${min}" max="${max}" value="${min}">
             <p>€</p>
@@ -49,18 +50,18 @@ function minmax_input_txertatu(){
             <input type="number" min="${min}" max="${max}" value="${max}">
             <p>€</p>
         </span>
-    </div>
-    `;
-    document.getElementById('filtroa').innerHTML += minmax;
+    </div>`
+    
+    document.getElementById('filtroa').innerHTML += minmax
 }
 
 function biltzailea_txertatu(){
-    const biltzailea = `
-        <div id="bilatzailea">
+    const biltzailea = 
+        `<div id="bilatzailea">
             <input type="text" placeholder="Bilatu..." class="styled-input" id="search-input">
             <span id="testua-ezabatu">×</span>
-        </div>
-    `
+        </div>`
+    
     document.getElementById('filtroa').innerHTML += biltzailea
 
     document.querySelector('#bilatzailea input').addEventListener('input', function(e){
@@ -86,67 +87,77 @@ function biltzailea_txertatu(){
     })
 }
 
-async function produktuak_ikusi_txikienetik_handienera(){
-    await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusiTxikienetikHandienera.php")
-    .then(response => response.json())
-    .then(data => {
-        if(document.getElementById('produktuak').innerHTML != ""){
-            document.getElementById('produktuak').innerHTML = ""
-        }
+async function fetch_data(url) {
+    const response = await fetch(url)
+    return await response.json()
+}
 
-        data.forEach(item => {
-            document.getElementById('produktuak').innerHTML += produktua_sortu(item)
-        })
+function produktuak_ezabatu() {
+    const container = document.getElementById('produktuak')
+    if (container.innerHTML !== "") {
+        container.innerHTML = ""
+    }
+}
+
+function produktua_txertatu(item) {
+    const productsContainer = document.getElementById('produktuak')
+    productsContainer.innerHTML += produktua_sortu(item)
+}
+
+function bannera_txertatu(item) {
+    if (item.nabarmendua != null) {
+        const banner = `
+            <div class="carousel-item ${(document.querySelector('#carouselExampleIndicators .carousel-inner').innerHTML == "") ? 'active' : ''}">
+                <img src="${item.nabarmendua}" class="d-block w-100" alt="banner-argazkia">
+            </div>
+        `
+        document.querySelector('.carousel-inner').innerHTML += banner
+    }
+}
+
+function orden_filtroa_txertatu() {
+    const cards = document.querySelectorAll('#produktuak .card')
+    
+    document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e) {
+        const productsContainer = document.getElementById('produktuak')
+
+        switch (e.target.value) {
+            case '0':
+                productsContainer.innerHTML = ""
+                cards.forEach(card => productsContainer.appendChild(card))
+                break
+            case '1':
+                produktuak_ikusi_txikienetik_handienera()
+                break
+            case '2':
+                // TODO produktuak handienetik txikienera ikusi
+                break
+        }
     })
 }
 
-async function produktuak_ikusi(){
-await fetch("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
-.then(response => response.json())
-.then(data => {
-    if(document.getElementById('produktuak').innerHTML != ""){
-        document.getElementById('produktuak').innerHTML = ""
-    }
+async function produktuak_ikusi() {
+    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
 
+    produktuak_ezabatu()
+    
     data.forEach(item => {
-        document.getElementById('produktuak').innerHTML += produktua_sortu(item)
-
-        if(item.nabarmendua != null){
-            banner_argazkia = `
-                <div class="carousel-item ${(document.querySelector('#carouselExampleIndicators .carousel-inner').innerHTML == "") ? 'active' : null}">
-                    <img src="${item.nabarmendua}" class="d-block w-100" alt="banner-argazkia">
-                </div>
-                `
-            document.querySelector('.carousel-inner').innerHTML += banner_argazkia
-        }
+        produktua_txertatu(item)
     })
 
     minmax_input_txertatu()
     biltzailea_txertatu()
 
-    document.querySelector("#minmax-section span input").addEventListener("change", function(e){
-        // TODO Metodoa amaitu
-    })
+    orden_filtroa_txertatu()
+}
+
+async function produktuak_ikusi_txikienetik_handienera(){
+    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusiTxikienetikHandienera.php")
+
+    produktuak_ezabatu()
     
-    const cards = document.querySelectorAll('#produktuak .card')
-    
-    document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e){
-        if(e.target.value == 0){
-            document.getElementById('produktuak').innerHTML = ""
-            cards.forEach(card => {
-                document.getElementById('produktuak').appendChild(card)
-            })
-        }
-    
-        if(e.target.value == 1){
-          // TODO Txikienetik handienera ordenatu
-          produktuak_ikusi_txikienetik_handienera()  
-        }
-    
-        if(e.target.value == 2){
-        // TODO Handienetik txikienera ordenatu
-        }
-    })
+    data.forEach(item => {
+        produktua_txertatu(item)
     })
 }
 

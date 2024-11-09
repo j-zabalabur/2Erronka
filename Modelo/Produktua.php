@@ -16,4 +16,18 @@ class Produktua extends Konexioa{
         header("Content-Type: application/json");
         echo json_encode($array);
     }
+
+    public function produktuakIkusiTxikienetikHandienera(){
+        $query = $this->getCon()->query("SELECT * FROM `produktuak` ORDER BY prezioa - ((prezioa * beherapena) / 100) ASC");
+        $array = [];
+
+        while($lerroa = $query->fetch_assoc()){
+            $argazkia_base64 = base64_encode($lerroa['argazkia']);
+            $lerroa['argazkia'] = $argazkia_base64;
+
+            $array[] = $lerroa;
+        }
+        header("Content-Type: application/json");
+        echo json_encode($array);
+    }
 }

@@ -130,7 +130,7 @@ function orden_filtroa_txertatu() {
                 produktuak_ikusi_txikienetik_handienera()
                 break
             case '2':
-                // TODO produktuak handienetik txikienera ikusi
+                produktuak_ikusi_handienetik_txikienera()
                 break
         }
     })
@@ -153,6 +153,16 @@ async function produktuak_ikusi() {
 
 async function produktuak_ikusi_txikienetik_handienera(){
     const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusiTxikienetikHandienera.php")
+
+    produktuak_ezabatu()
+    
+    data.forEach(item => {
+        produktua_txertatu(item)
+    })
+}
+
+async function produktuak_ikusi_handienetik_txikienera(){
+    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusiHandienetikTxikienera.php")
 
     produktuak_ezabatu()
     

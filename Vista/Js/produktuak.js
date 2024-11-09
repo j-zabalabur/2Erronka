@@ -11,7 +11,7 @@ function produktua_sortu(item){
             <img src="data:image/jpeg;base64, ${item.argazkia}">
             <div class="produktu-informazioa">
                 <p class="produktu-izena">${item.izena}</p>
-                <span">
+                <span>
                     <span class="badge text-bg-dark eragina">${item.eragina}</span>
                     ${(item.beherapena != 0) ? `<span class="badge rounded-pill text-bg-danger">-${item.beherapena}%</span>` : ''}
                 </span>
@@ -120,7 +120,8 @@ function orden_filtroa_txertatu() {
     
     document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e) {
         const productsContainer = document.getElementById('produktuak')
-
+        document.querySelectorAll('#filtroa select')[1].value = 0
+        
         switch (e.target.value) {
             case '0':
                 productsContainer.innerHTML = ""
@@ -132,6 +133,36 @@ function orden_filtroa_txertatu() {
             case '2':
                 produktuak_ikusi_handienetik_txikienera()
                 break
+        }
+    })
+}
+
+async function eragin_filtroa_txertatu(){
+    const data = await fetch_data("http://localhost/2Erronka/Controlador/eraginakJaso.php")
+
+    data.forEach(item => {
+        document.querySelectorAll('#filtroa select')[1].innerHTML += `
+            <option value="${item.eragina}">${item.eragina}</option>
+        `
+
+        document.querySelectorAll('#filtroa select')[1].addEventListener("change", function(){
+            if(document.querySelectorAll('#filtroa select')[1].value == item.eragina){
+                eraginaren_arabera_filtratu(item.eragina)
+            }else if(document.querySelectorAll('#filtroa select')[1].value == 0){
+                document.querySelectorAll('.card').forEach(item => {
+                    item.style.display = "flex"
+                })
+            }
+        })
+    })
+}
+
+function eraginaren_arabera_filtratu(eragina){
+    document.querySelectorAll('.card .eragina').forEach(item => {
+        if(item.innerText != eragina){
+            item.parentNode.parentNode.parentNode.style.display = "none"
+        }else{
+            item.parentNode.parentNode.parentNode.style.display = "flex"
         }
     })
 }
@@ -149,6 +180,7 @@ async function produktuak_ikusi() {
     biltzailea_txertatu()
 
     orden_filtroa_txertatu()
+    eragin_filtroa_txertatu()
 }
 
 async function produktuak_ikusi_txikienetik_handienera(){

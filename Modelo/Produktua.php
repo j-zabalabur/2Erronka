@@ -50,9 +50,6 @@ class Produktua extends Konexioa{
         $array = [];
 
         while($lerroa = $query->fetch_assoc()){
-            $argazkia_base64 = base64_encode($lerroa['argazkia']);
-            $lerroa['argazkia'] = $argazkia_base64;
-
             $array[] = $lerroa;
         }
         header("Content-Type: application/json");

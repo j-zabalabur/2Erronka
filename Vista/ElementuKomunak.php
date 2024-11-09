@@ -13,12 +13,9 @@ class ElementuKomunak {
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-                <style>
-                    <?php 
-                    require_once("Css/global.css");
-                    require_once("Css/admin.css");
-                    ?>
-                </style>
+                <link rel="stylesheet" href="Vista/Css/global.css">
+                <link rel="stylesheet" href="Vista/Css/produktuak.css">
+                
             </head>
             <body>
         <?php
@@ -26,9 +23,9 @@ class ElementuKomunak {
     
 
 public static function htmlHeader(){?>
-    <header>
+    <header class="z-3">
         <a href="index.php">
-            <img id="logo" src="vista/img/SNEAKIFY.webp" alt="logo">
+            <img id="logo" src="Vista/Img/SNEAKIFY.webp" alt="logo">
         </a>
 
         <div class="dropdown">
@@ -36,7 +33,7 @@ public static function htmlHeader(){?>
                 <i id="erab-icon" class="bi bi-person"></i>
             </span>
 
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end z-3">
                 <p id="izen-abizenak" class="dropdown-header">Nombre Apellido</p>
                 <p id="email" class="dropdown-header">posta@gmail.com</p>
                 <li><hr class="dropdown-divider"></li>
@@ -52,8 +49,6 @@ public static function htmlHeader(){?>
                 </a></li>
             </ul>
         </div>
-        
-        
     </header>
     <?php
 }
@@ -71,11 +66,11 @@ public static function htmlFooter(){?>
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="Vista/Js/produktuak.js"></script>
     <script>
         <?php require_once("js/script.js");?>
         <?php require_once("js/admin_dashboard.js");?>
-    </script>
+    </>
 
     </body>
     </html>

@@ -3,7 +3,7 @@ function produktua_sortu(item){
 
     if(item.beherapena != 0){
         // Gehienez 2 zenbaki dezimal egon ahal dira
-        prezioa_beheratua = Math.floor((item.prezioa - (item.prezioa * item.beherapena) / 100) * 100) / 100 
+        prezioa_beheratua = prezio_beheratua(item.prezioa, item.beherapena)
     }
 
     const card = `
@@ -29,74 +29,25 @@ function produktua_sortu(item){
     return card 
 }
 
-function minmax_input_txertatu(){
-    let prezioak_textua = document.querySelectorAll('p.produktu-prezioa')
-    let prezioak = []
-    prezioak_textua.forEach(t => {
-        const prezioa = parseFloat(t.innerText.replace('€', ''))
-        prezioak.push(prezioa)
-    })
-    // Prezio txikiena eta prezio handiena borobiltzen dira
-    const min = Math.floor(Math.min.apply(Math, prezioak))
-    const max = Math.ceil(Math.max.apply(Math, prezioak))
-
-    const minmax = 
-    `<div id="minmax-section">
-        <span>
-            <input type="number" min="${min}" max="${max}" value="${min}">
-            <p>€</p>
-        </span>
-        <span>
-            <input type="number" min="${min}" max="${max}" value="${max}">
-            <p>€</p>
-        </span>
-    </div>`
-    
-    document.getElementById('filtroa').innerHTML += minmax
-}
-
-function biltzailea_txertatu(){
-    const biltzailea = 
-        `<div id="bilatzailea">
-            <input type="text" placeholder="Bilatu..." class="styled-input" id="search-input">
-            <span id="testua-ezabatu">×</span>
-        </div>`
-    
-    document.getElementById('filtroa').innerHTML += biltzailea
-
-    document.querySelector('#bilatzailea input').addEventListener('input', function(e){
-        if(e.target.value != ""){
-            document.getElementById('testua-ezabatu').style.display = "block"
-        }
-
-        document.querySelectorAll('.produktu-informazioa .produktu-izena').forEach(izena => {
-            if(!izena.innerText.includes(e.target.value.toUpperCase())){
-                izena.parentNode.parentNode.style.display="none"
-            }else{
-                izena.parentNode.parentNode.style.display="flex"
-            }
-        })
-    })
-
-    document.getElementById('testua-ezabatu').addEventListener('click', function(){
-        document.querySelector('#bilatzailea input').value = ""
-        document.getElementById('testua-ezabatu').style.display = "none"
-        document.querySelectorAll('#produktuak .card').forEach(card => {
-            card.style.display = "flex"
-        })
-    })
+function prezio_beheratua(prezioa, beherapena){
+    return Math.floor((prezioa - (prezioa * beherapena) / 100) * 100) / 100
 }
 
 async function fetch_data(url) {
-    const response = await fetch(url)
-    return await response.json()
+    const data = await fetch(url)
+    return data.json()
 }
 
-function produktuak_ezabatu() {
-    const container = document.getElementById('produktuak')
-    if (container.innerHTML !== "") {
-        container.innerHTML = ""
-    }
+async function eraginak_txertatu(){
+    const eragin_filtroa = document.querySelectorAll('#filtroa select')[1]
+    const data = await fetch_data('http://localhost/2Erronka/Controlador/eraginakJaso.php')
+
+    data.forEach(item => {
+        const eragina = `
+            <option value="${item.eragina}">${item.eragina}</option>
+        `
+        eragin_filtroa.innerHTML += eragina
+    })
 }
 
 function produktua_txertatu(item) {
@@ -115,92 +66,50 @@ function bannera_txertatu(item) {
     }
 }
 
-function orden_filtroa_txertatu() {
-    const cards = document.querySelectorAll('#produktuak .card')
-    
-    document.querySelectorAll('#filtroa select')[0].addEventListener("change", function(e) {
-        const productsContainer = document.getElementById('produktuak')
-        document.querySelectorAll('#filtroa select')[1].value = 0
-        
-        switch (e.target.value) {
-            case '0':
-                productsContainer.innerHTML = ""
-                cards.forEach(card => productsContainer.appendChild(card))
-                break
-            case '1':
-                produktuak_ikusi_txikienetik_handienera()
-                break
-            case '2':
-                produktuak_ikusi_handienetik_txikienera()
-                break
-        }
-    })
+async function produktuak_ikusi(produktuak) {
+    document.getElementById('produktuak').innerHTML = ""
+    if(produktuak == null){
+        produktuak = await fetch_data('http://localhost/2Erronka/Controlador/ProduktuakIkusi.php')
+    }
+    produktuak.forEach(item => {
+        produktua_txertatu(item);
+    });
 }
 
-async function eragin_filtroa_txertatu(){
-    const data = await fetch_data("http://localhost/2Erronka/Controlador/eraginakJaso.php")
+async function filtroak_aplikatu(){
+    let produktuak_filtratuta = await fetch_data('http://localhost/2Erronka/Controlador/ProduktuakIkusi.php')
 
-    data.forEach(item => {
-        document.querySelectorAll('#filtroa select')[1].innerHTML += `
-            <option value="${item.eragina}">${item.eragina}</option>
-        `
+    // Bilatzaile filtroa
+    const bilatzaile_balioa = document.querySelector('#bilatzailea input').value.toLowerCase();
+    if(bilatzaile_balioa){
+        produktuak_filtratuta = produktuak_filtratuta.filter(produktua => {
+          // Convert both values to lowercase for case-insensitive comparison
+          return produktua.izena.toLowerCase().includes(bilatzaile_balioa.toLowerCase());
+      });
+  }
 
-        document.querySelectorAll('#filtroa select')[1].addEventListener("change", function(){
-            if(document.querySelectorAll('#filtroa select')[1].value == item.eragina){
-                eraginaren_arabera_filtratu(item.eragina)
-            }else if(document.querySelectorAll('#filtroa select')[1].value == 0){
-                document.querySelectorAll('.card').forEach(item => {
-                    item.style.display = "flex"
-                })
-            }
-        })
-    })
+    // Orden filtroa
+    const orden_filtroa = document.querySelectorAll('#filtroa select')[0].value
+    if(orden_filtroa == 1){
+        produktuak_filtratuta = produktuak_filtratuta.sort((a, b) => prezio_beheratua(a.prezioa, a.beherapena) - prezio_beheratua(b.prezioa, b.beherapena))
+    }else if(orden_filtroa == 2){
+        produktuak_filtratuta = produktuak_filtratuta.sort((a, b) => prezio_beheratua(b.prezioa, b.beherapena) - prezio_beheratua(a.prezioa, a.beherapena))
+    }
+
+    // Eragin filtroa
+    const eragin_filtroa = document.querySelectorAll('#filtroa select')[1].value
+    if(eragin_filtroa){
+        produktuak_filtratuta = produktuak_filtratuta.filter(produktua =>
+            produktua.eragina === eragin_filtroa
+          );
+    }
+    produktuak_ikusi(produktuak_filtratuta)
 }
 
-function eraginaren_arabera_filtratu(eragina){
-    document.querySelectorAll('.card .eragina').forEach(item => {
-        if(item.innerText != eragina){
-            item.parentNode.parentNode.parentNode.style.display = "none"
-        }else{
-            item.parentNode.parentNode.parentNode.style.display = "flex"
-        }
-    })
-}
+eraginak_txertatu()
 
-async function produktuak_ikusi() {
-    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusi.php")
-
-    produktuak_ezabatu()
-    
-    data.forEach(item => {
-        produktua_txertatu(item)
-    })
-
-    minmax_input_txertatu()
-    biltzailea_txertatu()
-
-    orden_filtroa_txertatu()
-    eragin_filtroa_txertatu()
-}
-
-async function produktuak_ikusi_txikienetik_handienera(){
-    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusiTxikienetikHandienera.php")
-
-    produktuak_ezabatu()
-    
-    data.forEach(item => {
-        produktua_txertatu(item)
-    })
-}
-
-async function produktuak_ikusi_handienetik_txikienera(){
-    const data = await fetch_data("http://localhost/2Erronka/Controlador/ProduktuakIkusiHandienetikTxikienera.php")
-
-    produktuak_ezabatu()
-    
-    data.forEach(item => {
-        produktua_txertatu(item)
-    })
-}
+document.querySelector('#bilatzailea input').addEventListener('input', filtroak_aplikatu)
+document.querySelectorAll('#filtroa select')[0].addEventListener('change', filtroak_aplikatu)
+document.querySelectorAll('#filtroa select')[1].addEventListener('change', filtroak_aplikatu)
 
 produktuak_ikusi()

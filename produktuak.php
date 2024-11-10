@@ -61,16 +61,18 @@
       <!-- Bilaketa filtroa -->
       <div id="filtroa">
         <select>
-          <option value="0" selected>--Opzio bat aukeratu--</option>
+          <option value="" selected>--Opzio bat aukeratu--</option>
           <option value="1">Prezioa: txikienetik handienera</option>
           <option value="2">Prezioa: handienetik txikienera</option>
         </select>
         
         <select>
-            <option value="0">--Eragin bat aukeratu--</option>
+            <option value="">--Eragin bat aukeratu--</option>
         </select>
-        <!-- Range input-a hemen -->
-        <!-- Bilaketa barra hemen -->
+        <div id="bilatzailea">
+            <input type="text" placeholder="Bilatu...">
+            <span id="testua-ezabatu">×</span>
+        </div>
       </div>
       <div id="produktuak">
         <!-- Produktuak hemen -->

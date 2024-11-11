@@ -163,7 +163,7 @@ async function erabiltzaileakIkusi(){
                     ilara +=`</td>
                     <td>${item.helbidea}</td>
                     <td>
-                        <button type='button' class='btn btn-info' onclick=erabiltzaileaAldatu('${item.id}')>Aldatu</button>
+                        <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${item.id}')>Aldatu</button>
                     </td>
                 </tr>
             `;
@@ -172,8 +172,8 @@ async function erabiltzaileakIkusi(){
                 ilara +=`</td>
                         <td>${item.helbidea}</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=erabiltzaileaAldatu('${item.id}')>Aldatu</button>
-                            <button type='button' class='btn btn-danger' onclick=erabiltzaileaEzabatu('${item.id}')>Ezabatu</button>
+                            <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${item.id}')>Aldatu</button>
+                            <button type='button' class='btn btn-danger' onclick=erabiltzaileakEzabatu('${item.id}')>Ezabatu</button>
                         </td>
                     </tr>
                 `;

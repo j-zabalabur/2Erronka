@@ -1,0 +1,186 @@
+:root{
+    --background: #fff;
+    --text: #000;
+    --text-sec: #5e5e5e;
+    --button-bg: #95bf47;
+    --button-bg-hover: #5e8e3e;
+    --select-bg: #eef5ed;
+    --input-border-color-focus: #6b8e23;
+}
+
+body{
+    align-items: center;
+}
+
+#carouselExampleIndicators{
+    width: 100%;
+    height: 40vw;
+    
+    .carousel-inner{
+        width: 100%;
+        height: 40vw;
+    }
+}
+
+#filtroa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    gap: 20px;
+    margin-top: 40px;
+
+    select{
+        background-color: var(--select-bg);
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 14px;
+        appearance: none;
+        cursor: pointer;
+
+        &:focus{
+            border-color:var(--input-border-color-focus);
+            outline: none;
+        }
+    }
+
+    #minmax-section{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            input{
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 14px;
+                text-align: center;
+                color: var(--text-sec);
+                outline: none;
+
+                &:focus{
+                    border-color:var(--input-border-color-focus);
+                    outline: none;
+                }
+            }
+
+            p{
+                font-size: 16px;
+                color: var(--text-sec);
+                margin-top: 10px;
+            }
+        }
+    }
+
+    #bilatzailea{
+        position: relative;
+        
+        input{
+            padding: 8px 12px;
+            padding-right: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+            outline: none;
+            color: var(--text);
+
+            &::placeholder{
+                color:var(--text-sec);
+            }
+
+            &:focus{
+                border-color: var(--input-border-color-focus);
+            }
+        }
+
+        #testua-ezabatu{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color:#999;
+            cursor: pointer;
+            display:none;
+        }
+    }
+}
+
+#produktuak{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10px;
+    row-gap: 25px;
+    width: 95%;
+    margin-top: 20px;
+    padding: 0 20px;
+
+    .card{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid lightgray;
+        transition:.1s;
+        text-decoration: none;
+
+        &:hover{
+            border: 1px solid #95bf47;
+        }
+
+        img{
+            max-height: 250px;
+            object-fit: contain;
+        }
+
+        .produktu-informazioa{
+            display: flex;
+            align-items: start;
+            flex-direction: column;
+            width: 100%;
+            padding: 0 20px;
+
+            .produktu-izena{
+                color:var(--text);
+                text-decoration: none;
+                font-size: 18px;
+                /* Card-a baino luzeagoak diren textuak mozten dira eta puntu suspensiboengatik aldatzen dira */
+                overflow: hidden;
+                max-width: 100%;
+                text-overflow: ellipsis;
+                width: fit-content;
+                white-space: nowrap;
+            }
+
+            .eragina{
+                margin-bottom: 10px;
+            }
+
+            .produktu-prezioa-info{
+                display: flex;
+                align-items: center;
+
+                del{
+                    margin-right: 15px;
+                }
+                
+            }
+
+            .produktu-prezioa{
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+}

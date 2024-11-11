@@ -15,6 +15,11 @@
                 require_once("Css/admin.css");
                 ?>
             </style>
+            <script>
+                if (!localStorage.getItem('saioaHasita')){
+                    location.href = "saioaHasi.html";
+                }
+            </script>
         </head>
         <body>
         <header>
@@ -27,16 +32,10 @@
             </span>
 
             <ul class="dropdown-menu dropdown-menu-end">
-                <p id="izen-abizenak" class="dropdown-header">Nombre Apellido</p>
-                <p id="email" class="dropdown-header">posta@gmail.com</p>
+                <p id="izen-abizenak" class="dropdown-header"></p>
+                <p id="email" class="dropdown-header"></p>
                 <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#">
-                    <i class="bi bi-bag"></i>
-                        Orga
-                    </a>
-                </li>
-                <li><a class="dropdown-item" href="#">
+                <li><a id="saioaItxi" class="dropdown-item" href="./saioaHasi.html">
                 <i class="bi bi-box-arrow-left"></i>
                     Saioa Itxi
                 </a></li>
@@ -58,15 +57,17 @@
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button type="button" class="btn btn-warning">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
+                            <th>Izena</th>
+                            <th>Prezioa</th>
+                            <th>Marka</th>
+                            <th>Beherapena</th>
+                            <th>Deskripzioa</th>
+                            <th>Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaProduktuak">
@@ -103,10 +104,11 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
+                            <th>Izena</th>
+                            <th>Abizena</th>
+                            <th>Data</th>
+                            <th>Egoera</th>
+                            <th>Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaEskaerak">
@@ -144,10 +146,15 @@
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     <script>
+        
         <?php require_once("js/script.js");?>
         <?php require_once("js/admin_dashboard.js");?>
+        <?php require_once("js/admin_dashboard_ikusi.js");?>
+
     </script>
 
     </body>

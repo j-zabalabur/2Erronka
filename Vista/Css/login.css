@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto';
+}
+
+:root{
+    scrollbar-width: thin;
+}
+
+body{
+    background: -webkit-radial-gradient(#95bf47, #5e8e3e);
+    min-height: 100dvh;
+    padding-block: 30px;
+}
+
+form{
+    max-width: 550px;
+    width: 100%;
+    border-radius: 40px;
+}
+
+img{
+    user-select: none;
+}
+
+input{
+    all: unset;
+}
+
+.inputs{
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #bababa;
+    transition: ease .2s;
+
+    &:focus{
+        border-color: #95bf47;
+    }
+}
+
+input[type = "submit"]{
+    background-color: #95bf47;
+    transition: ease .3s;
+
+
+    &:hover{
+        background-color: #5e8e3e;
+    }
+}
+
+.errorMsg{
+    color: red;
+    margin-bottom: 0px;
+}
+
+#izAbi{
+    display: flex;
+}
+
+.mal{
+    border-color: red;
+
+    &:focus{
+        border-color: red;
+        box-shadow: 0px 0px 5px red;
+    }
+}
+
+@media (width < 550px){
+    body{
+        padding: 0;
+    }
+
+    form{
+        min-height: 100dvh;
+        border-radius: 0;
+    }
+}
+
+@media (width < 450px){
+    #izAbi{
+        flex-direction: column;
+    }
+}

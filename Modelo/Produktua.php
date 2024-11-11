@@ -17,6 +17,11 @@ class Produktua extends Konexioa{
         echo json_encode($array);
     }
 
+    public function produktuakEzabatu($id){
+        $query = $this->getCon()->query('DELETE FROM produktuak WHERE id='.$id);
+        return "ok";
+    }
+
     public function produktuakIkusiTxikienetikHandienera(){
         $query = $this->getCon()->query("SELECT * FROM `produktuak` ORDER BY prezioa - ((prezioa * beherapena) / 100) ASC");
         $array = [];

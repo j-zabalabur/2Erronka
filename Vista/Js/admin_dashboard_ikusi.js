@@ -159,7 +159,16 @@ async function erabiltzaileakIkusi(){
                 } else {
                     ilara += `Ez`
                 }
-                        
+                if(localStorage.getItem('id') == item.id) {
+                    ilara +=`</td>
+                    <td>${item.helbidea}</td>
+                    <td>
+                        <button type='button' class='btn btn-info' onclick=erabiltzaileaAldatu('${item.id}')>Aldatu</button>
+                    </td>
+                </tr>
+            `;
+            
+                } else {        
                 ilara +=`</td>
                         <td>${item.helbidea}</td>
                         <td>
@@ -168,6 +177,7 @@ async function erabiltzaileakIkusi(){
                         </td>
                     </tr>
                 `;
+                }
                 console.log(ilara);
                 document.getElementById('emaitzaErabiltzaileak').innerHTML+= ilara;
             })

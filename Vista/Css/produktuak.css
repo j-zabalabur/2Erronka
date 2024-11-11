@@ -124,7 +124,6 @@ body{
     column-gap: 10px;
     row-gap: 25px;
     width: 95%;
-    margin-top: 20px;
     padding: 0 20px;
 
     .card{

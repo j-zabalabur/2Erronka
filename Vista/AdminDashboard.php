@@ -66,7 +66,6 @@
                             <th>Prezioa</th>
                             <th>Marka</th>
                             <th>Beherapena</th>
-                            <th>Deskripzioa</th>
                             <th>Aukerak</th>
                         </tr>
                     </thead>

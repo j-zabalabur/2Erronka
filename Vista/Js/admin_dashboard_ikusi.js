@@ -41,15 +41,28 @@ async function produktuakIkusi(){
                     <tr>
                         <td>${item.id}</td>
                         <td>${item.izena}</td>
-                        <td>${item.prezioa}</td>
+                        <td>${item.prezioa} €</td>
                         <td>${item.eragina}</td>
-                        <td>${item.beherapena}</td>
-                        <td>${item.deskripzioa}</td>
+                        <td>${item.beherapena} %</td>
                         <td>
                             <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item.id}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
+                            <button type='button' class='btn btn-secondary' onclick="toggleProductos('${item.id}')">Xehetasunak</button>
+
                         </td>
                     </tr>
+
+                    <tr class="sub-table" id="${item.id}" style="display: none;">                                    
+        <td colspan="6">
+            <table class="table table-sm table-active">
+                <thead class="thead-light">
+                    <tr>
+                        <td>${item.deskripzioa}</td>
+                    </tr>
+                </thead>
+            </table>
+        </td>
+    </tr>
                 `;
                 console.log(ilara);
                 document.getElementById('emaitzaProduktuak').innerHTML+= ilara;
@@ -84,8 +97,8 @@ async function deskontuKodeakIkusi(){
 }
 
 // Eskaera taulako datuen xehetasunak ezkutatu/erakusteko metodoa
-function toggleProductos(idEskaera) {
-    const target = $("#" + idEskaera); 
+function toggleProductos(id) {
+    const target = $("#" + id); 
 
     if (target.length) {
         target.slideToggle();

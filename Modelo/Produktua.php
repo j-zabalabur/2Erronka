@@ -55,4 +55,11 @@ class Produktua extends Konexioa{
         header("Content-Type: application/json");
         echo json_encode($array);
     }
+
+    public function produktuaIkusi($id){
+        $prep = $this->getCon()->prepare("SELECT * FROM produktuak WHERE id = ?");
+        $prep->bind_param('i', $id);
+        $response = $prep->execute();
+        return $prep->get_result()->fetch_assoc();
+    }
 }

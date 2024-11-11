@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sneakify - Marka onenen oinetakoak prezio onenean</title>
 </head>
 <body>
     <!DOCTYPE html>
@@ -23,7 +23,7 @@
 </head>
 <body>
 <header class="z-3">
-        <a href="produktuak.php">
+        <a href="../produktuak.php">
             <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
         </a>
 
@@ -49,28 +49,52 @@
             </ul>
         </div>
     </header>
-    <footer>
-        <!-- FOOTERRA HEMEN -->
-            <a href="produktuak.php">
-                <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
-                <div id="sare-sozialak">
-                    <a href="#">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-twitter-x"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-telegram"></i>
-                    </a>
+
+    <div id="datuak-container">
+        <div id="informazioa">
+            <img src="" alt="produktu-argazkia">
+            <div id="produktu-datuak">
+                <p id="izena"></p><!-- Produktu izena hemen -->
+                <span>
+                    <span class="badge text-bg-dark eragina"></span><!-- Produktu eragina hemen -->
+                    <span class="badge rounded-pill text-bg-danger"></span><!-- Produktu beherapen ehunekoa hemen -->
+                </span>
+                <div id="produktu-prezioa-info">
+                    <del class="produktu-prezioa"><p></p></del><!-- Produktu prezio zaharra hemen -->
+                    <p class="produktu-prezioa position-relative"></p><!-- Produktu prezio berria hemen -->
                 </div>
-            </a>
+                <button>Organ gorde</button>
+            </div>
+        </div>
+        <div id="deskripzioa">
+            <p id="tituloa"></p>
+            <p id="deskripzio-gorputza">
+                
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <a href="../produktuak.php">
+            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
+            <div id="sare-sozialak">
+                <a href="#">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-telegram"></i>
+                </a>
+            </div>
+        </a>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="Js/script.js"></script>

@@ -53,16 +53,16 @@ async function produktuakIkusi(){
                     </tr>
 
                     <tr class="sub-table" id="${item.id}" style="display: none;">                                    
-        <td colspan="6">
-            <table class="table table-sm table-active">
-                <thead class="thead-light">
-                    <tr>
-                        <td>${item.deskripzioa}</td>
+                        <td colspan="6">
+                            <table class="table table-sm table-active">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <td>${item.deskripzioa}</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </td>
                     </tr>
-                </thead>
-            </table>
-        </td>
-    </tr>
                 `;
                 console.log(ilara);
                 document.getElementById('emaitzaProduktuak').innerHTML+= ilara;

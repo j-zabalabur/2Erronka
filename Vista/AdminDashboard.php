@@ -58,7 +58,7 @@
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
                 <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
-                <table class="table table-hover table-resposive">
+                <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -78,7 +78,7 @@
             <section id="erabiltzaileak" class="taula">
                 <h2>Erabiltzaileak</h2>
                 <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
-                <table class="table table-hover table-resposive">
+                <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -99,7 +99,7 @@
             <section id="eskaerak" class="taula">
                 <h2>Eskaerak</h2>
                 <!-- <button type="button" class="btn btn-secondary">Erregistro berria sortu</button> -->
-                <table class="table table-hover table-resposive">
+                <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -119,7 +119,7 @@
             <section id="deskontu_kodeak" class="taula">
                 <h2>Deskontu Kodeak</h2>
                 <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
-                <table class="table table-hover table-resposive">
+                <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th>Kodea</th>

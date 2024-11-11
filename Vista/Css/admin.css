@@ -52,3 +52,20 @@
 .thead-light{
     background-color: grey;
 }
+
+@media(width < 650px){
+    .admin-panel {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height:auto;
+    }
+    .taula_container {
+        width: auto;
+    }
+    .taula {
+        width: auto;
+    }
+}

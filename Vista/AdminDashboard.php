@@ -57,15 +57,17 @@
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button type="button" class="btn btn-warning">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
+                            <th>Izena</th>
+                            <th>Prezioa</th>
+                            <th>Marka</th>
+                            <th>Beherapena</th>
+                            <th>Deskripzioa</th>
+                            <th>Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaProduktuak">
@@ -145,11 +147,14 @@
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     <script>
         
         <?php require_once("js/script.js");?>
         <?php require_once("js/admin_dashboard.js");?>
+        <?php require_once("js/admin_dashboard_ikusi.js");?>
+
     </script>
 
     </body>

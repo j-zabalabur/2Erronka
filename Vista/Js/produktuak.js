@@ -40,7 +40,7 @@ async function fetch_data(url) {
 
 async function eraginak_txertatu(){
     const eragin_filtroa = document.querySelectorAll('#filtroa select')[1]
-    const data = await fetch_data('http://localhost/2Erronka/Controlador/eraginakJaso.php')
+    const data = await fetch_data('../2erronka/Controlador/eraginakJaso.php')
 
     data.forEach(item => {
         const eragina = `
@@ -69,7 +69,7 @@ function bannera_txertatu(item) {
 async function produktuak_ikusi(produktuak) {
     document.getElementById('produktuak').innerHTML = ""
     if(produktuak == null){
-        produktuak = await fetch_data('http://localhost/2Erronka/Controlador/ProduktuakIkusi.php')
+        produktuak = await fetch_data('../2ERRONKA/Controlador/ProduktuakIkusi.php')
     }
     produktuak.forEach(item => {
         produktua_txertatu(item);
@@ -77,7 +77,7 @@ async function produktuak_ikusi(produktuak) {
 }
 
 async function filtroak_aplikatu(){
-    let produktuak_filtratuta = await fetch_data('http://localhost/2Erronka/Controlador/ProduktuakIkusi.php')
+    let produktuak_filtratuta = await fetch_data('../2ERRONKA/Controlador/ProduktuakIkusi.php')
 
     // Bilatzaile filtroa
     const bilatzaile_balioa = document.querySelector('#bilatzailea input').value.toLowerCase();

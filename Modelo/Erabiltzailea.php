@@ -16,6 +16,11 @@ class Erabiltzailea extends Konexioa{
 
     }
 
+    public function erabiltzaileaEzabatu($id){
+        $query = $this->getCon()->query('DELETE FROM erabiltzaileak WHERE id='.$id);
+        return "ok";
+    }
+
     public static function insertErabiltzailea($email, $izena, $abizena, $pasahitza, $admin, $helbidea){
         $konexioa = new Erabiltzailea();
         $sentencia = $konexioa->getCon()->prepare("INSERT INTO erabiltzaileak (email, izena, abizena, pasahitza, administratzailea, helbidea) VALUES (?, ?, ?, ?, ?, ?)");

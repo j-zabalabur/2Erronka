@@ -5,6 +5,7 @@
 
 .sidebar {
     width: 20%;
+    height: 600px;
     min-width:250px;
     padding: 10px;
     display: flex;
@@ -50,4 +51,21 @@
 }
 .thead-light{
     background-color: grey;
+}
+
+@media(width < 650px){
+    .admin-panel {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height:auto;
+    }
+    .taula_container {
+        width: auto;
+    }
+    .taula {
+        width: auto;
+    }
 }

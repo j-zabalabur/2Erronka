@@ -124,7 +124,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Kodea</th>
-                            <th>Deskontua</th>
+                            <th>Deskontua (%)</th>
                             <th>Aukerak</th>
                         </tr>
                     </thead>
@@ -138,11 +138,26 @@
     </div>
     <footer>
     <!-- FOOTERRA HEMEN -->
-    <h1>FOOTER</h1>
-
-    
-    
-        
+    <a href="produktuak.php">
+            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
+            <div id="sare-sozialak">
+                <a href="#">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#">
+                    <i class="bi bi-telegram"></i>
+                </a>
+            </div>
+        </a>
     </footer>
     <!-- Bootstrap eta JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

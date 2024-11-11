@@ -15,5 +15,11 @@ class DeskontuKodea extends Konexioa{
 
 
     }
+
+    public function deskontuKodeaEzabatu($kodea){
+        $query = $this->getCon()->query("DELETE FROM deskontu_kodeak WHERE kodea='".$kodea."'");
+        return "ok";
+    }
+
 }
 ?>

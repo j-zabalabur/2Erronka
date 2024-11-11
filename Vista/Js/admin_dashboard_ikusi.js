@@ -46,8 +46,8 @@ async function produktuakIkusi(){
                         <td>${item.beherapena}</td>
                         <td>${item.deskripzioa}</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=aldatu('${item.id}')>Aldatu</button>
-                            <button type='button' class='btn btn-danger' onclick=ezabatu('${item.id}')>Ezabatu</button>
+                            <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item.id}')>Aldatu</button>
+                            <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
                         </td>
                     </tr>
                 `;
@@ -72,8 +72,8 @@ async function deskontuKodeakIkusi(){
                         <td>${item.kodea}</td>
                         <td>${item.deskontua}</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
-                            <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
+                            <button type='button' class='btn btn-info' onclick=deskontuKodeaAldatu('${item.kodea}')>Aldatu</button>
+                            <button type='button' class='btn btn-danger' onclick=deskontuKodeaEzabatu('${item.kodea}')>Ezabatu</button>
                         </td>
                     </tr>
                 `;
@@ -197,8 +197,8 @@ function eskaeraTaulaBurua(item, id_eskaera){
         <td>${item.data}</td>
         <td>${item.egoera}</td>
         <td>
-            <button type='button' class='btn btn-info' onclick=aldatu('${item.kodea}')>Aldatu</button>
-            <button type='button' class='btn btn-danger' onclick=ezabatu('${item.kodea}')>Ezabatu</button>
+            <button type='button' class='btn btn-info' onclick=eskaeraAldatu('${item.kodea}')>Aldatu</button>
+            <button type='button' class='btn btn-danger' onclick=eskaeraEzabatu('${item.kodea}')>Ezabatu</button>
             <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
         </td>
 

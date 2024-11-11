@@ -5,6 +5,7 @@
 
 .sidebar {
     width: 20%;
+    height: 600px;
     min-width:250px;
     padding: 10px;
     display: flex;

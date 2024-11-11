@@ -25,7 +25,7 @@ class Eskaera extends Konexioa{
             JOIN 
             produktuak p ON el.id_produktua = p.id
             ORDER BY 
-            e.id, el.id_produktua;");
+            e.id DESC, el.id_produktua;");
         $array = [];
 
         if ($query){
@@ -37,5 +37,13 @@ class Eskaera extends Konexioa{
 
 
     }
+
+    public function eskaeraEzabatu($id){
+        $query = $this->getCon()->query('DELETE FROM eskaera_lerroak WHERE id_eskaera='.$id);
+        $query = $this->getCon()->query('DELETE FROM eskaerak WHERE id='.$id);
+        return "ok";
+    }
+
+
 }
 ?>

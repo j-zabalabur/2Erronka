@@ -104,6 +104,7 @@ async function eskaerakIkusi(){
                 prezioa=item.prezioa-(item.prezioa*item.beherapena)/100;
                 guztira+=prezioa;
                 //Eskari berria, taula hasieratu
+                console.log(item.id_eskaera);
                 if(id_eskaera===0){
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
@@ -113,7 +114,6 @@ async function eskaerakIkusi(){
                 } else if (id_eskaera!=item.id_eskaera){
                     //Taula amaiera inprimatu
                     eskaeraTaulaAmaiera(id_eskaera, guztira);
-
 
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
@@ -197,8 +197,8 @@ function eskaeraTaulaBurua(item, id_eskaera){
         <td>${item.data}</td>
         <td>${item.egoera}</td>
         <td>
-            <button type='button' class='btn btn-info' onclick=eskaeraAldatu('${item.kodea}')>Aldatu</button>
-            <button type='button' class='btn btn-danger' onclick=eskaeraEzabatu('${item.kodea}')>Ezabatu</button>
+            <button type='button' class='btn btn-info' onclick=eskaerakAldatu('${item.id_eskaera}')>Aldatu</button>
+            <button type='button' class='btn btn-danger' onclick=eskaerakEzabatu('${item.id_eskaera}')>Ezabatu</button>
             <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
         </td>
 

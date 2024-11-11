@@ -15,8 +15,6 @@ function produktua_sortu(item){
                     <span class="badge text-bg-dark eragina">${item.eragina}</span>
                     ${(item.beherapena != 0) ? `<span class="badge rounded-pill text-bg-danger">-${item.beherapena}%</span>` : ''}
                 </span>
-                
-                
                 <div class="produktu-prezioa-info">
                     ${(item.beherapena != 0) ? `<del class="produktu-prezioa"><p>${item.prezioa}€</p></del>` : ''}
                     <p class="produktu-prezioa position-relative">${(item.beherapena != 0) ? prezioa_beheratua : item.prezioa}€</p>

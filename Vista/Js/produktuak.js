@@ -7,7 +7,7 @@ function produktua_sortu(item){
     }
 
     const card = `
-        <a href="produktua.php?id=${item.id}" class="card">
+        <a href="Vista/produktua.html?id=${item.id}" class="card">
             <img src="data:image/jpeg;base64, ${item.argazkia}">
             <div class="produktu-informazioa">
                 <p class="produktu-izena">${item.izena}</p>

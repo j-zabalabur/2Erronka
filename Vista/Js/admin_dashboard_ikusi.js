@@ -70,7 +70,7 @@ async function deskontuKodeakIkusi(){
                 ilara = `
                     <tr>
                         <td>${item.kodea}</td>
-                        <td>${item.deskontua}</td>
+                        <td>${item.deskontua} %</td>
                         <td>
                             <button type='button' class='btn btn-info' onclick=deskontuKodeaAldatu('${item.kodea}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=deskontuKodeaEzabatu('${item.kodea}')>Ezabatu</button>
@@ -101,34 +101,35 @@ async function eskaerakIkusi(){
             guztira=0;
             id_eskaera=0;
             data.forEach(item => {
-                prezioa=item.prezioa-(item.prezioa*item.beherapena)/100;
-                guztira+=prezioa;
-                //Eskari berria, taula hasieratu
                 console.log(item.id_eskaera);
+                
+                //Eskari berria, taula hasieratu
                 if(id_eskaera===0){
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
                     eskaeraTaulaBurua(item, id_eskaera);
-
+                    
                     //Eskaria amaitu da, taula itxi
                 } else if (id_eskaera!=item.id_eskaera){
                     //Taula amaiera inprimatu
                     eskaeraTaulaAmaiera(id_eskaera, guztira);
-
+                    prezioa=0;
+                    guztira=0;
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
                     eskaeraTaulaBurua(item, id_eskaera);
                     } 
-                
+                    prezioa=(item.prezioa-(item.prezioa*item.beherapena)/100)*item.kopurua;
+                    guztira+=prezioa;
                 //Eskariko ilarak gehitu
                     ilara=`
                     <tr>
                                 <td>${item.izena}</td>
                                 <td>${item.eragina}</td>
-                                <td>${item.prezioa}</td>
+                                <td>${item.prezioa} €</td>
                                 <td>${item.kopurua}</td>
-                                <td>${item.beherapena}</td>
-                                <td>${prezioa*item.kopurua}</td>
+                                <td>${item.beherapena} %</td>
+                                <td>${prezioa.toFixed(2)} €</td>
                     </tr>`;
                 document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= ilara;
                 
@@ -232,7 +233,7 @@ function eskaeraTaulaAmaiera(id_eskaera, guztira){
     amaiera = `
     <tr>
         <td colspan="5" style="text-align: right;"><strong>Prezioa guztira:</strong></td>
-        <td>${guztira} €</td>
+        <td>${guztira.toFixed(2)} €</td>
     </tr>`;
 document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
 }

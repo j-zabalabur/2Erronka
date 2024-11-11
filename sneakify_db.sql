@@ -193,7 +193,9 @@ ALTER TABLE `erabiltzaileak`
 -- AUTO_INCREMENT de la tabla `eskaerak`
 --
 ALTER TABLE `eskaerak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+  ADD CONSTRAINT `eskaerak_ibfk_3` FOREIGN KEY (`id_erabiltzailea`) REFERENCES `erabiltzaileak` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 --
 -- AUTO_INCREMENT de la tabla `produktuak`
@@ -213,7 +215,7 @@ ALTER TABLE `eskaera_lerroak`
   ADD CONSTRAINT `eskaera_lerroak_ibfk_3` FOREIGN KEY (`id_eskaera`) REFERENCES `eskaerak` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `orga_lerroak`
+-- Filtros para la tabla `orga_lerroak`	
 --
 ALTER TABLE `orga_lerroak`
   ADD CONSTRAINT `orga_lerroak_ibfk_3` FOREIGN KEY (`id_erabiltzailea`) REFERENCES `erabiltzaileak` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,

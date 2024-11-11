@@ -99,7 +99,7 @@
 
             <section id="eskaerak" class="taula">
                 <h2>Eskaerak</h2>
-                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <!-- <button type="button" class="btn btn-secondary">Erregistro berria sortu</button> -->
                 <table class="table table-hover table-resposive">
                     <thead class="thead-dark">
                         <tr>
@@ -124,7 +124,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Kodea</th>
-                            <th>Deskontua (%)</th>
+                            <th>Deskontua</th>
                             <th>Aukerak</th>
                         </tr>
                     </thead>

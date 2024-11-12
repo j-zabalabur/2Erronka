@@ -45,7 +45,7 @@ async function produktuakIkusi(){
                         <td>${item.eragina}</td>
                         <td>${item.beherapena} %</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item.id}')>Aldatu</button>
+                            <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
                             <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${item.id}')">Xehetasunak</button>
 
@@ -175,10 +175,11 @@ async function erabiltzaileakIkusi(){
                     ilara += `Ez`
                 }
                 if(localStorage.getItem('id') == item.id) {
+                    
                     ilara +=`</td>
                     <td>${item.helbidea}</td>
                     <td>
-                        <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${item.id}')>Aldatu</button>
+                        <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                     </td>
                 </tr>
             `;
@@ -187,7 +188,7 @@ async function erabiltzaileakIkusi(){
                 ilara +=`</td>
                         <td>${item.helbidea}</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${item.id}')>Aldatu</button>
+                            <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=erabiltzaileakEzabatu('${item.id}')>Ezabatu</button>
                         </td>
                     </tr>
@@ -214,11 +215,11 @@ function eskaeraTaulaBurua(item, id_eskaera){
         <td>
             <button type='button' class='btn btn-info' onclick=eskaerakAldatu('${item.id_eskaera}')>Aldatu</button>
             <button type='button' class='btn btn-danger' onclick=eskaerakEzabatu('${item.id_eskaera}')>Ezabatu</button>
-            <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${id_eskaera}')">Xehetasunak</button>
+            <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('eskaera${id_eskaera}')">Xehetasunak</button>
         </td>
 
     </tr>
-    <tr class="sub-table" id="${id_eskaera}" style="display: none;">                                    
+    <tr class="sub-table" id="eskaera${id_eskaera}" style="display: none;">                                    
         <td colspan="6">
             <table class="table table-sm table-active">
                 <thead class="thead-light">

@@ -15,6 +15,12 @@ class Erabiltzailea extends Konexioa{
 
 
     }
+    
+    public function getErabiltzailea($id){
+        $query = $this->getCon()->query('SELECT * FROM erabiltzaileak WHERE id='.$id);
+        $erabiltzailea = $query->fetch_assoc();
+        return $erabiltzailea;
+    }
 
     public function erabiltzaileaEzabatu($id){
         $query = $this->getCon()->query('DELETE FROM erabiltzaileak WHERE id='.$id);

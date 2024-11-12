@@ -57,7 +57,7 @@
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary" >Erregistro berria sortu</button>
                 <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -77,7 +77,7 @@
 
             <section id="erabiltzaileak" class="taula">
                 <h2>Erabiltzaileak</h2>
-                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary" onclick="erabiltzaileaInsertPopUp()">Erregistro berria sortu</button>
                 <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -169,6 +169,9 @@
         <?php require_once("js/admin_dashboard.js");?>
         <?php require_once("js/admin_dashboard_ikusi.js");?>
         <?php require_once("js/admin_dashboard_delete.js");?>
+        <?php require_once("js/admin_dashboard_erabiltzailea_insert.js");?>
+        <?php require_once("js/admin_dashboard_update.js");?>
+
 
 
     </script>

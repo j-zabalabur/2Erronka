@@ -93,7 +93,7 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
 
         
         
-        guztira.textContent = preziogehiketa + "€";
+        guztira.textContent = preziogehiketa.toFixed(2) + "€";
         produktuPanela.appendChild(p);
     });
 });

@@ -12,6 +12,7 @@ function produktua_orgara_sartu(){
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
         fetch(`http://localhost/2Erronka/Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+        document.getElementById('orga-produktu-kopurua').innerText = parseInt(document.getElementById('orga-produktu-kopurua').innerText) + 1
     }catch(e){
         console.error(e)
         return null

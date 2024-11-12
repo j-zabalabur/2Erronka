@@ -55,8 +55,9 @@ document.getElementById('saioa').addEventListener('click', function(e){
     saioa_itxi()
 })
 
-document.getElementById('orga').addEventListener('click', function(){
-    if(!localStorage.getItem('id')){
+document.getElementById('orga').addEventListener('click', function(e){
+    e.preventDefault()
+    if(localStorage.getItem('id')){
         location.href = 'http://localhost/2Erronka/Vista/orga.html'
     }else{
         location.href = 'http://localhost/2Erronka/Vista/saioaHasi.html'

@@ -1,7 +1,3 @@
-localStorage.setItem('saioaHasita', true);
-localStorage.setItem('id', 1);
-localStorage.setItem('admin', 0);
-
 const idEra = localStorage.getItem('id');
 
 const izenaAdmin = document.getElementById('izen-abizenak');

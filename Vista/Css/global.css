@@ -46,7 +46,17 @@ header{
         max-width: 350px;
         .dropdown-menu.dropdown-menu-end{
             --bs-dropdown-link-active-bg: var(--button-bg-hover);
-        }    
+        }
+
+        .dropdown-item{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            
+            i{
+                margin-right: 10px;
+            }
+        }
     }
 
     #erab-icon-container{
@@ -73,13 +83,6 @@ header{
         white-space: nowrap;
         font-size: 24px;
     }
-
-    li:last-child{
-        a{
-            color: red;
-        }
-    }
-
 }
 
 footer{

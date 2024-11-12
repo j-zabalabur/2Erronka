@@ -144,7 +144,7 @@ $form.addEventListener('submit', (e) =>{
                     localStorage.setItem('saioaHasita', true);
                     localStorage.setItem('id', erabiltzaile[i].id);
                     localStorage.setItem('admin', erabiltzaile[i].administratzailea);
-                    location.href = "../produktuak.html";
+                    location.href = "../index.html";
 
                     break;
                 }

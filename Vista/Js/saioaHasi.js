@@ -30,7 +30,7 @@ $form.addEventListener('submit', (e) =>{
                 existitzenDa = false;
 
                 if (erabiltzaile[i].administratzailea == 0){
-                    location.href = "../produktuak.html";
+                    location.href = "../index.html";
                 }else{
                     location.href = "AdminDashboard.php";
                 }

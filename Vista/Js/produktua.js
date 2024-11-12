@@ -11,6 +11,17 @@ function prezio_beheratua(prezioa, beherapena){
     return Math.floor((prezioa - (prezioa * beherapena) / 100) * 100) / 100
 }
 
+function produktua_orgara_sartu(){
+    try{
+        const id_produktua = produktu_id_jaso()
+        const id_erabiltzailea = localStorage.getItem('id')
+        fetch(`http://localhost/2Erronka/Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+    }catch(e){
+        console.error(e)
+        return null
+    }
+}
+
 async function produktu_datuak_txertatu(){
     const datuak = await fetch_data(`http://localhost/2Erronka/Controlador/ProduktuaIkusi.php?id=${produktu_id_jaso()}`)
 
@@ -36,7 +47,7 @@ async function produktu_datuak_txertatu(){
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)
 document.querySelector('#produktu-datuak button').addEventListener('click', function(){
     if(localStorage.getItem('id')){
-        // Produktua orgara eraman
+        produktua_orgara_sartu()
     }else{
         location.href = 'http://localhost/2Erronka/Vista/saioaHasi.html'
     }

@@ -27,15 +27,6 @@ function produktua_sortu(item){
     return card 
 }
 
-function prezio_beheratua(prezioa, beherapena){
-    return Math.floor((prezioa - (prezioa * beherapena) / 100) * 100) / 100
-}
-
-async function fetch_data(url) {
-    const data = await fetch(url)
-    return data.json()
-}
-
 async function eraginak_txertatu(){
     const eragin_filtroa = document.querySelectorAll('#filtroa select')[1]
     const data = await fetch_data('../2erronka/Controlador/eraginakJaso.php')

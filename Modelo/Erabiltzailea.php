@@ -30,12 +30,16 @@ class Erabiltzailea extends Konexioa{
     }
 
     public function erabiltzaileaDatuakJaso(int $id){
+        try{
         $prep = $this->getCon()->prepare("SELECT * FROM erabiltzaileak WHERE id=?");
         $prep->bind_param('i', $id);
         $prep->execute();
 
         header("Content-Type: application/json");
         echo json_encode($prep->get_result()->fetch_assoc());
+        }catch(Exception $e){
+            throw new Error($e);
+        }
     }
 }
 ?>

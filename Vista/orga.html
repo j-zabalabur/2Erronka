@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/global.css">
+    <link rel="stylesheet" href="Css/orga.css">
+    <link rel="icon" href="Img/favicon.webp">
+    <title>Sneakify - zure orga</title>
+</head>
+<body class="d-flex flex-column align-items-center">
+    <header>
+        <a href="../produktuak.php">
+            <img id="logo" src="img/SNEAKIFY.webp" alt="logo">
+        </a>
+
+        <div class="dropdown">
+            <span id="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
+                <i id="erab-icon" class="bi bi-person"></i>
+            </span>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <p id="izen-abizenak" class="dropdown-header"></p>
+                <p id="email" class="dropdown-header"></p>
+                <li><hr class="dropdown-divider"></li>
+                <li><a id="saioaItxi" class="dropdown-item" href="saioaHasi.html">
+                <i class="bi bi-box-arrow-left"></i>
+                    Saioa Itxi
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="w-100 d-flex">
+        <div class="d-flex flex-column orga px-3" style="margin-top: 120px;">
+            <h2 class="mb-4">Orga</h2>
+            <div id="produktuak" class="d-flex flex-column gap-4" style="padding-bottom: 40px;">
+
+            </div>
+        </div>
+        <div class="erosiPanela">
+            
+            <div class="erosInfo">
+                <div class="d-flex justify-content-between">
+                    <p>Guztira:</p>
+                    <p id="guztira"></p>
+                </div>
+            
+                <div class="d-flex flex-column">
+                    <label for="deskontua" class="form-label">Deskontu kodea</label>
+                    <input type="text" class="p-1" id="deskontua" placeholder="XXXXXXX">
+                </div>
+            </div>
+
+            <button id="erosiBtn" class="rounded px-5 py-1 mt-5">Erosi</button>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Js/orga.js"></script>
+</body>
+</html>

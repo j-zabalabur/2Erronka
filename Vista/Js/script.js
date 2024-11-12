@@ -12,7 +12,7 @@ async function fetch_data(url){
         return data
     }catch(e){
         console.error(e)
-        return
+        return null;
     }
 }
 

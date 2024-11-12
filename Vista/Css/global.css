@@ -42,8 +42,11 @@ header{
         width: 250px;
     }
 
-    .dropdown-menu.dropdown-menu-end{
-        --bs-dropdown-link-active-bg: var(--button-bg-hover);
+    .dropdown{
+        max-width: 350px;
+        .dropdown-menu.dropdown-menu-end{
+            --bs-dropdown-link-active-bg: var(--button-bg-hover);
+        }    
     }
 
     #erab-icon-container{
@@ -63,6 +66,11 @@ header{
     }
 
     #izen-abizenak{
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        width: fit-content;
+        white-space: nowrap;
         font-size: 24px;
     }
 

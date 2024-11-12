@@ -34,3 +34,10 @@ async function produktu_datuak_txertatu(){
 }
 
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)
+document.querySelector('#produktu-datuak button').addEventListener('click', function(){
+    if(localStorage.getItem('id')){
+        // Produktua orgara eraman
+    }else{
+        location.href = 'http://localhost/2Erronka/Vista/saioaHasi.html'
+    }
+})

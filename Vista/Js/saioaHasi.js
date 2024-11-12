@@ -30,7 +30,7 @@ $form.addEventListener('submit', (e) =>{
                 existitzenDa = false;
 
                 if (erabiltzaile[i].administratzailea == 0){
-                    location.href = "hasieraOrria.php";
+                    location.href = "../produktuak.php";
                 }else{
                     location.href = "AdminDashboard.php";
                 }

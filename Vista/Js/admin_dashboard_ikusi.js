@@ -47,7 +47,7 @@ async function produktuakIkusi(){
                         <td>
                             <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item.id}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
-                            <button type='button' class='btn btn-secondary' onclick="toggleProductos('${item.id}')">Xehetasunak</button>
+                            <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${item.id}')">Xehetasunak</button>
 
                         </td>
                     </tr>
@@ -96,8 +96,8 @@ async function deskontuKodeakIkusi(){
         })
 }
 
-// Eskaera taulako datuen xehetasunak ezkutatu/erakusteko metodoa
-function toggleProductos(id) {
+// Taulako datuen xehetasunak ezkutatu/erakusteko metodoa
+function toggleXehetasunak(id) {
     const target = $("#" + id); 
 
     if (target.length) {
@@ -121,6 +121,7 @@ async function eskaerakIkusi(){
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
                     eskaeraTaulaBurua(item, id_eskaera);
+
                     
                     //Eskaria amaitu da, taula itxi
                 } else if (id_eskaera!=item.id_eskaera){
@@ -213,7 +214,7 @@ function eskaeraTaulaBurua(item, id_eskaera){
         <td>
             <button type='button' class='btn btn-info' onclick=eskaerakAldatu('${item.id_eskaera}')>Aldatu</button>
             <button type='button' class='btn btn-danger' onclick=eskaerakEzabatu('${item.id_eskaera}')>Ezabatu</button>
-            <button type='button' class='btn btn-secondary' onclick="toggleProductos('${id_eskaera}')">Xehetasunak</button>
+            <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${id_eskaera}')">Xehetasunak</button>
         </td>
 
     </tr>

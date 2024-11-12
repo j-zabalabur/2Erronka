@@ -7,10 +7,6 @@ function produktu_id_jaso(){
     return urlParams.get('id')
 }
 
-function prezio_beheratua(prezioa, beherapena){
-    return Math.floor((prezioa - (prezioa * beherapena) / 100) * 100) / 100
-}
-
 function produktua_orgara_sartu(){
     try{
         const id_produktua = produktu_id_jaso()

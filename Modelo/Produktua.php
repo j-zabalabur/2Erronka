@@ -72,4 +72,14 @@ class Produktua extends Konexioa{
         header("Content-Type: application/json");
         echo json_encode($result);
     }
+
+    public function produktuaOrgaraSartu(int $idErabiltzaile, int $idProduktua){
+        $prep = $this->getCon()->prepare("INSERT INTO `orga_lerroak`(`id_erabiltzailea`, `id_produktua`, `kopurua`) VALUES ('[value-1]','[value-2]',1)");
+        $prep->bind_param('ii', $idErabiltzaile, $idProduktua);
+        $prep->execute();
+        $result = $prep->get_result()->fetch_assoc();
+
+        header("Content-Type: application/json");
+        echo json_encode($result);
+    }
 }

@@ -31,7 +31,7 @@ class Erabiltzailea extends Konexioa{
 
     public function erabiltzaileaDatuakJaso(int $id){
         try{
-        $prep = $this->getCon()->prepare("SELECT * FROM erabiltzaileak WHERE id=?");
+        $prep = $this->getCon()->prepare("SELECT erabiltzaileak.id, erabiltzaileak.izena, erabiltzaileak.abizena, erabiltzaileak.email, (SELECT SUM(orga_lerroak.kopurua) FROM orga_lerroak WHERE orga_lerroak.id_erabiltzailea=erabiltzaileak.id) AS orga_produktuak FROM `erabiltzaileak` WHERE erabiltzaileak.id=?");
         $prep->bind_param('i', $id);
         $prep->execute();
 

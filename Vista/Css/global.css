@@ -43,9 +43,9 @@ header{
     }
 
     .dropdown{
-        max-width: 350px;
         .dropdown-menu.dropdown-menu-end{
             --bs-dropdown-link-active-bg: var(--button-bg-hover);
+            width: 200px;
         }
 
         .dropdown-item{

@@ -6,7 +6,7 @@ $produktuak = new Produktua();
 
 try{
     $id = $_GET['id'];
-    echo $produktuak->produktuaIkusi($id);
+    $produktuak->produktuaIkusi($id);
 }catch(Exception $e){
     echo $e;
 }

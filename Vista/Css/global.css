@@ -113,4 +113,9 @@ footer{
             }
         }
     }
+
+    p{
+        color:var(--text-sec);
+        margin-top: 20px;
+    }
 }

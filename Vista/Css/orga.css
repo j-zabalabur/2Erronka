@@ -9,6 +9,10 @@ header{
     z-index: 99999999999;
 }
 
+main{
+    min-height: 100dvh;
+}
+
 .orga{
     width: 60%;
 }
@@ -33,7 +37,7 @@ header{
     }
 }
 
-#prezioa, #kopurua{
+#prezioa, #kopurua, #simboloak, #prezioaLehen{
     margin: 0;
     font-size: 20px;
 }
@@ -113,6 +117,63 @@ header{
     }
 }
 
+.modalEzabatu{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    gap: 30px;
+
+    & button{
+        all: unset;
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+
+    & #ez{
+        background-color: white;
+        color: black;
+    }
+
+    & #bai{
+        background-color: red;
+        color: white;
+        border-radius: 5px;
+        transition: ease .2s;
+
+        &:hover{
+            background-color: rgb(213, 0, 0);
+        }
+    }
+
+    & h2{
+        text-wrap: pretty;
+        text-align: center;
+    }
+
+    & div{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+.fondoBeltza{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.673);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 @media (width < 1000px){
     .produktua h3{
         font-size: 23px;
@@ -133,12 +194,12 @@ header{
 
     .orga{
         width: 100%;
+        padding-bottom: 137px;
     }
 
     .erosiPanela{
         width: 100%;
         height: fit-content;
-        position: sticky;
         top: unset;
         bottom: 0;
         padding-right: 20px;
@@ -156,6 +217,10 @@ header{
 
 @media (width < 450px){
 
+    .orga{
+        padding-bottom: 217px;
+    }
+
     .erosiPanela{
         flex-direction: column;
         padding-right: 0px;
@@ -166,7 +231,7 @@ header{
         margin-right: 20px;
     }
 
-    #prezioa, #kopurua{
+    #prezioa, #kopurua, #simboloak, #prezioaLehen{
         margin: 0;
         font-size: 15px;
     }

@@ -38,18 +38,26 @@ fetch("../Controlador/DeskontuKodeakIkusi.php")
 
 const produktuPanela = document.getElementById('produktuak');
 const guztira = document.getElementById('guztira');
+const template = document.querySelector('template');
+const body = document.querySelector('body');
 let preziogehiketa = 0;
+guztira.innerHTML = preziogehiketa + "€";
 
 fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
 .then(response => response.json())
 .then(produktuak => {
     console.log(produktuak);
 
+    if (produktuak.length != 0){
+        produktuPanela.innerHTML = "";
+    }
+
     produktuak.forEach(produktua => {
         
         
         const p = document.createElement('div');
         p.classList.add('produktua');
+        p.id = produktua.id_produktua;
 
         if (produktua.beherapena == 0){
             preziogehiketa += eval(produktua.prezioa*produktua.kopurua);
@@ -59,7 +67,8 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                 <div class="d-flex flex-column justify-content-between">
                     <h3>${produktua.izena}</h3>
                     <div class="d-flex align-items-center">
-                        <p id="prezioa">${produktua.prezioa}€ X</p>
+                        <p id="prezioa">${produktua.prezioa}</p>
+                        <p id="simboloak">€ X</p>
                         <p id="kopurua">${produktua.kopurua}</p>
                         <div class="d-flex flex-column geziak">
                             <button id="gehitu"><i class="bi bi-chevron-compact-up"></i></button>
@@ -78,8 +87,9 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                 <div class="d-flex flex-column justify-content-between">
                     <h3>${produktua.izena}</h3>
                     <div class="d-flex align-items-center flex-wrap">
-                        <del class="mr-3" id="prezioa" style="margin-right:10px;">${produktua.prezioa}€</del>
-                        <p id="prezioa">${prezioBeheratuta/produktua.kopurua}€ X</p>
+                        <del class="mr-3" id="prezioaLehen" style="margin-right:10px;">${produktua.prezioa}€</del>
+                        <p id="prezioa">${prezioBeheratuta/produktua.kopurua}</p>
+                        <p id="simboloak">€ X</p>
                         <p id="kopurua">${produktua.kopurua}</p>
                         <div class="d-flex flex-column geziak">
                             <button id="gehitu"><i class="bi bi-chevron-compact-up"></i></button>
@@ -91,9 +101,48 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
             `;
         }
 
-        
-        
+
         guztira.textContent = preziogehiketa.toFixed(2) + "€";
         produktuPanela.appendChild(p);
+
+
     });
+
+    const kenduBtn = document.querySelectorAll('#kendu');
+
+    kenduBtn.forEach(btn =>{
+        btn.addEventListener('click', () =>{
+            const klon = template.content.cloneNode(true);
+            const modala = klon.querySelector('.modalEzabatu');
+            const fondo = klon.querySelector('.fondoBeltza');
+            const ezbtn = klon.querySelector('#ez');
+            const baibtn = klon.querySelector('#bai');
+
+            body.appendChild(fondo);
+            body.appendChild(modala);
+
+            ezbtn.onclick = ()=>{
+                body.removeChild(fondo);
+                body.removeChild(modala);
+            }
+
+            baibtn.onclick = ()=>{
+                body.removeChild(fondo);
+                body.removeChild(modala);
+                fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${btn.parentNode.id}`);
+                const prezioEza = btn.parentNode.querySelector('#prezioa').textContent;
+                const kopuruEza = btn.parentNode.querySelector('#kopurua').textContent;
+                const guzti = guztira.textContent.replace("€", "");
+                
+                guztira.textContent = eval(guzti - prezioEza*kopuruEza).toFixed(2) + "€";
+                
+                produktuPanela.removeChild(btn.parentNode);
+
+                if (produktuPanela.childElementCount == 0){
+                    produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
+                }
+            }
+        })
+        
+    })
 });

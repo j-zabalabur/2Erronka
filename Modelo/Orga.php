@@ -17,4 +17,10 @@ class Orga extends Konexioa{
         }
         return $array;
     }
+
+    public static function orgaEzabatu($idEra, $idPro){
+        $konexioa = new Konexioa;
+        $query = $konexioa->getCon()->query("DELETE FROM orga_lerroak WHERE id_erabiltzailea = $idEra AND id_produktua = $idPro");
+        $query->close();
+    }
 }

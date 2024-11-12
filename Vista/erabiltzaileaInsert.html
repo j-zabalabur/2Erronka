@@ -41,6 +41,13 @@
             <p class="errorMsg" id="emailMsg"></p>
         </div>
         <div class="d-flex flex-column">
+            <label for="opcion" class="form-label">Administratzailea da?</label>
+            <select name="opcion" id="admin" class="inputs" required>
+                <option value="0" selected>Ez</option>
+                <option value="1">Bai</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column">
             <label for="pasahitza" class="form-label">Pasahitza</label>
             <input type="password" name="pasahitza" id="pasahitza" class="inputs" required>
             <p class="errorMsg" id="pasahitzaMsg"></p>
@@ -54,8 +61,8 @@
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./Js/admin_dashboard_erabiltzailea_insert.js"></script>
-<script src="./Js/admin_dashboard_ikusi.js"></script>
+<script src="Js/admin_dashboard_erabiltzailea_insert.js"></script>
+<script src="Js/admin_dashboard_ikusi.js"></script>
 
 </body>
 </html>

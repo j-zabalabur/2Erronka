@@ -1,14 +1,10 @@
-import { erabiltzaileakIkusi } from "admin_dashboard_ikusi.js";
-
-function erabiltzaileaInsertPopUp(){
-    window.open("./erabiltzaileaInsert.html", "_blank", "width=400,height=600,top=50,left=150");
-}
     //Elementos del DOM
 const $form = document.querySelector('form');
 const $izena = document.getElementById('izena');
 const $abizena = document.getElementById('abizena');
 const $helbidea = document.getElementById('helbidea');
 const $email = document.getElementById('email');
+const $admin = document.getElementById('admin');
 const $pasahitza = document.getElementById('pasahitza');
 const $pasahitzaErr = document.getElementById('pasahitzaE');
 
@@ -138,12 +134,13 @@ $form.addEventListener('submit', (e) =>{
         $pasahitzaErrMsg.innerHTML = '';
         pasahitzaErrOndo = true;
     }
-    if (izenaOndo && abizenaOndo && helbideaOndo && emailOndo && pasahitzaOndo && pasahitzaErrOndo){
-        fetch(`../Controlador/insertErabiltzailea.php?email=${$email.value}&izena=${$izena.value}&abizena=${$abizena.value}&pasahitza=${$pasahitza.value}&admin=0&helbidea=${$helbidea.value}`);
-        erabiltzaileakIkusi();
-        window.close();
 
+    if (izenaOndo && abizenaOndo && helbideaOndo && emailOndo && pasahitzaOndo && pasahitzaErrOndo){
+        fetch(`../Controlador/insertErabiltzailea.php?email=${$email.value}&izena=${$izena.value}&abizena=${$abizena.value}&pasahitza=${$pasahitza.value}&admin=${$admin.value}&helbidea=${$helbidea.value}`)
+    .then(() => {
+        window.opener.erabiltzaileakIkusi(); 
+        window.opener.okMezua(); 
+        window.close();
+    })
     }
 });
-
-

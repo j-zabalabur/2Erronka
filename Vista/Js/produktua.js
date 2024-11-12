@@ -11,24 +11,6 @@ function prezio_beheratua(prezioa, beherapena){
     return Math.floor((prezioa - (prezioa * beherapena) / 100) * 100) / 100
 }
 
-async function fetch_data(url){
-    try{
-        const data = await fetch(url)
-        .then(res => {
-            if(res.ok){
-                return res.json()
-            }else{
-                throw new Error(`${res.status}: ${res.statusText}`)
-            }
-        })
-
-        return data
-    }catch(e){
-        console.error(e)
-        return
-    }
-}
-
 async function produktu_datuak_txertatu(){
     const datuak = await fetch_data(`http://localhost/2Erronka/Controlador/ProduktuaIkusi.php?id=${produktu_id_jaso()}`)
 

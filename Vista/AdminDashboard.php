@@ -118,7 +118,7 @@
 
             <section id="deskontu_kodeak" class="taula">
                 <h2>Deskontu Kodeak</h2>
-                <button type="button" class="btn btn-secondary">Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary" onclick="deskontuKodeaInsertPopUp()">Erregistro berria sortu</button>
                 <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>

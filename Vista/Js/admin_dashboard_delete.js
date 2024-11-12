@@ -105,7 +105,7 @@ function eskaerakEzabatu(id) {
 function okMezua(){
     Swal.fire({
         icon: 'success',
-        title: 'Ezabatua',
+        title: 'Eragiketa zuzen burutu da',
         showConfirmButton: false,
         timer: 1500
     })

@@ -1,6 +1,19 @@
-async function fetch_data(url) {
-    const data = await fetch(url)
-    return data.json()
+async function fetch_data(url){
+    try{
+        const data = await fetch(url)
+        .then(res => {
+            if(res.ok){
+                return res.json()
+            }else{
+                throw new Error(`${res.status}: ${res.statusText}`)
+            }
+        })
+
+        return data
+    }catch(e){
+        console.error(e)
+        return
+    }
 }
 
 async function erabiltzaile_datuak_txertatu(){

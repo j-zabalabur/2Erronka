@@ -33,6 +33,7 @@ class Erabiltzailea extends Konexioa{
         $sentencia->bind_param("ssssis", $email, $izena, $abizena, $pasahitza, $admin, $helbidea);
         $sentencia->execute();
         $sentencia->close();
+
     }
 }
 ?>

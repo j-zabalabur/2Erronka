@@ -169,8 +169,9 @@
         <?php require_once("js/admin_dashboard.js");?>
         <?php require_once("js/admin_dashboard_ikusi.js");?>
         <?php require_once("js/admin_dashboard_delete.js");?>
-        <?php require_once("js/admin_dashboard_erabiltzailea_insert.js");?>
         <?php require_once("js/admin_dashboard_update.js");?>
+        <?php require_once("js/admin_dashboard_insert.js");?>
+
 
 
 

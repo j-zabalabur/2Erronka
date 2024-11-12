@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./Img/favicon.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Css/login.css">
+    <title>Kontu bat sortu - Sneakify</title>
+</head>
+<body class="d-flex justify-content-center align-items-center">
+
+<form class="d-flex flex-column bg-white p-4" method="post" name="form">
+    <img src="./Img/SNEAKIFY.webp" class="w-50 mb-3">
+    <h2 class="mb-4">Sortu Sneakify kontu bat</h2>
+    <div class="d-flex flex-column gap-3">
+        <div id="izAbi" class="w-100 gap-3">
+            <div class="d-flex flex-column w-100">
+                <label for="izena" class="form-label">Izena</label>
+                <input type="text" id="izena" name="izena" autocomplete="off" class="inputs" required>
+                <p class="errorMsg" id="izenaMsg"></p>
+            </div>
+            <div class="d-flex flex-column w-100">
+                <label for="abizena" class="form-label">Abizena</label>
+                <input type="text" id="abizena" name="abizena" autocomplete="off" class="inputs" required>
+                <p class="errorMsg" id="abizenaMsg"></p>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="helbidea" class="form-label">Helbidea</label>
+            <input type="text" name="helbidea" id="helbidea" autocomplete="off" class="inputs" required>
+            <p class="errorMsg" id="helbideaMsg"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email" id="email" autocomplete="off" class="inputs" required>
+            <p class="errorMsg" id="emailMsg"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="opcion" class="form-label">Administratzailea da?</label>
+            <select name="opcion" id="admin" class="inputs" required>
+                <option value="0" selected>Ez</option>
+                <option value="1">Bai</option>
+            </select>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="pasahitza" class="form-label">Pasahitza</label>
+            <input type="password" name="pasahitza" id="pasahitza" class="inputs" required>
+            <p class="errorMsg" id="pasahitzaMsg"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <label for="pasahitzaE" class="form-label">Pasahitza errepikatu</label>
+            <input type="password" name="pasahitzaE" id="pasahitzaE" class="inputs" required>
+            <p class="errorMsg" id="pasahitzaEMsg"></p>
+        </div>
+        <input type="submit" class="mt-3 mx-auto text-white rounded py-2 px-5" value="Kontua sortu">
+    </div>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="Js/admin_dashboard_erabiltzailea_insert.js"></script>
+<script src="Js/admin_dashboard_ikusi.js"></script>
+
+</body>
+</html>

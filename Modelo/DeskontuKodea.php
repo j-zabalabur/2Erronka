@@ -20,6 +20,14 @@ class DeskontuKodea extends Konexioa{
         $query = $this->getCon()->query("DELETE FROM deskontu_kodeak WHERE kodea='".$kodea."'");
         return "ok";
     }
+    public static function deskontuKodeaInsert($kodea, $deskontua){
+        $konexioa = new DeskontuKodea();
 
+        $sentencia = $konexioa->getCon()->prepare("INSERT INTO deskontu_kodeak (kodea, deskontua) VALUES (?, ?)");
+        $sentencia->bind_param("si", $kodea, $deskontua);
+        $sentencia->execute();
+        $sentencia->close();
+
+    }
 }
 ?>

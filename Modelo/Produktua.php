@@ -22,34 +22,6 @@ class Produktua extends Konexioa{
         return "ok";
     }
 
-    public function produktuakIkusiTxikienetikHandienera(){
-        $query = $this->getCon()->query("SELECT * FROM `produktuak` ORDER BY prezioa - ((prezioa * beherapena) / 100) ASC");
-        $array = [];
-
-        while($lerroa = $query->fetch_assoc()){
-            $argazkia_base64 = base64_encode($lerroa['argazkia']);
-            $lerroa['argazkia'] = $argazkia_base64;
-
-            $array[] = $lerroa;
-        }
-        header("Content-Type: application/json");
-        echo json_encode($array);
-    }
-
-    public function produktuakIkusiHandienetikTxikienera(){
-        $query = $this->getCon()->query("SELECT * FROM `produktuak` ORDER BY prezioa - ((prezioa * beherapena) / 100) DESC");
-        $array = [];
-
-        while($lerroa = $query->fetch_assoc()){
-            $argazkia_base64 = base64_encode($lerroa['argazkia']);
-            $lerroa['argazkia'] = $argazkia_base64;
-
-            $array[] = $lerroa;
-        }
-        header("Content-Type: application/json");
-        echo json_encode($array);
-    }
-
     public function eraginakJaso(){
         $query = $this->getCon()->query("SELECT DISTINCT `eragina` FROM `produktuak`");
         $array = [];

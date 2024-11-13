@@ -27,7 +27,7 @@
             <img id="logo" src="img/SNEAKIFY.webp" alt="logo">
         </a>
         <div class="dropdown">
-            <span class="icon-container admin" data-bs-toggle="dropdown" aria-expanded="false">
+            <span id="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
                 <i id="admin-icon" class="bi bi-person-lock"></i>
             </span>
 

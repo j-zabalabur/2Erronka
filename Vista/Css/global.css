@@ -72,7 +72,10 @@ header{
             font-size: 2rem;
             color:var(--button-bg-hover);
         }
-        
+        #admin-icon{
+            font-size: 2rem;
+            color:var(--admin-icon-hover);
+        }
     }
 
     #izen-abizenak{

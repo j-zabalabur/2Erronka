@@ -122,3 +122,11 @@ footer{
         margin-top: 20px;
     }
 }
+
+@media(width < 750px){
+    footer{
+        p{
+            font-size: 8px;
+        }
+    }
+}

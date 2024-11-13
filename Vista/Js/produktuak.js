@@ -47,7 +47,7 @@ function produktua_txertatu(item) {
 function bannera_txertatu(item) {
     if (item.nabarmendua != null) {
         const banner = `
-            <div class="carousel-item ${(document.querySelector('#carouselExampleIndicators .carousel-inner').innerHTML == "") ? 'active' : ''}">
+            <div class="carousel-item ${(document.querySelector('#carousel .carousel-inner').innerHTML == "") ? 'active' : ''}">
                 <img src="${item.nabarmendua}" class="d-block w-100" alt="banner-argazkia">
             </div>
         `

@@ -46,7 +46,6 @@ guztira.innerHTML = preziogehiketa + "€";
 fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
 .then(response => response.json())
 .then(produktuak => {
-    console.log(produktuak);
 
     if (produktuak.length != 0){
         produktuPanela.innerHTML = "";
@@ -142,7 +141,39 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                     produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
                 }
             }
-        })
-        
-    })
+        });  
+    });
+
+    const gehituGeziak = document.querySelectorAll("#gehitu");
+    const murriztuGeziak = document.querySelectorAll("#murriztu");
+
+    gehituGeziak.forEach(gehitu =>{
+        gehitu.addEventListener('click', () =>{
+            const prod = gehitu.parentNode.parentNode.parentNode.parentNode;
+            const kop = gehitu.parentNode.parentNode.querySelector('#kopurua');
+            const pre = gehitu.parentNode.parentNode.querySelector('#prezioa');
+            
+            if(kop.textContent < 99){
+                kop.textContent = eval(kop.textContent)+1;
+                guztira.textContent = (eval(guztira.textContent.replace("€","")) + eval(pre.textContent)).toFixed(2) + "€";
+                fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);              
+            }
+            
+        });
+    });
+
+    murriztuGeziak.forEach(murriztu =>{
+        murriztu.addEventListener('click', () =>{
+            const prod = murriztu.parentNode.parentNode.parentNode.parentNode;
+            const kop = murriztu.parentNode.parentNode.querySelector('#kopurua');
+            const pre = murriztu.parentNode.parentNode.querySelector('#prezioa');
+            
+            if(kop.textContent > 1){
+                kop.textContent = eval(kop.textContent)-1;
+                guztira.textContent = (eval(guztira.textContent.replace("€","")) - eval(pre.textContent)).toFixed(2) + "€";
+                fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);           
+            }
+            
+        });
+    });
 });

@@ -1,8 +1,25 @@
+:root{
+    --admin-icon: rgb(240, 24, 24);
+    --admin-icon-hover: rgb(141, 15, 15);
+}
 .admin-panel {
     display: flex;
     flex-direction: row;
 }
 
+#admin-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-color: var(--admin-icon);
+    #admin-icon{
+        font-size: 2rem;
+        color:var(--admin-icon-hover);
+    }
+}
 .sidebar {
     width: 20%;
     height: 600px;

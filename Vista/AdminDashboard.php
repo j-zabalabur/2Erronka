@@ -22,27 +22,26 @@
             </script>
         </head>
         <body>
-        <header>
-        <a href="index.php">
-            <img id="logo" src="img/SNEAKIFY.webp" alt="logo">
+        <header class="z-3">
+        <a href="index.html">
+            <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
         </a>
-        <div class="dropdown">
-            <span id="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
+
+        <div class="dropdown z-3">
+            <span id="admin-icon-container" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                 <i id="admin-icon" class="bi bi-person-lock"></i>
             </span>
 
-            <ul class="dropdown-menu dropdown-menu-end">
-                <p id="izen-abizenak" class="dropdown-header"></p>
-                <p id="email" class="dropdown-header"></p>
+            <ul class="dropdown-menu dropdown-menu-end z-3">
+                <p id="izen-abizenak" class="dropdown-header">Erab. Anonimoa</p><!-- Izen-abizenak hemen -->
+                <p id="email" class="dropdown-header"></p><!-- Emai-a hemen -->
                 <li><hr class="dropdown-divider"></li>
-                <li><a id="saioaItxi" class="dropdown-item" href="./saioaHasi.html">
+                <li><a class="dropdown-item" href="#" id="saioa">
                 <i class="bi bi-box-arrow-left"></i>
-                    Saioa Itxi
+                    <span></span>
                 </a></li>
             </ul>
         </div>
-        
-        
     </header>
         <div class="admin-panel">
         <aside class="sidebar">
@@ -57,7 +56,7 @@
         <main class="taula_container">
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
-                <button type="button" class="btn btn-secondary" >Erregistro berria sortu</button>
+                <button type="button" class="btn btn-secondary" onclick="produktuaInsertPopUp()">Erregistro berria sortu</button>
                 <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>

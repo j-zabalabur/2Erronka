@@ -74,7 +74,7 @@ class Produktua extends Konexioa{
     }
 
     public function produktuaOrgaraSartu(int $idErabiltzaile, int $idProduktua){
-        $prep = $this->getCon()->prepare("INSERT INTO `orga_lerroak`(`id_erabiltzailea`, `id_produktua`, `kopurua`) VALUES (?,?,1)");
+        $prep = $this->getCon()->prepare("INSERT INTO `orga_lerroak`(`id_erabiltzailea`, `id_produktua`, `kopurua`) VALUES (?,?,1) ON DUPLICATE KEY UPDATE kopurua = kopurua + 1");
         $prep->bind_param('ii', $idErabiltzaile, $idProduktua);
         $prep->execute();
     }

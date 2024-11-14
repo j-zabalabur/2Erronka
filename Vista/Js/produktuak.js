@@ -133,5 +133,9 @@ produktuak_ikusi()
 document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
 document.getElementById('saioa').addEventListener('click', function(e){
     e.preventDefault()
-    saioa_itxi()
+    if(localStorage.getItem('id')){
+        saioa_itxi()
+    }else{
+        location.href = "Vista/saioaHasi.html"
+    }
 }) 

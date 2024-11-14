@@ -11,7 +11,7 @@ function produktua_orgara_sartu(){
     try{
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
-        fetch(`Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+        fetch(`../Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
     }catch(e){
         console.error(e)
         return null
@@ -79,5 +79,9 @@ document.querySelector('#produktu-datuak button').addEventListener('click', func
 })
 document.getElementById('saioa').addEventListener('click', function(e){
     e.preventDefault()
-    saioa_itxi()
+    if(localStorage.getItem('id')){
+        saioa_itxi()
+    }else{
+        location.href = "../saioaHasi.html"
+    }
 }) 

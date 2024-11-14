@@ -37,3 +37,33 @@ function deskontuKodeaAldatu(kodea) {
     
     window.open(`./deskontuKodeaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
 }
+
+function eskaeraEgoeraAldatu(id, egoera) {
+    console.log("ID:", id, "Egoera:", egoera); // Verificar los valores aquí
+    Swal.fire({
+        title: 'Zihur zaude eskaeraren egoera aldatu nahi duzula?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Bai',
+        cancelButtonText: 'Ez'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const formData = new FormData();
+                formData.append("id", id);
+                formData.append("egoera", egoera);
+            fetch("../Controlador/EskaeraEgoeraAldatu.php", {
+                method: "POST",
+                body: formData
+            }).then(response => response.text()).then(response => {
+                if (response == "ok") {
+                   eskaerakIkusi();
+                   okMezua();
+                } else {
+                   koMezua();
+                }
+            })
+        }
+    })
+}

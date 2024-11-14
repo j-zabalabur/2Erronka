@@ -212,7 +212,7 @@ function eskaeraTaulaBurua(item, id_eskaera){
         <td>${item.data}</td>
         <td>${item.egoera}</td>
         <td>
-            <button type='button' class='btn btn-info' onclick=eskaerakAldatu('${item.id_eskaera}')>Aldatu</button>
+            <button type='button' class='btn btn-info' onclick="eskaeraEgoeraAldatu(${item.id_eskaera}, '${item.egoera}')">Aldatu</button>
             <button type='button' class='btn btn-danger' onclick=eskaerakEzabatu('${item.id_eskaera}')>Ezabatu</button>
             <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('eskaera${id_eskaera}')">Xehetasunak</button>
         </td>

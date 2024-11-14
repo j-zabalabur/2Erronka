@@ -103,7 +103,8 @@ CREATE TABLE `produktuak` (
   `argazkia` longblob NOT NULL,
   `beherapena` int(2) DEFAULT 0,
   `nabarmendua` longtext DEFAULT NULL,
-  `deskripzioa` varchar(255) DEFAULT NULL
+  `deskripzioa` varchar(255) DEFAULT NULL,
+  `aktibo` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

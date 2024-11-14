@@ -69,7 +69,7 @@ function saioa_itxi(){
     localStorage.removeItem('id')
     localStorage.removeItem('admin')
     localStorage.removeItem('saioaHasita')
-    location.href = 'Vista/saioaHasi.html'
+    location.href = 'index.html'
 }
 
 async function erabiltzaile_datuak_txertatu(){

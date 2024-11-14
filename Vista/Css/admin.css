@@ -70,11 +70,18 @@
     background-color: grey;
 }
 
+
 @media(width < 650px){
     .admin-panel {
         flex-direction: column;
     }
-    
+    .table {
+        font-size: 0.6rem; /* Ajusta el tamaño de la fuente en dispositivos móviles */
+    }
+    .btn {
+        font-size: 0.5rem;  /* Tamaño de fuente más pequeño */
+        padding: 0.25rem 0.25rem;  /* Menos espacio dentro del botón */
+    }
     .sidebar {
         width: 100%;
         height:auto;
@@ -85,4 +92,5 @@
     .taula {
         width: auto;
     }
+    
 }

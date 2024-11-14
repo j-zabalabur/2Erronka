@@ -169,7 +169,7 @@ ALTER TABLE `eskaera_lerroak`
 -- Indices de la tabla `orga_lerroak`
 --
 ALTER TABLE `orga_lerroak`
-  ADD UNIQUE KEY `id_erabiltzailea` (`id_erabiltzailea`),
+  ADD KEY `id_erabiltzailea` (`id_erabiltzailea`),
   ADD UNIQUE KEY `id_produktua` (`id_produktua`);
 
 --

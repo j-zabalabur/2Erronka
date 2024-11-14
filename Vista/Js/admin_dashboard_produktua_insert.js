@@ -117,7 +117,6 @@
   
   $form.addEventListener('submit', (e) =>{
       e.preventDefault();
-        console.log(form);
       fetch("../Controlador/ProduktuakIkusi.php")
       .then(response => response.json())
       .then(produktuak => {
@@ -130,13 +129,36 @@
           }
       });
   
-      if (izenaOndo && prezioaOndo && beherapenaOndo && markaOndo && argazkiaOndo && deskripzioaOndo){
-          fetch(`../Controlador/ProduktuaInsert.php?argazkia=${$argazkia.value}&izena=${$izena.value}&prezioa=${$prezioa.value}&deskripzioa=${$deskripzioa.value}&beherapena=${$beherapena.value}&marka=${$marka.value}`)
+    //   if (izenaOndo && prezioaOndo && beherapenaOndo && markaOndo && argazkiaOndo && deskripzioaOndo){
+    //       fetch(`../Controlador/ProduktuaInsert.php?argazkia=${$argazkia.files[0]}&izena=${$izena.value}&prezioa=${$prezioa.value}&deskripzioa=${$deskripzioa.value}&beherapena=${$beherapena.value}&marka=${$marka.value}`)
+    //   .then(() => {
+    //       window.opener.produktuakIkusi(); 
+    //       window.opener.okMezua(); 
+    //       window.close();
+    //   })
+    //   }
+
+
+if (izenaOndo && prezioaOndo && beherapenaOndo && markaOndo && argazkiaOndo && deskripzioaOndo) {
+    const formData = new FormData();
+    
+    formData.append('argazkia', $argazkia.files[0]);
+    formData.append('izena', $izena.value);
+    formData.append('prezioa', $prezioa.value);
+    formData.append('deskripzioa', $deskripzioa.value);
+    formData.append('beherapena', $beherapena.value);
+    formData.append('marka', $marka.value);
+  
+    fetch('../Controlador/ProduktuaInsert.php', {
+      method: 'POST',
+      body: formData,
+    })
       .then(() => {
           window.opener.produktuakIkusi(); 
           window.opener.okMezua(); 
           window.close();
       })
       }
+
   });
   

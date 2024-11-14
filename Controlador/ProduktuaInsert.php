@@ -1,12 +1,18 @@
 <?php
 include_once("../Modelo/Produktua.php");
 
-$izena = $_GET['izena'];
-$prezioa = $_GET['prezioa'];
-$marka = $_GET['marka'];
-$argazkia = $_GET['argazkia'];
-$beherapena = $_GET['beherapena'];
-$deskripzioa = $_GET['deskripzioa'];
+$izena = $_POST['izena'];
+$prezioa = $_POST['prezioa'];
+$marka = $_POST['marka'];
 
-Produktua::produktuaInsert($izena, $prezioa, $marka, $argazkia, $beherapena, $deskripzioa);
+$fitxategia = $_FILES['argazkia'];
+$izenafitxategia = $fitxategia['name'];
+$tmpfitxategia = $fitxategia['tmp_name'];
+$motafitxategia = $fitxategia['type'];
+
+
+$beherapena = $_POST['beherapena'];
+$deskripzioa = $_POST['deskripzioa'];
+
+Produktua::produktuaInsert($izena, $prezioa, $marka, $fitxategia, $beherapena, $deskripzioa);
 

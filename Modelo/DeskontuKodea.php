@@ -29,5 +29,13 @@ class DeskontuKodea extends Konexioa{
         $sentencia->close();
 
     }
+    public static function deskontuKodeaUpdate($kodea, $deskontua){
+        $konexioa = new DeskontuKodea();
+        $sentencia = $konexioa->getCon()->prepare("UPDATE deskontu_kodeak SET deskontua = ? WHERE kodea = ?");
+        $sentencia->bind_param("is", $deskontua, $kodea);        
+        $sentencia->execute();
+        $sentencia->close();
+
+    }
 }
 ?>

@@ -85,7 +85,7 @@ async function deskontuKodeakIkusi(){
                         <td>${item.kodea}</td>
                         <td>${item.deskontua} %</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=deskontuKodeaAldatu('${item.kodea}')>Aldatu</button>
+                            <button type='button' class='btn btn-info' onclick=deskontuKodeaAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=deskontuKodeaEzabatu('${item.kodea}')>Ezabatu</button>
                         </td>
                     </tr>

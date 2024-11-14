@@ -23,5 +23,17 @@ function produktuakAldatu(prod) {
         deskripzioa: produktua.deskripzioa
     }).toString();
     
-    window.open(`./ProduktuaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
+    window.open(`./produktuaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
+}
+
+function deskontuKodeaAldatu(kodea) {
+    const deskontuKodea = JSON.parse(decodeURIComponent(kodea));
+    
+    const params = new URLSearchParams({
+        kodea: deskontuKodea.kodea,
+        deskontua: deskontuKodea.deskontua,
+
+    }).toString();
+    
+    window.open(`./deskontuKodeaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
 }

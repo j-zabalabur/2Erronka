@@ -21,21 +21,6 @@ saioaItxiBtn.onclick = () =>{
     localStorage.removeItem('admin');
 }
 
-let arrayKodeak = new Array();
-//Deskontu kodeak array batean gorde
-fetch("../Controlador/DeskontuKodeakIkusi.php")
-.then(response => response.json())
-.then(data => {
-    data.forEach(item => {
-        const k = {
-            KODEA: item.kodea,
-            BEHERAPENA: item.deskontua
-        }
-
-        arrayKodeak.push(k);
-    });
-});
-
 const produktuPanela = document.getElementById('produktuak');
 const guztira = document.getElementById('guztira');
 const template = document.querySelector('template');
@@ -43,6 +28,7 @@ const body = document.querySelector('body');
 let preziogehiketa = 0;
 guztira.innerHTML = preziogehiketa + "€";
 
+//Erabiltzailearen orga lortu eta bistaratu.
 fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
 .then(response => response.json())
 .then(produktuak => {
@@ -105,9 +91,110 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
         produktuPanela.appendChild(p);
 
 
-    });
+});
 
-    const kenduBtn = document.querySelectorAll('#kendu');
+let arrayKodeak = new Array();
+//Deskontu kodeak array batean gorde
+fetch("../Controlador/DeskontuKodeakIkusi.php")
+.then(response => response.json())
+.then(data => {
+    data.forEach(item => {
+        const k = {
+            KODEA: item.kodea,
+            BEHERAPENA: item.deskontua
+        }
+
+        arrayKodeak.push(k);
+    });
+});
+
+const deskontuInput = document.getElementById('deskontua');
+const deskontuPanela = document.getElementById('deskontuPanela');
+const deskontuBotoia = document.createElement('button');
+deskontuBotoia.classList.add("deskontuBotoia");
+deskontuBotoia.innerHTML = "Aplikatu";
+let idatzi = true;
+
+deskontuInput.addEventListener('input', () =>{
+    deskontuBotoia.classList.remove("joan");
+    if(idatzi){
+        deskontuPanela.appendChild(deskontuBotoia);
+        idatzi = false;
+    }
+
+    if(deskontuInput.value == ""){
+        deskontuBotoia.classList.add("joan");
+        setTimeout(()=>{
+            deskontuPanela.removeChild(deskontuBotoia);
+        },550);
+        idatzi = true;
+    }
+
+    if(deskontuInput.value.includes(" ")){
+        deskontuInput.value = deskontuInput.value.trim();
+    }
+});
+
+let deskontuErabilita = false;
+let erabilitakoDeskontua;
+const deskontuAkatza = document.getElementById('deskontuAkatza');
+const deskontuAplikatuta = document.getElementById('deskontuAplikatuta');
+
+deskontuBotoia.onclick = () =>{
+    if (deskontuErabilita){
+        deskontuInput.value = "";
+        deskontuAkatza.style.display = "block";
+        deskontuAkatza.innerHTML = '<i class="bi bi-exclamation-circle"></i> Deskonturen bat erabilita dago';
+        setTimeout(()=>{
+            deskontuAkatza.innerHTML = "";
+            deskontuAkatza.style.display = "none";
+        }, 4000);
+        deskontuBotoia.classList.add("joan");
+        setTimeout(()=>{
+            deskontuPanela.removeChild(deskontuBotoia);
+        },550);
+        idatzi = true;
+    }else{
+        for (let i = 0; i < arrayKodeak.length; i++){
+            if (deskontuInput.value == arrayKodeak[i].KODEA){
+                erabilitakoDeskontua = arrayKodeak[i].BEHERAPENA / 100;                
+                guztira.innerHTML = eval(guztira.textContent.replace("€","")) - (guztira.textContent.replace("€","") * (arrayKodeak[i].BEHERAPENA/100)).toFixed(2) + "€";
+                deskontuErabilita = true;
+                deskontuInput.value = "";
+                deskontuBotoia.classList.add("joan");
+                setTimeout(()=>{
+                    deskontuPanela.removeChild(deskontuBotoia);
+                },550);
+                idatzi = true;
+                const desk = document.createElement('span');
+                desk.id = 'beherapena';
+                desk.innerHTML = "-" + arrayKodeak[i].BEHERAPENA + "%";
+
+                guztira.insertAdjacentElement('beforebegin', desk);
+                deskontuAplikatuta.style.display = "block";
+                deskontuAplikatuta.innerHTML = '<i class="bi bi-check2"></i> "' + arrayKodeak[i].KODEA + '" deskontua aplikatu da';
+                setTimeout(()=>{
+                    deskontuAplikatuta.innerHTML = "";
+                    deskontuAplikatuta.style.display = "none";
+                }, 4000);
+                break;
+            }
+        }
+
+        if (!deskontuErabilita){
+            deskontuAkatza.style.display = "block";
+            deskontuAkatza.innerHTML = '<i class="bi bi-exclamation-circle"></i> Hori ez da deskontu kode bat';
+            setTimeout(()=>{
+                deskontuAkatza.innerHTML = "";
+                deskontuAkatza.style.display = "none";
+            }, 4000);
+        }
+    }
+    
+}
+
+
+const kenduBtn = document.querySelectorAll('#kendu');
 
     kenduBtn.forEach(btn =>{
         btn.addEventListener('click', () =>{
@@ -133,7 +220,11 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                 const kopuruEza = btn.parentNode.querySelector('#kopurua').textContent;
                 const guzti = guztira.textContent.replace("€", "");
                 
-                guztira.textContent = eval(guzti - prezioEza*kopuruEza).toFixed(2) + "€";
+                if(deskontuErabilita){
+                    guztira.textContent = eval(guzti - (prezioEza*kopuruEza - (prezioEza*kopuruEza) * erabilitakoDeskontua)).toFixed(2) + "€";
+                }else{
+                    guztira.textContent = eval(guzti - prezioEza*kopuruEza).toFixed(2) + "€";
+                }
                 
                 produktuPanela.removeChild(btn.parentNode);
 
@@ -153,10 +244,14 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
             const kop = gehitu.parentNode.parentNode.querySelector('#kopurua');
             const pre = gehitu.parentNode.parentNode.querySelector('#prezioa');
             
-            if(kop.textContent < 99){
+            if(kop.textContent < 99 && !deskontuErabilita){
                 kop.textContent = eval(kop.textContent)+1;
                 guztira.textContent = (eval(guztira.textContent.replace("€","")) + eval(pre.textContent)).toFixed(2) + "€";
                 fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);              
+            }else if(kop.textContent < 99 && deskontuErabilita){
+                kop.textContent = eval(kop.textContent)+1;
+                guztira.textContent = (eval(guztira.textContent.replace("€","")) + (eval(pre.textContent) - eval(pre.textContent) * erabilitakoDeskontua)).toFixed(2) + "€";
+                fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);        
             }
             
         });
@@ -168,12 +263,17 @@ fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
             const kop = murriztu.parentNode.parentNode.querySelector('#kopurua');
             const pre = murriztu.parentNode.parentNode.querySelector('#prezioa');
             
-            if(kop.textContent > 1){
+            if(kop.textContent > 1 && !deskontuErabilita){
                 kop.textContent = eval(kop.textContent)-1;
                 guztira.textContent = (eval(guztira.textContent.replace("€","")) - eval(pre.textContent)).toFixed(2) + "€";
+                fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);           
+            }else if (kop.textContent > 1 && deskontuErabilita){
+                kop.textContent = eval(kop.textContent)-1;
+                guztira.textContent = (eval(guztira.textContent.replace("€","")) - (eval(pre.textContent) - eval(pre.textContent) * erabilitakoDeskontua)).toFixed(2) + "€";
                 fetch(`../Controlador/OrgaAldatu.php?kop=${kop.textContent}&idEra=${idEra}&idPro=${prod.id}`);           
             }
             
         });
     });
 });
+

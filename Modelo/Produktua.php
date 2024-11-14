@@ -59,4 +59,12 @@ class Produktua extends Konexioa{
         $sentencia->close();
 
     }
+    public static function produktuaUpdate($izena, $prezioa, $marka, $beherapena, $deskripzioa, $id){
+        $konexioa = new Produktua();
+        $sentencia = $konexioa->getCon()->prepare("UPDATE produktuak SET izena = ?, prezioa = ?, eragina = ?, beherapena = ?, deskripzioa = ? WHERE id = ?");
+        $sentencia->bind_param("sisisi", $izena, $prezioa, $marka, $beherapena, $deskripzioa, $id);        
+        $sentencia->execute();
+        $sentencia->close();
+
+    }
 }

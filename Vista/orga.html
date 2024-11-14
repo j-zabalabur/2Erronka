@@ -44,20 +44,23 @@
             </div>
         </div>
         <div class="erosiPanela">
-            
+            <p class="akatza" id="deskontuAkatza"></p>
+            <p class="kodeaAplikatuta" id="deskontuAplikatuta"></p>
             <div class="erosInfo">
                 <div class="d-flex justify-content-between">
                     <p>Guztira:</p>
-                    <p id="guztira"></p>
+                    <div class="d-flex gap-2">
+                        <p id="guztira"></p>
+                    </div>
                 </div>
             
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column" id="deskontuPanela">
                     <label for="deskontua" class="form-label">Deskontu kodea</label>
-                    <input type="text" class="p-1" id="deskontua" placeholder="XXXXXXX">
+                    <input type="text" id="deskontua" placeholder="XXXXXXX">
                 </div>
             </div>
 
-            <button id="erosiBtn" class="rounded px-5 py-1 mt-5">Erosi</button>
+            <button id="erosiBtn" class="rounded px-5 py-1 mt-4">Erosi</button>
         </div>
     </main>
 

@@ -4,13 +4,12 @@ function erabiltzaileakAldatu(erab){
     const params = new URLSearchParams({
         id: erabiltzailea.id,
         izena: erabiltzailea.izena,
-        prezioa: erabiltzailea.prezioa,
-        marka: erabiltzailea.eragina,
-        beherapena: erabiltzailea.beherapena,
-        deskripzioa: erabiltzailea.deskripzioa
+        abizena: erabiltzailea.abizena,
+        pasahitza: erabiltzailea.pasahitza,
+        admin: erabiltzailea.admin,
+        helbidea: erabiltzailea.helbidea
     }).toString();
-    
-    window.open(`./ErabiltzaileaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
+    window.open(`./erabiltzaileaAldatu.html?${params}`, "_blank", "width=400,height=600,top=50,left=150");
 }
 function produktuakAldatu(prod) {
     const produktua = JSON.parse(decodeURIComponent(prod));

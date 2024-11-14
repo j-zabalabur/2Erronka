@@ -48,10 +48,10 @@ class Erabiltzailea extends Konexioa{
             throw new Error($e);
         }
     }
-    public static function erabiltzaileaUpdate($izena, $abizena, $pasahitza, $administratzailea, $helbidea, $id){
+    public static function erabiltzaileaUpdate($izena, $abizena, $pasahitza, $admin, $helbidea, $id){
         $konexioa = new Erabiltzailea();
         $sentencia = $konexioa->getCon()->prepare("UPDATE erabiltzaileak SET izena = ?, abizena = ?, pasahitza = ?, administratzailea = ?, helbidea = ? WHERE id = ?");
-        $sentencia->bind_param("sssisi", $izena, $abizena, $pasahitza, $administratzailea, $helbidea, $id);        
+        $sentencia->bind_param("sssisi", $izena, $abizena, $pasahitza, $admin, $helbidea, $id);        
         $sentencia->execute();
         $sentencia->close();
 

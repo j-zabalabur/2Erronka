@@ -194,7 +194,6 @@ async function erabiltzaileakIkusi(){
                     </tr>
                 `;
                 }
-                console.log(ilara);
                 document.getElementById('emaitzaErabiltzaileak').innerHTML+= ilara;
             })
         })

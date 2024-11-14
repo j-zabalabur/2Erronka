@@ -57,21 +57,23 @@
             <section id="produktuak" class="taula">
                 <h2>Produktuak</h2>
                 <button type="button" class="btn btn-secondary" onclick="produktuaInsertPopUp()">Erregistro berria sortu</button>
-                <table class="table table-hover table-responsive">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Izena</th>
-                            <th>Prezioa</th>
-                            <th>Marka</th>
-                            <th>Beherapena</th>
-                            <th>Aukerak</th>
-                        </tr>
-                    </thead>
-                    <tbody id="emaitzaProduktuak">
-                        <!-- ILARAK HEMEN AGERTUKO DIRA -->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Izena</th>
+                                <th>Prezioa</th>
+                                <th>Marka</th>
+                                <th>Beherapena</th>
+                                <th>Aukerak</th>
+                            </tr>
+                        </thead>
+                        <tbody id="emaitzaProduktuak">
+                            <!-- ILARAK HEMEN AGERTUKO DIRA -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
             <section id="erabiltzaileak" class="taula">

@@ -60,9 +60,9 @@
         $beherapena.classList.add('mal');
         $beherapenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Zenbakiak bakarrik egon daitezke';
         beherapenaOndo = false;
-    }else if ($beherapena.value> 99 || $beherapena.value< 1){
+    }else if ($beherapena.value> 99 || $beherapena.value< 0){
         $beherapena.classList.add('mal');
-        $beherapenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Beherapena 1 eta 99 artean izan behar da';
+        $beherapenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Beherapena 0 eta 99 artean izan behar da';
         beherapenaOndo = false
     }else{
         $beherapena.classList.remove('mal');

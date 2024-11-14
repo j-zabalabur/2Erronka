@@ -45,7 +45,7 @@ async function produktuakIkusi(){
                         <td>${item.eragina}</td>
                         <td>${item.beherapena} %</td>
                         <td>
-                            <button type='button' class='btn btn-info' onclick=produktuaAldatu('${item}')>Aldatu</button>
+                            <button type='button' class='btn btn-info' onclick=produktuakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
                             <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${item.id}')">Xehetasunak</button>
 

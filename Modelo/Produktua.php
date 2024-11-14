@@ -50,4 +50,13 @@ class Produktua extends Konexioa{
         $prep->bind_param('ii', $idErabiltzaile, $idProduktua);
         $prep->execute();
     }
+    public static function produktuaInsert($izena, $prezioa, $marka, $argazkia, $beherapena, $deskripzioa){
+        $konexioa = new Produktua();
+        $fitxategia = file_get_contents($argazkia['tmp_name']); 
+        $sentencia = $konexioa->getCon()->prepare("INSERT INTO produktuak (izena, prezioa, eragina, argazkia, beherapena, deskripzioa) VALUES (?, ?, ?, ?, ?, ?)");
+        $sentencia->bind_param("sissis", $izena, $prezioa, $marka, $fitxategia, $beherapena, $deskripzioa);
+        $sentencia->execute();
+        $sentencia->close();
+
+    }
 }

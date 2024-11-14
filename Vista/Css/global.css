@@ -4,8 +4,7 @@
     --text-sec: #5e5e5e;
     --button-bg: #95bf47;
     --button-bg-hover: #5e8e3e;
-    --admin-icon: rgb(240, 24, 24);
-    --admin-icon-hover: rgb(141, 15, 15);
+
 }
 
 * {
@@ -72,10 +71,7 @@ header{
             font-size: 2rem;
             color:var(--button-bg-hover);
         }
-        #admin-icon{
-            font-size: 2rem;
-            color:var(--admin-icon-hover);
-        }
+
     }
 
     #izen-abizenak{

@@ -154,14 +154,14 @@ if (izenaOndo && prezioaOndo && beherapenaOndo && markaOndo && deskripzioaOndo) 
    formData.append('beherapena', $beherapena.value);
    formData.append('marka', $marka.value);
    formData.append('id', $id.value);
-   
+
    fetch('../Controlador/ProduktuaUpdate.php', {
      method: 'POST',
      body: formData,
    }).then(() => {
          window.opener.produktuakIkusi(); 
          window.opener.okMezua(); 
-        //  window.close();
+         window.close();
      })
      }
 

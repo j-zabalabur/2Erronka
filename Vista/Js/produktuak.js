@@ -29,7 +29,7 @@ function produktua_sortu(item){
 
 async function eraginak_txertatu(){
     const eragin_filtroa = document.querySelectorAll('#filtroa select')[1]
-    const data = await fetch_data('../2erronka/Controlador/eraginakJaso.php')
+    const data = await fetch_data('Controlador/eraginakJaso.php')
 
     data.forEach(item => {
         const eragina = `
@@ -58,15 +58,42 @@ function bannera_txertatu(item) {
 async function produktuak_ikusi(produktuak) {
     document.getElementById('produktuak').innerHTML = ""
     if(produktuak == null){
-        produktuak = await fetch_data('../2ERRONKA/Controlador/ProduktuakIkusi.php')
+        produktuak = await fetch_data('Controlador/ProduktuakIkusi.php')
     }
     produktuak.forEach(item => {
         produktua_txertatu(item);
     });
 }
 
+function saioa_itxi(){
+    localStorage.removeItem('id')
+    localStorage.removeItem('admin')
+    localStorage.removeItem('saioaHasita')
+    location.href = 'Vista/saioaHasi.html'
+}
+
+async function erabiltzaile_datuak_txertatu(){
+    if(localStorage.getItem('id')){
+        const id = localStorage.getItem('id')
+        const datuak = await fetch_data(`Controlador/ErabiltzaileaDatuakJaso.php?id=${id}`)
+
+        document.getElementById('izen-abizenak').innerText = `${datuak.izena} ${datuak.abizena}`
+        document.getElementById('email').innerText = datuak.email
+        document.getElementById('orga-produktu-kopurua').innerText = datuak.orga_produktuak
+    }
+}
+
+document.getElementById('orga').addEventListener('click', function(e){
+    e.preventDefault()
+    if(localStorage.getItem('id')){
+        location.href = 'Vista/orga.html'
+    }else{
+        location.href = 'Vista/saioaHasi.html'
+    }
+})
+
 async function filtroak_aplikatu(){
-    let produktuak_filtratuta = await fetch_data('../2ERRONKA/Controlador/ProduktuakIkusi.php')
+    let produktuak_filtratuta = await fetch_data('Controlador/ProduktuakIkusi.php')
 
     // Bilatzaile filtroa
     const bilatzaile_balioa = document.querySelector('#bilatzailea input').value.toLowerCase();
@@ -102,3 +129,9 @@ document.querySelectorAll('#filtroa select')[0].addEventListener('change', filtr
 document.querySelectorAll('#filtroa select')[1].addEventListener('change', filtroak_aplikatu)
 
 produktuak_ikusi()
+
+document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
+document.getElementById('saioa').addEventListener('click', function(e){
+    e.preventDefault()
+    saioa_itxi()
+}) 

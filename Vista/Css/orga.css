@@ -290,6 +290,10 @@ main{
         top: 100px;
         font-size: 18px;
     }
+
+    #beherapena{
+        transform: translateY(3px);
+    }
 }
 
 @media (width < 450px){

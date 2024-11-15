@@ -3,6 +3,7 @@ const idEra = localStorage.getItem('id');
 const izenaAdmin = document.getElementById('izen-abizenak');
 const emailAdmin = document.getElementById('email');
 const saioaItxiBtn = document.getElementById('saioaItxi');
+let helbidea;
 
 fetch("../Controlador/ErabiltzaileakIkusi.php")
 .then(response => response.json())
@@ -11,6 +12,7 @@ fetch("../Controlador/ErabiltzaileakIkusi.php")
         if (localStorage.getItem('id') == erabiltzaile[i].id){
             izenaAdmin.textContent = erabiltzaile[i].izena + " " + erabiltzaile[i].abizena;
             emailAdmin.textContent = erabiltzaile[i].email;
+            helbidea = erabiltzaile[i].helbidea;
         }
     }
 });
@@ -198,23 +200,16 @@ const kenduBtn = document.querySelectorAll('#kendu');
 
     kenduBtn.forEach(btn =>{
         btn.addEventListener('click', () =>{
-            const klon = template.content.cloneNode(true);
-            const modala = klon.querySelector('.modalEzabatu');
-            const fondo = klon.querySelector('.fondoBeltza');
-            const ezbtn = klon.querySelector('#ez');
-            const baibtn = klon.querySelector('#bai');
 
-            body.appendChild(fondo);
-            body.appendChild(modala);
-
-            ezbtn.onclick = ()=>{
-                body.removeChild(fondo);
-                body.removeChild(modala);
-            }
-
-            baibtn.onclick = ()=>{
-                body.removeChild(fondo);
-                body.removeChild(modala);
+            Swal.fire({
+            title: "Produktua orgatik kendu nahi duzu?",
+            icon: "warning",
+            showCloseButton: true,
+            showCancelButton: false,
+            confirmButtonColor: "#DC3741",
+            confirmButtonText: "Kendu orgatik"
+            }).then((result) => {
+            if (result.isConfirmed) {
                 fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${btn.parentNode.id}`);
                 const prezioEza = btn.parentNode.querySelector('#prezioa').textContent;
                 const kopuruEza = btn.parentNode.querySelector('#kopurua').textContent;
@@ -231,7 +226,14 @@ const kenduBtn = document.querySelectorAll('#kendu');
                 if (produktuPanela.childElementCount == 0){
                     produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
                 }
+                Swal.fire({
+                    title: "Kenduta!",
+                    text: "Produktua orgatik kendu da.",
+                    icon: "success",
+                    confirmButtonText: "Irten"
+                });
             }
+            });
         });  
     });
 
@@ -277,3 +279,83 @@ const kenduBtn = document.querySelectorAll('#kendu');
     });
 });
 
+//Eskaera sortu eta orgatik produktuak kendu
+const erosiBtn = document.getElementById('erosiBtn');
+
+erosiBtn.onclick = () =>{
+    
+    fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.length != 0){
+            Swal.fire({
+                title: "Ziur zaude produktuak erosi nahi dituzula?",
+                text: "Guztira: " + guztira.textContent,
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonText: "Ez",
+                focusConfirm: false,
+                confirmButtonColor: "#95bf47",
+                confirmButtonText: "Bai"
+            }).then((result) =>{
+                if (result.isConfirmed) {
+                    fetch(`../Controlador/EskaeraInsert.php?idEra=${idEra}&egoera=Entregatzeke`)
+                    .then(response => {
+                        if(response.ok){
+                            fetch(`../Controlador/EskaeraAzkenaLortu.php?idEra=${idEra}`)
+                            .then(response => response.json())
+                            .then(eskaera =>{
+                                fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
+                                .then(response => response.json())
+                                .then(produktuak => {
+                                    produktuak.forEach(produktu =>{
+                                        fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}`);
+                                        fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);
+                                    });
+                                    produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
+                                    guztira.textContent = "0€";
+
+                                    if(body.innerHTML.includes('<span id="beherapena">')){
+                                        document.getElementById('beherapena').remove();
+                                    }
+                                    
+                                    Swal.fire({
+                                        title: "Erosketa eginda!",
+                                        text: "Zure eskaera osatu da eta " + helbidea + " helbidera bidaliko da.",
+                                        icon: "success",
+                                        confirmButtonText: "Irten"
+                                    });
+
+                                });
+                            });
+                        }
+                    });
+                    
+                }
+            });
+        }else{
+            Swal.fire({
+                title: "Gehitu produkturen bat erosketa egiteko!",
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonText: "irten",
+                showClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                  `
+                },
+                hideClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                  `
+                }
+              });
+        }
+    });
+    
+}

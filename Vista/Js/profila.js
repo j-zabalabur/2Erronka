@@ -9,14 +9,28 @@ async function erabiltzaile_datuak_txertatu(){
     }
 }
 
+function erabiltzailea_profila_datuak_aldatu(){
+    if(localStorage.getItem('id')){
+        const formData = new FormData()
+        
+        formData.append('izena', document.getElementById('input_izena').value) 
+        formData.append('abizena', document.getElementById('input_abizena').value)
+        formData.append('pasahitza', document.getElementById('input_pasahitza').value)
+        formData.append('helbidea', document.getElementById('input_helbidea').value)
+        formData.append('id', localStorage.getItem('id'))
 
+        fetch('../Controlador/ErabiltzaileaProfilaDatuakAldatu.php', {
+            method: "POST",
+            body: formData
+        })
+    }
+}
 
 function arazoak_bilatu(){
     const input_izena = document.getElementById('input_izena')
     const input_abizena = document.getElementById('input_abizena')
     const input_pasahitza = document.getElementById('input_pasahitza')
     const input_helbidea = document.getElementById('input_helbidea')
-    const aldatu_botoia = document.querySelector('form button') 
 
     const $izenaMsg = document.getElementById('izenaMsg');
     const $abizenaMsg = document.getElementById('abizenaMsg');
@@ -101,9 +115,12 @@ function arazoak_bilatu(){
         }
     });
 
-    if(izena_ondo && abizena_ondo && pasahitza_ondo && helbidea_ondo){
-
-    }
+    document.querySelector('form button').addEventListener('click', function(e){
+        e.preventDefault()
+        if(izena_ondo && abizena_ondo && pasahitza_ondo && helbidea_ondo){
+            erabiltzailea_profila_datuak_aldatu()    
+        }
+    })
 }
 
 async function erabiltzaile_input_informazioa_bete(){

@@ -16,10 +16,17 @@ class Erabiltzailea extends Konexioa{
 
     }
     
-    public function getErabiltzailea($id){
-        $query = $this->getCon()->query('SELECT * FROM erabiltzaileak WHERE id='.$id);
-        $erabiltzailea = $query->fetch_assoc();
-        return $erabiltzailea;
+    public function getErabiltzailea(int $id){
+        try{
+            $prep = $this->getCon()->prepare("SELECT izena, abizena, email, pasahitza, helbidea FROM erabiltzaileak WHERE id=?");
+            $prep->bind_param('i', $id);
+            $prep->execute();
+            $erab = $prep->get_result()->fetch_assoc();
+            header("Content-Type: application/json");
+            echo json_encode($erab);
+        }catch(Exception $e){
+            throw new Error($e);
+        }
     }
 
     public function erabiltzaileaEzabatu($id){
@@ -57,5 +64,4 @@ class Erabiltzailea extends Konexioa{
 
     }
 }
-
 ?>

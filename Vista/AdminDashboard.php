@@ -23,7 +23,7 @@
         </head>
         <body>
         <header class="z-3">
-        <a href="index.html">
+        <a href="../index.html">
             <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
         </a>
 
@@ -138,7 +138,7 @@
     </div>
     <footer>
     <!-- FOOTERRA HEMEN -->
-    <a href="produktuak.php">
+    <a href="../index.php">
             <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
             <div id="sare-sozialak">
                 <a href="#">

@@ -44,7 +44,14 @@ class Eskaera extends Konexioa{
         $query = $this->getCon()->query('DELETE FROM eskaerak WHERE id='.$id);
         return "ok";
     }
+    public function eskaeraEgoeraUpdate($id, $egoeraBerria){
+        $query = $this->getCon()->prepare("UPDATE eskaerak SET egoera = ? WHERE id = ?");        
+        $query->bind_param("si", $egoeraBerria, $id);
+        $query->execute();
+        $query->close();
+        return "ok";
 
+    }
 
 }
 ?>

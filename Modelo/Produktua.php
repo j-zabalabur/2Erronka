@@ -67,4 +67,12 @@ class Produktua extends Konexioa{
         $sentencia->close();
 
     }
+    public function produktuEgoeraUpdate($id, $egoeraBerria){
+        $query = $this->getCon()->prepare("UPDATE produktuak SET aktibo = ? WHERE id = ?");        
+        $query->bind_param("ii", $egoeraBerria, $id);
+        $query->execute();
+        $query->close();
+        return "ok";
+
+    }
 }

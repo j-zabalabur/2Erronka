@@ -44,7 +44,13 @@ async function produktuakIkusi(){
                         <td>${item.prezioa} €</td>
                         <td>${item.eragina}</td>
                         <td>${item.beherapena} %</td>
-                        <td>
+                        <td>`
+                        if(item.aktibo==1){
+                            ilara +=`<button type='button' class='btn btn-warning' onclick="produktuEgoeraAldatu(${item.id}, ${item.aktibo})">Desaktibatu</button>`
+                        } else {
+                            ilara +=`<button type='button' class='btn btn-success' onclick="produktuEgoeraAldatu(${item.id}, '${item.egoera}')">Aktibatu</button>`
+                        }
+                        ilara+=`
                             <button type='button' class='btn btn-info' onclick=produktuakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=produktuaEzabatu('${item.id}')>Ezabatu</button>
                             <button type='button' class='btn btn-secondary' onclick="toggleXehetasunak('${item.id}')">Xehetasunak</button>

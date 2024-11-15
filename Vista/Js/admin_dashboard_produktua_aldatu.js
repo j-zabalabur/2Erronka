@@ -34,9 +34,9 @@ window.onload = function() {
          $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Ezin duzu eremu hau hutsik utzi';
          $izena.value = $izena.value.trim();
          izenaOndo = false;
-     }else if ($izena.value.length > 15){
+     }else if ($izena.value.length > 25){
          $izena.classList.add('mal');
-         $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Izenak 15 karaktere izan ditzake soilik';
+         $izenaMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Izenak 25 karaktere izan ditzake soilik';
          izenaOndo = false
      }else{
          $izena.classList.remove('mal');

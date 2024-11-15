@@ -157,8 +157,7 @@ window.onload = function() {
         .then(() => {
             window.opener.erabiltzaileakIkusi(); 
             window.opener.okMezua(); 
-            console.log($izena.value, $abizena.value, $pasahitza.value, $admin.value, $helbidea.value, $id.value);
-            // window.close();
+            window.close();
         })
         }
     });

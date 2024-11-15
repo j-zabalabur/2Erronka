@@ -63,5 +63,16 @@ class Erabiltzailea extends Konexioa{
         $sentencia->close();
 
     }
+
+    public static function erabiltzaileProfilaDatuakAldatu(string $izena, string $abizena, string $pasahitza, string $helbidea, int $id){
+        try{
+            $kon = new Erabiltzailea();
+            $prep = $kon->getCon()->prepare("UPDATE erabiltzaileak SET izena=?,abizena=?,pasahitza=?,helbiea=? WHERE id=?");
+            $prep->bind_param('ssssi', $izena, $abizena, $pasahitza, $helbidea, $id);
+            $prep->execute();    
+        }catch(Exception $e){
+            throw new Error($e);
+        }
+    }
 }
 ?>

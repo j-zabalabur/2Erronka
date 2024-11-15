@@ -68,7 +68,6 @@ function eskaeraEgoeraAldatu(id, egoera) {
 }
 
 function produktuEgoeraAldatu(id, egoera) {
-    console.log("ID:", id, "Egoera:", egoera); // Verificar los valores aquí
     Swal.fire({
         title: 'Zihur zaude produktuaren egoera aldatu nahi duzula?',
         icon: 'warning',

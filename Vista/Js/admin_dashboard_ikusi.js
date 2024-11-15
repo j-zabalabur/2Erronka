@@ -70,7 +70,6 @@ async function produktuakIkusi(){
                         </td>
                     </tr>
                 `;
-                console.log(ilara);
                 document.getElementById('emaitzaProduktuak').innerHTML+= ilara;
             })
         })
@@ -96,7 +95,6 @@ async function deskontuKodeakIkusi(){
                         </td>
                     </tr>
                 `;
-                console.log(ilara);
                 document.getElementById('emaitzaDeskontuKodeak').innerHTML+= ilara;
             })
         })
@@ -120,7 +118,6 @@ async function eskaerakIkusi(){
             guztira=0;
             id_eskaera=0;
             data.forEach(item => {
-                console.log(item.id_eskaera);
                 
                 //Eskari berria, taula hasieratu
                 if(id_eskaera===0){

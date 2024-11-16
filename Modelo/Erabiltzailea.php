@@ -66,12 +66,13 @@ class Erabiltzailea extends Konexioa{
 
     public function erabiltzaileProfilaDatuakAldatu(string $izena, string $abizena, string $pasahitza, string $helbidea, int $id){
         try{
-            $prep = $this->getCon()->prepare("UPDATE erabiltzaileak SET izena=?,abizena=?,pasahitza=?,helbiea=? WHERE id=?");
+            $prep = $this->getCon()->prepare("UPDATE erabiltzaileak SET izena=?,abizena=?,pasahitza=?,helbidea=? WHERE id=?");
             $prep->bind_param('ssssi', $izena, $abizena, $pasahitza, $helbidea, $id);
             $prep->execute();
-            $prep->close();    
+            $prep->close();
+            echo json_encode(["status" => true, "msg" => "Zure datuak ondo eguneratu dira"]);    
         }catch(Exception $e){
-            throw new Error($e);
+            echo json_encode(["status" => false, "msg" => $e]);
         }
     }
 }

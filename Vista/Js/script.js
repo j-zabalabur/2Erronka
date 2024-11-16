@@ -35,3 +35,11 @@ document.addEventListener('DOMContentLoaded', function(){
         profila_link.parentNode.style.display = "none"
     }
 })
+
+function errore_mezua(mezua){
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: mezua
+      });
+}

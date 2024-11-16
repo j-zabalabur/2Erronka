@@ -1,7 +1,7 @@
        //cSaioa itxi eta Adminaren izena, abizena eta email-a erakutsi===========
        const izenaAdmin = document.getElementById('izen-abizenak');
        const emailAdmin = document.getElementById('email');
-       const saioaItxiBtn = document.getElementById('saioaItxi');
+       const saioaItxiBtn = document.getElementById('saioa');
 
        fetch("../Controlador/ErabiltzaileakIkusi.php")
         .then(response => response.json())
@@ -18,5 +18,6 @@
             localStorage.removeItem('id');
             localStorage.removeItem('saioaHasita');
             localStorage.removeItem('admin');
+            
         }
        

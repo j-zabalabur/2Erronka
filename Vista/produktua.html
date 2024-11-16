@@ -12,6 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Css/global.css">
     <link rel="stylesheet" href="Css/produktua.css">
+    <script>
+        if (localStorage.getItem('saioaHasita') && localStorage.getItem('admin') == 1){
+            location.href = "adminDashboard.html";
+        }
+    </script>
 </head>
 <body>
     <header class="z-3">

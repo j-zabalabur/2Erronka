@@ -17,6 +17,10 @@ main{
     width: 60%;
 }
 
+#saioaItxi{
+    color: red;
+}
+
 .produktua{
     display: flex;
     gap: 10px;

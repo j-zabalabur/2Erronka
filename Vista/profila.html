@@ -10,7 +10,7 @@
         <meta name="robots" content="noindex, nofollow">
         <meta name="language" content="eu">
         <link rel="icon" href="Img/favicon.webp" type="image/webp">
-        <title>Profila - Sneakify</title>
+        <title>Sneakify - Profila</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -19,6 +19,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="Css/global.css">
         <link rel="stylesheet" href="Css/profila.css">
+        <script>
+            if (localStorage.getItem('saioaHasita') && localStorage.getItem('admin') == 1){
+                location.href = "adminDashboard.html";
+            }
+        </script>
     </head>
 <body>
     <header class="z-3">

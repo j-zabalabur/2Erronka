@@ -9,6 +9,69 @@ async function erabiltzaile_datuak_txertatu(){
     }
 }
 
+function taula_eskaeren_produktuak_txertatu(datuak){
+    const eskaera_produktuak = `
+        <tr>
+            <td>${datuak.izena}</td>
+            <td>${datuak.eragina}</td>
+            <td>${datuak.kopurua}</td>
+            <td>${datuak.prezioa}€</td>
+            <td>${datuak.beherapena}%</td>    
+        </tr>
+    `
+
+    document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} tbody`).innerHTML += eskaera_produktuak
+}
+
+function prezio_totala(datuak){
+    document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`).innerText = parseFloat(document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`).innerText) + parseFloat(prezio_beheratua(datuak.prezioa, datuak.beherapena))
+}
+
+function taula_lerroa_sortu(datuak){
+    const taula_lerroa = `
+    <tr data-bs-toggle="collapse" data-id="${datuak.id_eskaera}" data-bs-target="#produktu-taula-${datuak.id_eskaera}" aria-expanded="false" aria-controls="produktu-taula-${datuak.id_eskaera}">
+      <th scope="row">${datuak.id_eskaera}</th>
+      <td>${datuak.egoera}</td>
+      <td>${datuak.data}</td>
+    </tr>
+    <td colspan="3" class="produktu-taula collapse" id="produktu-taula-${datuak.id_eskaera}">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Produktu_izena</th>
+                    <th>Eragina</th>
+                    <th>Kopurua</th>
+                    <th>Prezioa</th>
+                    <th>Beherapena</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <strong class="totala">Totala: <span>0</span>€</strong>
+    </td>
+    `
+
+    return taula_lerroa
+}
+
+async function taula_datuak_kargatu(){
+    const taula_gorputza = document.querySelector('.table tbody')
+
+    if(localStorage.getItem('id')){
+        const id = localStorage.getItem('id')
+        const datuak = await fetch_data(`../Controlador/EskaerakJasoErabiltzailearenArabera.php?id=${id}`)
+        datuak.forEach(eskaera => {
+            if(!taula_gorputza.querySelector(`.table tr[data-id="${eskaera.id_eskaera}"]`)){
+                taula_gorputza.innerHTML += taula_lerroa_sortu(eskaera)
+            }
+            taula_eskaeren_produktuak_txertatu(eskaera)
+            prezio_totala(eskaera)
+        })
+    }
+}
+
 function inputak_egiaztatu() {
     const input_izena = document.getElementById('input_izena');
     const input_abizena = document.getElementById('input_abizena');
@@ -122,10 +185,6 @@ async function erabiltzaile_input_informazioa_bete(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
-document.addEventListener('DOMContentLoaded', erabiltzaile_input_informazioa_bete)
-setTimeout(inputak_egiaztatu, 300)
-
 document.querySelector('form').addEventListener('submit', async function(e){
     e.preventDefault()
 
@@ -161,3 +220,8 @@ document.querySelector('form').addEventListener('submit', async function(e){
         errore_mezua("Eguneratu nahi izan diren datuak ez dute formatu zuzena. Mesedez, saiatu berriro")
     }
 })
+
+document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
+document.addEventListener('DOMContentLoaded', erabiltzaile_input_informazioa_bete)
+document.addEventListener('DOMContentLoaded', taula_datuak_kargatu)
+setTimeout(inputak_egiaztatu, 1000)

@@ -73,5 +73,38 @@ class Eskaera extends Konexioa{
         return $array;
     }
 
+    public function eskaerakJasoErabiltzailearenArabera(int $id){
+        try{
+        $prep = $this->getCon()->prepare("
+        SELECT
+        eskaerak.id AS id_eskaera, 
+        eskaera_lerroak.id_produktua, 
+        eskaera_lerroak.kopurua, eskaerak.egoera,
+        eskaerak.data,
+        produktuak.izena,
+        produktuak.prezioa,
+        produktuak.eragina,
+        produktuak.beherapena
+        FROM eskaerak
+        JOIN erabiltzaileak ON eskaerak.id_erabiltzailea = erabiltzaileak.id
+        LEFT JOIN eskaera_lerroak ON eskaerak.id = eskaera_lerroak.id_eskaera
+        LEFT JOIN produktuak ON eskaera_lerroak.id_produktua = produktuak.id
+        WHERE erabiltzaileak.id=?
+        ");
+        $prep->bind_param('i', $id);
+        $prep->execute();
+        $result = $prep->get_result();
+        $eskaerak = [];
+
+        while($lerroa = $result->fetch_assoc()){
+            $eskaerak[] = $lerroa;
+        }
+
+        header("Content-Type: application/json");
+        echo json_encode($eskaerak);
+        }catch(Exception $e){
+            throw new Error($e);
+        }
+    }
 }
 ?>

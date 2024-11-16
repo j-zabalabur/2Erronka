@@ -70,7 +70,7 @@
 
     <form>
         <fieldset>
-            <legend class="text-center">Zure datuak</legend>
+            <legend class="text-center"><h1>Nire datuak</h1></legend>
         
             <div class="mb-3">
             <label for="input_izena" class="form-label">Izena</label>
@@ -100,16 +100,17 @@
         </fieldset>
       </form>
 
-      <div class="panel">
-        <table class="table w-35">
-            <thead>
+      <h1>Nire eskaerak</h1>
+      <div class="panel relative">
+        <table class="table table-bordered" id="eskaera-taula">
+            <thead class="table-light sticky-top">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Egoera</th>
                 <th scope="col">Data</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="eskaera-taula-gorputza">
               
             </tbody>
           </table>    

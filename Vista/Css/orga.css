@@ -17,6 +17,10 @@ main{
     width: 60%;
 }
 
+#saioaItxi{
+    color: red;
+}
+
 .produktua{
     display: flex;
     gap: 10px;
@@ -289,6 +293,10 @@ main{
     #deskontuAkatza, #deskontuAplikatuta{
         top: 100px;
         font-size: 18px;
+    }
+
+    #beherapena{
+        transform: translateY(3px);
     }
 }
 

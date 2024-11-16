@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- META etiketak, FAVICON eta TITULUA -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sneakify - Marka onenen oinetakoak prezio onenean</title>
-        <link rel="icon" href="Img/favicon.webp">
+        <meta name="description" content="Profila - Aurkitu Nike, Adidas, Vans, Converse, New Balance eta marka nagusien zapatilak Sneakify dendan. Kalitatezko sneaker-ak prezio onenean, deskontuekin!">
+        <meta name="keywords" content="Profila, Nike, Adidas, Vans, Converse, New Balance, zapatilak, sneaker-ak, deskontuak, Sneakify, moda, oinetako denda">
+        <meta name="author" content="Sneakify Team">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="language" content="eu">
+        <link rel="icon" href="Img/favicon.webp" type="image/webp">
+        <title>Sneakify - Profila</title>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +19,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="Css/global.css">
         <link rel="stylesheet" href="Css/profila.css">
+        <script>
+            if (localStorage.getItem('saioaHasita') && localStorage.getItem('admin') == 1){
+                location.href = "adminDashboard.html";
+            }
+        </script>
     </head>
 <body>
     <header class="z-3">

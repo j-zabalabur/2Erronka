@@ -74,7 +74,7 @@ document.querySelector('#produktu-datuak button').addEventListener('click', func
     if(localStorage.getItem('id')){
         produktua_orgara_sartu()
     }else{
-        location.href = 'Vista/saioaHasi.html'
+        location.href = 'saioaHasi.html'
     }
 })
 document.getElementById('saioa').addEventListener('click', function(e){
@@ -82,6 +82,6 @@ document.getElementById('saioa').addEventListener('click', function(e){
     if(localStorage.getItem('id')){
         saioa_itxi()
     }else{
-        location.href = "../saioaHasi.html"
+        location.href = "saioaHasi.html"
     }
 }) 

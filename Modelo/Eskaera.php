@@ -53,5 +53,25 @@ class Eskaera extends Konexioa{
 
     }
 
+    public static function eskaeraInsert($id, $egoera){
+        $konexioa = new Konexioa();
+        $query = $konexioa->getCon()->prepare("INSERT INTO eskaerak (id_erabiltzailea, egoera) VALUES (?, ?)");        
+        $query->bind_param("is", $id, $egoera);
+        $query->execute();
+        $query->close();
+    }
+
+    public static function getAzkenEskaera($idEra){
+        $konexioa = new Konexioa();
+        $query = $konexioa->getCon()->query("SELECT * FROM eskaerak WHERE id_erabiltzailea = $idEra ORDER BY data DESC LIMIT 1;");
+        $array = [];
+
+        while ($lerroa = $query->fetch_assoc()) {
+            $array[] = $lerroa;
+        }
+        
+        return $array;
+    }
+
 }
 ?>

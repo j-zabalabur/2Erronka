@@ -3,7 +3,7 @@ include_once('Konexioa.php');
 
 class Produktua extends Konexioa{
     public function produktuakIkusi(){
-        $query = $this->getCon()->query('SELECT * FROM produktuak');
+        $query = $this->getCon()->query('SELECT * FROM produktuak WHERE aktibo=1');
         $array = [];
 
         while($lerroa = $query->fetch_assoc()){

@@ -12,6 +12,13 @@ function produktua_orgara_sartu(){
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
         fetch(`../Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+        .then(erabiltzaile_datuak_txertatu)
+
+        Swal.fire({
+            title: "Ondo!",
+            text: "Produktu hau zure orgara sartu da",
+            icon: "success"
+        });
     }catch(e){
         console.error(e)
         return null
@@ -25,7 +32,7 @@ async function erabiltzaile_datuak_txertatu(){
 
         document.getElementById('izen-abizenak').innerText = `${datuak.izena} ${datuak.abizena}`
         document.getElementById('email').innerText = datuak.email
-        document.getElementById('orga-produktu-kopurua').innerText = datuak.orga_produktuak
+        document.getElementById('orga-produktu-kopurua').innerText = (datuak.orga_produktuak == null) ? 0 : datuak.orga_produktuak
     }
 }
 

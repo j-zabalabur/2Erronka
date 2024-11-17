@@ -114,3 +114,44 @@
         }
     }
 }
+
+@media(width < 820px){
+    #datuak-container{
+        #informazioa{
+            flex-direction: column;
+            height: auto;
+
+            img{
+                width: 90%;
+                height: 300px;
+            }
+
+            #produktu-datuak{
+                width: 90%;
+                margin-top: 20px;
+
+                #izena{
+                    font-size: 24px;
+                }
+
+                span{
+                    #eragina{
+                        font-size: 18px;
+                    }
+                }
+
+                #produktu-prezioa-info{
+                    .produktu-prezioa{
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+
+        #deskripzioa{
+            #tituloa{
+                font-size: 26px;
+            }
+        }
+    }
+}

@@ -221,6 +221,22 @@ document.querySelector('form').addEventListener('submit', async function(e){
     }
 })
 
+function saioa_itxi(){
+    localStorage.removeItem('id')
+    localStorage.removeItem('admin')
+    localStorage.removeItem('saioaHasita')
+    location.href = '../index.html'
+}
+
+document.getElementById('saioa').addEventListener('click', function(e){
+    e.preventDefault()
+    if(localStorage.getItem('id')){
+        saioa_itxi()
+    }else{
+        location.href = "saioaHasi.html"
+    }
+})
+
 document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
 document.addEventListener('DOMContentLoaded', erabiltzaile_input_informazioa_bete)
 document.addEventListener('DOMContentLoaded', taula_datuak_kargatu)

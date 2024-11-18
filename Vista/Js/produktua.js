@@ -76,7 +76,7 @@ async function produktu_datuak_txertatu(){
     document.querySelector('#deskripzioa #deskripzio-gorputza').innerText = gorputza
 
     // let urlAntigua = window.location.href;
-    // const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
+    // const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}?id=${datuak.id}`;
     // history.pushState(null, null, nuevaURL);
 }
 

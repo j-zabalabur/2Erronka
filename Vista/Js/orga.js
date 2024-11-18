@@ -221,7 +221,11 @@ const kenduBtn = document.querySelectorAll('#kendu');
                     guztira.textContent = eval(guzti - prezioEza*kopuruEza).toFixed(2) + "€";
                 }
                 
-                produktuPanela.removeChild(btn.parentNode);
+                btn.parentNode.classList.add("joan");
+                setTimeout(()=>{
+                    produktuPanela.removeChild(btn.parentNode);
+                },600);
+                
 
                 if (produktuPanela.childElementCount == 0){
                     produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
@@ -319,7 +323,12 @@ erosiBtn.onclick = () =>{
                                     if(body.innerHTML.includes('<span id="beherapena">')){
                                         document.getElementById('beherapena').remove();
                                     }
-                                    
+                                    const jsConfetti = new JSConfetti();
+                                    jsConfetti.addConfetti({
+                                        confettiRadius: 6,
+                                        confettiNumber: 500,
+                                      })
+
                                     Swal.fire({
                                         title: "Erosketa eginda!",
                                         text: "Zure eskaera osatu da eta " + helbidea + " helbidera bidaliko da.",

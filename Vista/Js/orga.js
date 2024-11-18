@@ -319,7 +319,12 @@ erosiBtn.onclick = () =>{
                                     if(body.innerHTML.includes('<span id="beherapena">')){
                                         document.getElementById('beherapena').remove();
                                     }
-                                    
+                                    const jsConfetti = new JSConfetti();
+                                    jsConfetti.addConfetti({
+                                        confettiRadius: 6,
+                                        confettiNumber: 500,
+                                      })
+
                                     Swal.fire({
                                         title: "Erosketa eginda!",
                                         text: "Zure eskaera osatu da eta " + helbidea + " helbidera bidaliko da.",

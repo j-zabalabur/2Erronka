@@ -75,8 +75,9 @@ async function produktu_datuak_txertatu(){
     document.querySelector('#deskripzioa #tituloa').innerText = tituloa.toUpperCase()
     document.querySelector('#deskripzioa #deskripzio-gorputza').innerText = gorputza
 
-    const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
-    history.pushState(null, null, nuevaURL);
+    // let urlAntigua = window.location.href;
+    // const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
+    // history.pushState(null, null, nuevaURL);
 }
 
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)
@@ -95,4 +96,3 @@ document.getElementById('saioa').addEventListener('click', function(e){
         location.href = "saioaHasi.html"
     }
 }) 
-

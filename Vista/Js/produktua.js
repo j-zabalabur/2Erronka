@@ -11,16 +11,51 @@ function produktua_orgara_sartu(){
     try{
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
-        fetch(`http://localhost/2Erronka/Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
-        document.getElementById('orga-produktu-kopurua').innerText = parseInt(document.getElementById('orga-produktu-kopurua').innerText) + 1
+        fetch(`../Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+        .then(erabiltzaile_datuak_txertatu)
+
+        Swal.fire({
+            title: "Ondo!",
+            text: "Produktu hau zure orgara sartu da",
+            icon: "success"
+        });
     }catch(e){
         console.error(e)
         return null
     }
 }
 
+async function erabiltzaile_datuak_txertatu(){
+    if(localStorage.getItem('id')){
+        const id = localStorage.getItem('id')
+        const datuak = await fetch_data(`../Controlador/ErabiltzaileaDatuakJaso.php?id=${id}`)
+
+        document.getElementById('izen-abizenak').innerText = `${datuak.izena} ${datuak.abizena}`
+        document.getElementById('email').innerText = datuak.email
+        document.getElementById('orga-produktu-kopurua').innerText = (datuak.orga_produktuak == null) ? 0 : datuak.orga_produktuak
+    }
+}
+
+function saioa_itxi(){
+    localStorage.removeItem('id')
+    localStorage.removeItem('admin')
+    localStorage.removeItem('saioaHasita')
+    location.href = '../index.html'
+}
+
+document.addEventListener('DOMContentLoaded', erabiltzaile_datuak_txertatu)
+
+document.getElementById('orga').addEventListener('click', function(e){
+    e.preventDefault()
+    if(localStorage.getItem('id')){
+        location.href = 'orga.html'
+    }else{
+        location.href = 'saioaHasi.html'
+    }
+}) 
+
 async function produktu_datuak_txertatu(){
-    const datuak = await fetch_data(`http://localhost/2Erronka/Controlador/ProduktuaIkusi.php?id=${produktu_id_jaso()}`)
+    const datuak = await fetch_data(`../Controlador/ProduktuaIkusi.php?id=${produktu_id_jaso()}`)
 
     document.querySelector('#datuak-container img').src = `data:image/jpeg;base64, ${datuak.argazkia}`
 
@@ -39,6 +74,9 @@ async function produktu_datuak_txertatu(){
 
     document.querySelector('#deskripzioa #tituloa').innerText = tituloa.toUpperCase()
     document.querySelector('#deskripzioa #deskripzio-gorputza').innerText = gorputza
+
+    const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
+    history.pushState(null, null, nuevaURL);
 }
 
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)
@@ -46,6 +84,15 @@ document.querySelector('#produktu-datuak button').addEventListener('click', func
     if(localStorage.getItem('id')){
         produktua_orgara_sartu()
     }else{
-        location.href = 'http://localhost/2Erronka/Vista/saioaHasi.html'
+        location.href = 'saioaHasi.html'
     }
 })
+document.getElementById('saioa').addEventListener('click', function(e){
+    e.preventDefault()
+    if(localStorage.getItem('id')){
+        saioa_itxi()
+    }else{
+        location.href = "saioaHasi.html"
+    }
+}) 
+

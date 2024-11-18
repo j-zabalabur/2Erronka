@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- META etiketak, FAVICON eta TITULUA -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Orga - Aurkitu Nike, Adidas, Vans, Converse, New Balance eta marka nagusien zapatilak Sneakify dendan. Kalitatezko sneaker-ak prezio onenean, deskontuekin!">
+    <meta name="keywords" content="orga, Nike, Adidas, Vans, Converse, New Balance, zapatilak, sneaker-ak, deskontuak, Sneakify, moda, oinetako denda">
+    <meta name="author" content="Sneakify Team">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="language" content="eu">
+    <link rel="icon" href="Img/favicon.webp" type="image/webp">
+    <title>Sneakify - Zure Orga</title>
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,8 +20,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Css/global.css">
     <link rel="stylesheet" href="Css/orga.css">
-    <link rel="icon" href="Img/favicon.webp">
-    <title>Sneakify - zure orga</title>
+
+    <script>
+        if (localStorage.getItem('saioaHasita') && localStorage.getItem('admin') == 1){
+            location.href = "adminDashboard.html";
+        }
+        if(!localStorage.getItem("saioaHasita")){
+            location.href = "saioaHasi.html";
+        }
+    </script>
+
 </head>
 <body class="d-flex flex-column align-items-center">
     <header>
@@ -20,18 +38,28 @@
         </a>
 
         <div class="dropdown">
-            <span id="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
-                <i id="erab-icon" class="bi bi-person"></i>
+            <span class="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person erab-icon"></i>
             </span>
 
             <ul class="dropdown-menu dropdown-menu-end">
                 <p id="izen-abizenak" class="dropdown-header"></p>
                 <p id="email" class="dropdown-header"></p>
                 <li><hr class="dropdown-divider"></li>
-                <li><a id="saioaItxi" class="dropdown-item" href="saioaHasi.html">
-                <i class="bi bi-box-arrow-left"></i>
-                    Saioa Itxi
-                </a></li>
+
+                <li>
+                    <a class="dropdown-item" href="profila.html" id="profila">
+                        <i class="bi bi-person"></i>
+                        <span>Profila</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a id="saioaItxi" class="dropdown-item" href="../index.html">
+                        <i class="bi bi-box-arrow-left"></i>
+                        Saioa Itxi
+                    </a>
+                </li>
             </ul>
         </div>
     </header>
@@ -40,28 +68,33 @@
         <div class="d-flex flex-column orga px-3" style="margin-top: 120px;">
             <h2 class="mb-4">Orga</h2>
             <div id="produktuak" class="d-flex flex-column gap-4" style="padding-bottom: 40px;">
-
+                <h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko dituzun oinetakoak.</h5>
             </div>
         </div>
         <div class="erosiPanela">
-            
+            <p class="akatza" id="deskontuAkatza"></p>
+            <p class="kodeaAplikatuta" id="deskontuAplikatuta"></p>
             <div class="erosInfo">
                 <div class="d-flex justify-content-between">
                     <p>Guztira:</p>
-                    <p id="guztira"></p>
+                    <div class="d-flex gap-2">
+                        <p id="guztira"></p>
+                    </div>
                 </div>
             
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column" id="deskontuPanela">
                     <label for="deskontua" class="form-label">Deskontu kodea</label>
-                    <input type="text" class="p-1" id="deskontua" placeholder="XXXXXXX">
+                    <input type="text" id="deskontua" placeholder="XXXXXXX" autocomplete="off">
                 </div>
             </div>
 
-            <button id="erosiBtn" class="rounded px-5 py-1 mt-5">Erosi</button>
+            <button id="erosiBtn" class="rounded px-5 py-1 mt-4">Erosi</button>
         </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script src="Js/orga.js"></script>
 </body>
 </html>

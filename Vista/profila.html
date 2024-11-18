@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- META etiketak, FAVICON eta TITULUA -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Profila - Aurkitu Nike, Adidas, Vans, Converse, New Balance eta marka nagusien zapatilak Sneakify dendan. Kalitatezko sneaker-ak prezio onenean, deskontuekin!">
+        <meta name="keywords" content="Profila, Nike, Adidas, Vans, Converse, New Balance, zapatilak, sneaker-ak, deskontuak, Sneakify, moda, oinetako denda">
+        <meta name="author" content="Sneakify Team">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="language" content="eu">
+        <link rel="icon" href="Img/favicon.webp" type="image/webp">
+        <title>Sneakify - Profila</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Css/global.css">
+        <link rel="stylesheet" href="Css/profila.css">
+        <script>
+            if (localStorage.getItem('saioaHasita') && localStorage.getItem('admin') == 1){
+                location.href = "adminDashboard.html";
+            }
+        </script>
+    </head>
+<body>
+    <header class="z-3">
+        <a href="../index.html">
+            <img id="logo" src="./Img/SNEAKIFY.webp" alt="logo">
+        </a>
+
+        <div class="dropdown z-3">
+            <span class="erab-icon-container" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <i class="bi bi-person erab-icon"></i>
+            </span>
+
+            <ul class="dropdown-menu dropdown-menu-end z-3">
+                <p id="izen-abizenak" class="dropdown-header">Erab. Anonimoa</p><!-- Izen-abizenak hemen -->
+                <p id="email" class="dropdown-header"></p><!-- Emai-a hemen -->
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                    <a class="dropdown-item" href="../Vista/profila.html" id="profila">
+                        <i class="bi bi-person"></i>
+                        <span>Profila</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item" href="../Vista/orga.html" id="orga">
+                    <i class="bi bi-bag position-relative"></i>
+                        <span>Orga</span>
+                        <span class="badge rounded-pill bg-danger" id="orga-produktu-kopurua"></span><!-- Orga produktu kopurua hemen -->
+                    </a>
+                </li>
+
+                <li><a class="dropdown-item" href="#" id="saioa">
+                <i class="bi bi-box-arrow-left"></i>
+                    <span></span>
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <span class="erab-icon-container handia">
+        <i class="bi bi-person erab-icon"></i>
+    </span>
+
+    <form>
+        <fieldset>
+            <legend class="text-center"><h1>Nire datuak</h1></legend>
+        
+            <div class="mb-3">
+            <label for="input_izena" class="form-label">Izena</label>
+            <input type="text" class="form-control" id="input_izena" name="izena">
+            <p class="errorMsg" id="izenaMsg"></p>
+            </div>
+            <div class="mb-3">
+            <label for="input_abizena" class="form-label">Abizena</label>
+            <input type="text" class="form-control" id="input_abizena" name="abizena">
+            <p class="errorMsg" id="abizenaMsg"></p>
+            </div>
+            <div class="mb-3">
+                <label for="input_email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="input_email" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="input_pasahitza" class="form-label">Pasahitza</label>
+                <input type="password" class="form-control" id="input_pasahitza" name="pasahitza">
+                <p class="errorMsg" id="pasahitzaMsg"></p>
+            </div>
+            <div class="mb-3">
+                <label for="input_helbidea" class="form-label">Helbidea</label>
+                <input type="text" class="form-control" id="input_helbidea" name="helbidea">
+                <p class="errorMsg" id="helbideaMsg"></p>
+            </div>
+            <button class="btn btn-success" type="submit">Aldatu</button>
+        </fieldset>
+      </form>
+
+      <h1>Nire eskaerak</h1>
+      <div class="panel relative">
+        <table class="table table-bordered" id="eskaera-taula">
+            <thead class="table-light sticky-top">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Egoera</th>
+                <th scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody id="eskaera-taula-gorputza">
+              
+            </tbody>
+          </table>    
+      </div>
+
+    <footer>
+        <!-- FOOTERRA HEMEN -->
+        <a href="../index.html">
+            <img id="logo" src="./Img/SNEAKIFY.webp" alt="logo">
+        </a>
+        <div id="sare-sozialak">
+            <a href="https://www.instagram.com/shopify/">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/shopify">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/shopify">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/shopify">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://web.telegram.org/">
+                <i class="bi bi-telegram"></i>
+            </a>
+        </div>
+        <p>Orrian agertzen den multimedia eduki guztia saltzaileen orri ofizialetatik hartu da.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Js/script.js"></script>
+    <script src="Js/profila.js"></script>
+</body>
+</html>

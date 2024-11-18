@@ -44,7 +44,67 @@ class Eskaera extends Konexioa{
         $query = $this->getCon()->query('DELETE FROM eskaerak WHERE id='.$id);
         return "ok";
     }
+    public function eskaeraEgoeraUpdate($id, $egoeraBerria){
+        $query = $this->getCon()->prepare("UPDATE eskaerak SET egoera = ? WHERE id = ?");        
+        $query->bind_param("si", $egoeraBerria, $id);
+        $query->execute();
+        $query->close();
+        return "ok";
 
+    }
 
+    public static function eskaeraInsert($id, $egoera){
+        $konexioa = new Konexioa();
+        $query = $konexioa->getCon()->prepare("INSERT INTO eskaerak (id_erabiltzailea, egoera) VALUES (?, ?)");        
+        $query->bind_param("is", $id, $egoera);
+        $query->execute();
+        $query->close();
+    }
+
+    public static function getAzkenEskaera($idEra){
+        $konexioa = new Konexioa();
+        $query = $konexioa->getCon()->query("SELECT * FROM eskaerak WHERE id_erabiltzailea = $idEra ORDER BY data DESC LIMIT 1;");
+        $array = [];
+
+        while ($lerroa = $query->fetch_assoc()) {
+            $array[] = $lerroa;
+        }
+        
+        return $array;
+    }
+
+    public function eskaerakJasoErabiltzailearenArabera(int $id){
+        try{
+        $prep = $this->getCon()->prepare("
+        SELECT
+        eskaerak.id AS id_eskaera, 
+        eskaera_lerroak.id_produktua, 
+        eskaera_lerroak.kopurua, eskaerak.egoera,
+        eskaerak.data,
+        produktuak.izena,
+        produktuak.prezioa,
+        produktuak.eragina,
+        produktuak.beherapena
+        FROM eskaerak
+        JOIN erabiltzaileak ON eskaerak.id_erabiltzailea = erabiltzaileak.id
+        LEFT JOIN eskaera_lerroak ON eskaerak.id = eskaera_lerroak.id_eskaera
+        LEFT JOIN produktuak ON eskaera_lerroak.id_produktua = produktuak.id
+        WHERE erabiltzaileak.id=?
+        ");
+        $prep->bind_param('i', $id);
+        $prep->execute();
+        $result = $prep->get_result();
+        $eskaerak = [];
+
+        while($lerroa = $result->fetch_assoc()){
+            $eskaerak[] = $lerroa;
+        }
+
+        header("Content-Type: application/json");
+        echo json_encode($eskaerak);
+        }catch(Exception $e){
+            throw new Error($e);
+        }
+    }
 }
 ?>

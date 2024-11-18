@@ -16,10 +16,17 @@ class Erabiltzailea extends Konexioa{
 
     }
     
-    public function getErabiltzailea($id){
-        $query = $this->getCon()->query('SELECT * FROM erabiltzaileak WHERE id='.$id);
-        $erabiltzailea = $query->fetch_assoc();
-        return $erabiltzailea;
+    public function getErabiltzailea(int $id){
+        try{
+            $prep = $this->getCon()->prepare("SELECT izena, abizena, email, pasahitza, helbidea FROM erabiltzaileak WHERE id=?");
+            $prep->bind_param('i', $id);
+            $prep->execute();
+            $erab = $prep->get_result()->fetch_assoc();
+            header("Content-Type: application/json");
+            echo json_encode($erab);
+        }catch(Exception $e){
+            throw new Error($e);
+        }
     }
 
     public function erabiltzaileaEzabatu($id){
@@ -46,6 +53,26 @@ class Erabiltzailea extends Konexioa{
         echo json_encode($prep->get_result()->fetch_assoc());
         }catch(Exception $e){
             throw new Error($e);
+        }
+    }
+    public static function erabiltzaileaUpdate($izena, $abizena, $pasahitza, $admin, $helbidea, $id){
+        $konexioa = new Erabiltzailea();
+        $sentencia = $konexioa->getCon()->prepare("UPDATE erabiltzaileak SET izena = ?, abizena = ?, pasahitza = ?, administratzailea = ?, helbidea = ? WHERE id = ?");
+        $sentencia->bind_param("sssisi", $izena, $abizena, $pasahitza, $admin, $helbidea, $id);        
+        $sentencia->execute();
+        $sentencia->close();
+
+    }
+
+    public function erabiltzaileProfilaDatuakAldatu(string $izena, string $abizena, string $pasahitza, string $helbidea, int $id){
+        try{
+            $prep = $this->getCon()->prepare("UPDATE erabiltzaileak SET izena=?,abizena=?,pasahitza=?,helbidea=? WHERE id=?");
+            $prep->bind_param('ssssi', $izena, $abizena, $pasahitza, $helbidea, $id);
+            $prep->execute();
+            $prep->close();
+            echo json_encode(["status" => true, "msg" => "Zure datuak ondo eguneratu dira"]);    
+        }catch(Exception $e){
+            echo json_encode(["status" => false, "msg" => $e]);
         }
     }
 }

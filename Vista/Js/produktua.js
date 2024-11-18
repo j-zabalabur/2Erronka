@@ -12,16 +12,18 @@ function produktua_orgara_sartu(){
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
         fetch(`../Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
-        .then(erabiltzaile_datuak_txertatu)
-
-        Swal.fire({
-            title: "Ondo!",
-            text: "Produktu hau zure orgara sartu da",
-            icon: "success"
-        });
+        .then(res => res.json())
+        .then(datuak => {
+            console.log(datuak)
+            Swal.fire({
+                title: datuak.egoera,
+                text: datuak.msg,
+                icon: (datuak.egoera == "OK") ? "success" : "error"
+            });
+        })
+        .finally(erabiltzaile_datuak_txertatu)
     }catch(e){
         console.error(e)
-        return null
     }
 }
 
@@ -75,8 +77,8 @@ async function produktu_datuak_txertatu(){
     document.querySelector('#deskripzioa #tituloa').innerText = tituloa.toUpperCase()
     document.querySelector('#deskripzioa #deskripzio-gorputza').innerText = gorputza
 
-    const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
-    history.pushState(null, null, nuevaURL);
+    // const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
+    // history.pushState(null, null, nuevaURL);
 }
 
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)

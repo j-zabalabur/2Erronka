@@ -23,11 +23,6 @@ function taula_eskaeren_produktuak_txertatu(datuak){
     document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} tbody`).innerHTML += eskaera_produktuak
 }
 
-function prezio_totala(datuak){
-    const totala = document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`)
-    totala.innerText = parseFloat(datuak.eskaera_prezioa_amaieran)
-}
-
 function taula_lerroa_sortu(datuak){
     const taula_lerroa = `
     <tr data-bs-toggle="collapse" data-id="${datuak.id_eskaera}" data-bs-target="#produktu-taula-${datuak.id_eskaera}" aria-expanded="false" aria-controls="produktu-taula-${datuak.id_eskaera}">
@@ -51,7 +46,7 @@ function taula_lerroa_sortu(datuak){
                 
             </tbody>
         </table>
-        <strong class="totala">Totala: <span></span>€</strong>
+        <strong class="totala">Totala: <span>${parseFloat(datuak.eskaera_prezioa_amaieran)}</span>€</strong>
     </td>
     `
 
@@ -69,7 +64,6 @@ async function taula_datuak_kargatu(){
                 taula_gorputza.innerHTML += taula_lerroa_sortu(eskaera)
             }
             taula_eskaeren_produktuak_txertatu(eskaera)
-            prezio_totala(eskaera)
         })
     }
 }

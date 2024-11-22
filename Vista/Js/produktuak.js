@@ -79,7 +79,7 @@ async function erabiltzaile_datuak_txertatu(){
 
         document.getElementById('izen-abizenak').innerText = `${datuak.izena} ${datuak.abizena}`
         document.getElementById('email').innerText = datuak.email
-        document.getElementById('orga-produktu-kopurua').innerText = datuak.orga_produktuak
+        document.getElementById('orga-produktu-kopurua').innerText = (datuak.orga_produktuak == null) ? 0 : datuak.orga_produktuak
     }
 }
 

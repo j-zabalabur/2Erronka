@@ -17,6 +17,21 @@ class Produktua extends Konexioa{
         echo json_encode($array);
     }
 
+    public function produktuGuztiakIkusi(){
+        $query = $this->getCon()->query('SELECT * FROM produktuak');
+        $array = [];
+
+        while($lerroa = $query->fetch_assoc()){
+                        // Argazkiak base64 formatura pasatzen ditu
+                        $argazkia_base64 = base64_encode($lerroa['argazkia']);
+                        $lerroa['argazkia'] = $argazkia_base64;
+                        
+            $array[] = $lerroa;
+        }
+        header("Content-Type: application/json");
+        echo json_encode($array);
+    }
+
     public function produktuakEzabatu($id){
         $query = $this->getCon()->query('DELETE FROM produktuak WHERE id='.$id);
         return "ok";
@@ -46,9 +61,26 @@ class Produktua extends Konexioa{
     }
 
     public function produktuaOrgaraSartu(int $idErabiltzaile, int $idProduktua){
-        $prep = $this->getCon()->prepare("INSERT INTO `orga_lerroak`(`id_erabiltzailea`, `id_produktua`, `kopurua`) VALUES (?,?,1) ON DUPLICATE KEY UPDATE kopurua = kopurua + 1");
-        $prep->bind_param('ii', $idErabiltzaile, $idProduktua);
-        $prep->execute();
+        try{
+            $update = $this->getCon()->prepare("UPDATE `orga_lerroak` SET kopurua=kopurua+1 WHERE id_erabiltzailea=? AND id_produktua=? LIMIT 1");
+            $update->bind_param('ii', $idErabiltzaile, $idProduktua);
+            $update->execute();
+
+            if($update->affected_rows === 0){
+                $insert = $this->getCon()->prepare("INSERT INTO `orga_lerroak`(`id_erabiltzailea`, `id_produktua`, `kopurua`) VALUES (?,?,1)");
+                $insert->bind_param('ii', $idErabiltzaile, $idProduktua);
+                $insert->execute();
+
+            }else{
+                $delete = $this->getCon()->prepare("DELETE FROM `orga_lerroak` WHERE id_erabiltzailea=? AND id_produktua=? AND kopurua=1");
+                $delete->bind_param('ii', $idErabiltzaile, $idProduktua);
+                $delete->execute();
+            }
+
+            echo json_encode(["egoera"=>"OK", "msg"=>"Produktua organ sartu egin da"]);
+        }catch(Exception $e){
+            echo json_encode(["egoera"=>"ERROR", "msg"=>"ERROREA: $e"]);
+        }
     }
     public static function produktuaInsert($izena, $prezioa, $marka, $argazkia, $beherapena, $deskripzioa){
         $konexioa = new Produktua();

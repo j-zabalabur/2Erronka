@@ -32,7 +32,7 @@
     //====================PANEL BAKOITZAREN BISTARATZEA AMAITU=================================
 //==================================IKUSI FUNTZIONALITATEAK HASI=====================================
 async function produktuakIkusi(){
-    await fetch("../Controlador/ProduktuakIkusi.php")
+    await fetch("../Controlador/ProduktuGuztiakIkusi.php")
         .then(response => response.json())
         .then(data => {
             document.getElementById('emaitzaProduktuak').innerHTML = "";

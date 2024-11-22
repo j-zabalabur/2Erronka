@@ -12,9 +12,18 @@ function produktua_orgara_sartu(){
         const id_produktua = produktu_id_jaso()
         const id_erabiltzailea = localStorage.getItem('id')
         fetch(`../Controlador/ProduktuaOrgaraSartu.php?id_erabiltzailea=${id_erabiltzailea}&id_produktua=${id_produktua}`)
+        .then(res => res.json())
+        .then(datuak => {
+            console.log(datuak)
+            Swal.fire({
+                title: datuak.egoera,
+                text: datuak.msg,
+                icon: (datuak.egoera == "OK") ? "success" : "error"
+            });
+        })
+        .finally(erabiltzaile_datuak_txertatu)
     }catch(e){
         console.error(e)
-        return null
     }
 }
 
@@ -25,7 +34,7 @@ async function erabiltzaile_datuak_txertatu(){
 
         document.getElementById('izen-abizenak').innerText = `${datuak.izena} ${datuak.abizena}`
         document.getElementById('email').innerText = datuak.email
-        document.getElementById('orga-produktu-kopurua').innerText = datuak.orga_produktuak
+        document.getElementById('orga-produktu-kopurua').innerText = (datuak.orga_produktuak == null) ? 0 : datuak.orga_produktuak
     }
 }
 
@@ -67,6 +76,9 @@ async function produktu_datuak_txertatu(){
 
     document.querySelector('#deskripzioa #tituloa').innerText = tituloa.toUpperCase()
     document.querySelector('#deskripzioa #deskripzio-gorputza').innerText = gorputza
+
+    // const nuevaURL = `/produktuak/${datuak.eragina.toUpperCase()}-${datuak.izena}.html`;
+    // history.pushState(null, null, nuevaURL);
 }
 
 document.addEventListener('DOMContentLoaded', produktu_datuak_txertatu)

@@ -24,9 +24,9 @@ function taula_eskaeren_produktuak_txertatu(datuak){
 }
 
 function prezio_totala(datuak){
-    let totala =document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`)
+    let totala = document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`)
     const prezioa_deskontu_kode_barik = parseFloat(prezio_beheratua(datuak.prezioa * datuak.kopurua, datuak.beherapena))
-    const prezio_deskontu_kodearekin = parseFloat(prezioa_deskontu_kode_barik, datuak.deskontua)
+    const prezio_deskontu_kodearekin = parseFloat(prezio_beheratua(prezioa_deskontu_kode_barik, datuak.deskontua))
     totala.innerText = parseFloat(totala.innerText) + prezio_deskontu_kodearekin
 }
 
@@ -35,9 +35,10 @@ function taula_lerroa_sortu(datuak){
     <tr data-bs-toggle="collapse" data-id="${datuak.id_eskaera}" data-bs-target="#produktu-taula-${datuak.id_eskaera}" aria-expanded="false" aria-controls="produktu-taula-${datuak.id_eskaera}">
       <th scope="row">${datuak.id_eskaera}</th>
       <td>${datuak.egoera}</td>
+      <td>${datuak.deskontua}%</td>
       <td>${datuak.data}</td>
     </tr>
-    <td colspan="3" class="produktu-taula collapse" id="produktu-taula-${datuak.id_eskaera}">
+    <td colspan="4" class="produktu-taula collapse" id="produktu-taula-${datuak.id_eskaera}">
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>

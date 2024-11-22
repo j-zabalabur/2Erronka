@@ -17,6 +17,21 @@ class Produktua extends Konexioa{
         echo json_encode($array);
     }
 
+    public function produktuGuztiakIkusi(){
+        $query = $this->getCon()->query('SELECT * FROM produktuak');
+        $array = [];
+
+        while($lerroa = $query->fetch_assoc()){
+                        // Argazkiak base64 formatura pasatzen ditu
+                        $argazkia_base64 = base64_encode($lerroa['argazkia']);
+                        $lerroa['argazkia'] = $argazkia_base64;
+                        
+            $array[] = $lerroa;
+        }
+        header("Content-Type: application/json");
+        echo json_encode($array);
+    }
+
     public function produktuakEzabatu($id){
         $query = $this->getCon()->query('DELETE FROM produktuak WHERE id='.$id);
         return "ok";

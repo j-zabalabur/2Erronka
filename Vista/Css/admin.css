@@ -70,8 +70,7 @@
     background-color: grey;
 }
 
-
-@media(width < 650px){
+@media(width < 820px){
     .admin-panel {
         flex-direction: column;
     }
@@ -92,5 +91,5 @@
     .taula {
         width: auto;
     }
-    
+
 }

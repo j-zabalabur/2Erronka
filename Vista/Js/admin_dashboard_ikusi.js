@@ -41,9 +41,9 @@ async function produktuakIkusi(){
                     <tr>
                         <td>${item.id}</td>
                         <td>${item.izena}</td>
-                        <td>${item.prezioa} €</td>
+                        <td class="ezkutatuMobilean">${item.prezioa} €</td>
                         <td>${item.eragina}</td>
-                        <td>${item.beherapena} %</td>
+                        <td class="ezkutatuMobilean">${item.beherapena} %</td>
                         <td>`
                         if(item.aktibo==1){
                             ilara +=`<button type='button' class='btn btn-warning' onclick="produktuEgoeraAldatu(${item.id}, ${item.aktibo})">Desaktibatu</button>`
@@ -71,6 +71,10 @@ async function produktuakIkusi(){
                     </tr>
                 `;
                 document.getElementById('emaitzaProduktuak').innerHTML+= ilara;
+                //Mobilean zutabe batzuk ezkutatu
+                document.querySelectorAll('.ezkutatuMobilean').forEach(td => {
+                    td.classList.add('d-none', 'd-md-table-cell');
+                });
             })
         })
 }
@@ -115,7 +119,7 @@ async function eskaerakIkusi(){
         .then(response => response.json())
         .then(data => {
             document.getElementById('emaitzaEskaerak').innerHTML = "";
-            guztira=0;
+            // guztira=0;
             id_eskaera=0;
             data.forEach(item => {
                 
@@ -129,29 +133,30 @@ async function eskaerakIkusi(){
                     //Eskaria amaitu da, taula itxi
                 } else if (id_eskaera!=item.id_eskaera){
                     //Taula amaiera inprimatu
-                    eskaeraTaulaAmaiera(id_eskaera, guztira);
-                    prezioa=0;
-                    guztira=0;
+                    eskaeraTaulaAmaiera(id_eskaera, item);
+                    // prezioa=0;
+                    // guztira=0;
                     id_eskaera=item.id_eskaera;
                     //Taularen burua inprimatu
                     eskaeraTaulaBurua(item, id_eskaera);
                     } 
-                    prezioa=(item.prezioa-(item.prezioa*item.beherapena)/100)*item.kopurua;
-                    guztira+=prezioa;
+                    // prezioa=(item.prezioa-(item.prezioa*item.beherapena)/100)*item.kopurua;
+                    // guztira+=prezioa;
                 //Eskariko ilarak gehitu
+                    azkenPrezioa_prod=parseFloat(item.prod_prezioa_ama);
                     ilara=`
                     <tr>
                                 <td>${item.izena}</td>
                                 <td>${item.eragina}</td>
-                                <td>${item.prezioa} €</td>
                                 <td>${item.kopurua}</td>
-                                <td>${item.beherapena} %</td>
-                                <td>${prezioa.toFixed(2)} €</td>
+                                <td>${item.prod_prezioa_has} €</td>
+                                <td>${item.deskontua_prod} %</td>
+                                <td>${azkenPrezioa_prod.toFixed(2)} €</td>
                     </tr>`;
                 document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= ilara;
-                
+                itemGorde=item;
             })
-            eskaeraTaulaAmaiera(id_eskaera, guztira);
+            eskaeraTaulaAmaiera(id_eskaera, itemGorde);
 
         })
 }
@@ -166,7 +171,7 @@ async function erabiltzaileakIkusi(){
                 ilara = `
                     <tr>
                         <td>${item.id}</td>
-                        <td>${item.email}</td>
+                        <td class="ezkutatuMobilean">${item.email}</td>
                         <td>${item.izena}</td>
                         <td>${item.abizena}</td>
                         <td>`
@@ -180,7 +185,7 @@ async function erabiltzaileakIkusi(){
                 if(localStorage.getItem('id') == item.id) {
                     
                     ilara +=`</td>
-                    <td>${item.helbidea}</td>
+                    <td class="ezkutatuMobilean">${item.helbidea}</td>
                     <td>
                         <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                     </td>
@@ -189,7 +194,7 @@ async function erabiltzaileakIkusi(){
             
                 } else {        
                 ilara +=`</td>
-                        <td>${item.helbidea}</td>
+                        <td class="ezkutatuMobilean">${item.helbidea}</td>
                         <td>
                             <button type='button' class='btn btn-info' onclick=erabiltzaileakAldatu('${encodeURIComponent(JSON.stringify(item))}')>Aldatu</button>
                             <button type='button' class='btn btn-danger' onclick=erabiltzaileakEzabatu('${item.id}')>Ezabatu</button>
@@ -197,7 +202,12 @@ async function erabiltzaileakIkusi(){
                     </tr>
                 `;
                 }
+
                 document.getElementById('emaitzaErabiltzaileak').innerHTML+= ilara;
+                //Mobilean zutabe batzuk ezkutatu
+                document.querySelectorAll('.ezkutatuMobilean').forEach(td => {
+                    td.classList.add('d-none', 'd-md-table-cell');
+                });
             })
         })
 }
@@ -221,15 +231,15 @@ function eskaeraTaulaBurua(item, id_eskaera){
         </td>
 
     </tr>
-    <tr class="sub-table" id="eskaera${id_eskaera}" style="display: none;">                                    
+    <tr class="sub-table" id="eskaera${id_eskaera}" style="display: none; table-layout: fixed; width: 100%;">                                    
         <td colspan="6">
             <table class="table table-sm table-active">
                 <thead class="thead-light">
                     <tr>
                         <th>Produktua</th>
                         <th>Marka</th>
-                        <th>Prezioa</th>
                         <th>Kopurua</th>
+                        <th>Prezioa</th>
                         <th>Beherapena</th>
                         <th>Azken prezioa</th>
                     </tr>
@@ -246,12 +256,26 @@ document.getElementById('emaitzaEskaerak').innerHTML+= burua;
 
 }
 //Taula amaiera
-function eskaeraTaulaAmaiera(id_eskaera, guztira){
+function eskaeraTaulaAmaiera(id_eskaera, item){
+    azkenPrezioa_esk=parseFloat(item.esk_prezioa_ama);
+
     amaiera = `
     <tr>
-        <td colspan="5" style="text-align: right;"><strong>Prezioa guztira:</strong></td>
-        <td>${guztira.toFixed(2)} €</td>
-    </tr>`;
+        <td colspan="5" style="text-align: right;">Prezioa:</td>
+        <td>${item.esk_prezioa_has} €</td>
+    </tr>
+    
+        <tr>
+        <td colspan="5" style="text-align: right;">Deskontu kodea:</td>
+        <td>${item.deskontua_cod} %</td>
+    </tr>
+    
+    <tr>
+        <td colspan="5" style="text-align: right;"><strong>Azken prezioa:</strong></td>
+        <td>${azkenPrezioa_esk.toFixed(2)} €</td>
+    </tr>
+    `
+    ;
 document.getElementById('eskaeraLerroak'+id_eskaera).innerHTML+= amaiera;
 }
 //===============================ESKAERA TAULA INPRIMATZEKO METODOAK AMAITU===============================

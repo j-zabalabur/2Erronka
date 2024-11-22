@@ -25,7 +25,9 @@ function taula_eskaeren_produktuak_txertatu(datuak){
 
 function prezio_totala(datuak){
     let totala =document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`)
-    totala.innerText = parseFloat(totala.innerText) + parseFloat(prezio_beheratua(datuak.prezioa * datuak.kopurua, datuak.beherapena))
+    const prezioa_deskontu_kode_barik = parseFloat(prezio_beheratua(datuak.prezioa * datuak.kopurua, datuak.beherapena))
+    const prezio_deskontu_kodearekin = parseFloat(prezioa_deskontu_kode_barik, datuak.deskontua)
+    totala.innerText = parseFloat(totala.innerText) + prezio_deskontu_kodearekin
 }
 
 function taula_lerroa_sortu(datuak){

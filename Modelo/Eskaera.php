@@ -81,6 +81,7 @@ class Eskaera extends Konexioa{
         eskaera_lerroak.id_produktua, 
         eskaera_lerroak.kopurua, eskaerak.egoera,
         eskaerak.data,
+        eskaerak.deskontua,
         produktuak.izena,
         produktuak.prezioa,
         produktuak.eragina,

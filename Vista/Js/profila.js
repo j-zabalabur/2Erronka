@@ -24,7 +24,8 @@ function taula_eskaeren_produktuak_txertatu(datuak){
 }
 
 function prezio_totala(datuak){
-    document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`).innerText = parseFloat(document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`).innerText) + parseFloat(prezio_beheratua(datuak.prezioa, datuak.beherapena))
+    let totala =document.querySelector(`.table #produktu-taula-${datuak.id_eskaera} .totala span`)
+    totala.innerText = parseFloat(totala.innerText) + parseFloat(prezio_beheratua(datuak.prezioa * datuak.kopurua, datuak.beherapena))
 }
 
 function taula_lerroa_sortu(datuak){

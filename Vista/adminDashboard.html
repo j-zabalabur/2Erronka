@@ -41,6 +41,12 @@
                 <p id="izen-abizenak" class="dropdown-header">Erab. Anonimoa</p><!-- Izen-abizenak hemen -->
                 <p id="email" class="dropdown-header"></p><!-- Emai-a hemen -->
                 <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="Vista/profila.html" id="profila">
+                        <i class="bi bi-person"></i>
+                        <span>Profila</span>
+                    </a>
+                </li>
                 <li><a class="dropdown-item" href="../index.html" id="saioa">
                 <i class="bi bi-box-arrow-left"></i>
                     <span></span>
@@ -68,10 +74,10 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Izena</th>
-                                <th>Prezioa</th>
+                                <th class="d-none d-md-table-cell">Prezioa</th>
                                 <th>Marka</th>
-                                <th>Beherapena</th>
-                                <th>Aukerak</th>
+                                <th class="d-none d-md-table-cell">Beherapena</th>
+                                <th style="white-space: nowrap;">Aukerak</th>
                             </tr>
                         </thead>
                         <tbody id="emaitzaProduktuak">
@@ -88,12 +94,12 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Emaila</th>
+                            <th class="d-none d-md-table-cell">Emaila</th>
                             <th>Izena</th>
                             <th>Abizena</th>
                             <th>Admin</th>
-                            <th>Helbidea</th>
-                            <th>Aukerak</th>
+                            <th class="d-none d-md-table-cell">Helbidea</th>
+                            <th style="white-space: nowrap;">Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaErabiltzaileak">
@@ -113,7 +119,7 @@
                             <th>Abizena</th>
                             <th>Data</th>
                             <th>Egoera</th>
-                            <th>Aukerak</th>
+                            <th style="white-space: nowrap;">Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaEskaerak">
@@ -130,7 +136,7 @@
                         <tr>
                             <th>Kodea</th>
                             <th>Deskontua</th>
-                            <th>Aukerak</th>
+                            <th style="white-space: nowrap;">Aukerak</th>
                         </tr>
                     </thead>
                     <tbody id="emaitzaDeskontuKodeak">
@@ -143,7 +149,7 @@
     </div>
     <footer>
     <!-- FOOTERRA HEMEN -->
-    <a href="../index.php">
+    <a>
             <img id="logo" src="Img/SNEAKIFY.webp" alt="logo">
             <div id="sare-sozialak">
                 <a href="https://www.instagram.com/shopify/">

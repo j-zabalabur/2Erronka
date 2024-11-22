@@ -142,6 +142,7 @@ let erabilitakoDeskontua;
 const deskontuAkatza = document.getElementById('deskontuAkatza');
 const deskontuAplikatuta = document.getElementById('deskontuAplikatuta');
 
+
 deskontuBotoia.onclick = () =>{
     if (deskontuErabilita){
         deskontuInput.value = "";
@@ -159,8 +160,8 @@ deskontuBotoia.onclick = () =>{
     }else{
         for (let i = 0; i < arrayKodeak.length; i++){
             if (deskontuInput.value == arrayKodeak[i].KODEA){
-                erabilitakoDeskontua = arrayKodeak[i].BEHERAPENA / 100;                
-                guztira.innerHTML = eval(guztira.textContent.replace("€","")) - (guztira.textContent.replace("€","") * (arrayKodeak[i].BEHERAPENA/100)).toFixed(2) + "€";
+                erabilitakoDeskontua = arrayKodeak[i].BEHERAPENA / 100;  
+                guztira.innerHTML = (eval(guztira.textContent.replace("€","")) - (guztira.textContent.replace("€","") * (arrayKodeak[i].BEHERAPENA/100))).toFixed(2) + "€";
                 deskontuErabilita = true;
                 deskontuInput.value = "";
                 deskontuBotoia.classList.add("joan");
@@ -291,7 +292,21 @@ erosiBtn.onclick = () =>{
     fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
     .then(response => response.json())
     .then(data => {
+        //Beherapena hartu gero insert egiteko, gainera, "-" eta "%" kentzen zaio zenbakia bakarrik husteko
+        let azkenBeherapen = document.getElementById('beherapena');
+        const prezioaAmaieran = guztira.textContent.replace("€", "");
+        let prezioaHasieran;
 
+        //Hau da ikusteko deskonturen bat jarrita dagoen eta ateratzen dugu prezioa hasieran eta amaieran deskontuaren arabera.
+        if(azkenBeherapen){
+            azkenBeherapen = azkenBeherapen.textContent.replace("-", "").replace("%", "");
+            prezioaHasieran = (prezioaAmaieran / ((-azkenBeherapen + 100) / 100)).toFixed(2);
+        }else{
+            azkenBeherapen = 0;
+            prezioaHasieran = prezioaAmaieran;
+        }
+        
+        
         if (data.length != 0){
             Swal.fire({
                 title: "Ziur zaude produktuak erosi nahi dituzula?",
@@ -304,7 +319,8 @@ erosiBtn.onclick = () =>{
                 confirmButtonText: "Bai"
             }).then((result) =>{
                 if (result.isConfirmed) {
-                    fetch(`../Controlador/EskaeraInsert.php?idEra=${idEra}&egoera=Entregatzeke`)
+                    
+                    fetch(`../Controlador/EskaeraInsert.php?idEra=${idEra}&egoera=Entregatzeke&preHasi=${prezioaHasieran}&deskontua=${azkenBeherapen}&preAm=${prezioaAmaieran}`)
                     .then(response => {
                         if(response.ok){
                             fetch(`../Controlador/EskaeraAzkenaLortu.php?idEra=${idEra}`)
@@ -314,8 +330,12 @@ erosiBtn.onclick = () =>{
                                 .then(response => response.json())
                                 .then(produktuak => {
                                     produktuak.forEach(produktu =>{
-                                        fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}`);
-                                        fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);
+                                        fetch("../Controlador/produktuaIkusi.php?id=" + produktu.id_produktua)
+                                        .then(response => response.json())
+                                        .then(pro =>{
+                                            fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}&preHasi=${pro.prezioa * produktu.kopurua}&deskontua=${pro.beherapena}&preAmai=${((pro.prezioa * produktu.kopurua) - ((pro.prezioa * produktu.kopurua) * (pro.beherapena / 100))).toFixed(2)}`);
+                                            fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);    
+                                        });
                                     });
                                     produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
                                     guztira.textContent = "0€";

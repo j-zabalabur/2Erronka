@@ -111,18 +111,7 @@ $pasahitza.addEventListener('blur', ()=>{
 
 $form.addEventListener('submit', (e) =>{
     e.preventDefault();
-
-    fetch("../Controlador/ErabiltzaileakIkusi.php")
-    .then(response => response.json())
-    .then(erabiltzaile => {
-        for (let i = 0; i < erabiltzaile.length; i++){
-            if ($email.value == erabiltzaile[i].email){
-                $email.classList.add('mal');
-                $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email hori erregistratuta dago';
-                emailOndo = false;
-            }
-        }
-    });
+    let emailErabilita = false;
 
     if ($pasahitzaErr.value != $pasahitza.value){
         $pasahitzaErr.classList.add('mal');
@@ -135,21 +124,38 @@ $form.addEventListener('submit', (e) =>{
     }
 
     if (izenaOndo && abizenaOndo && helbideaOndo && emailOndo && pasahitzaOndo && pasahitzaErrOndo){
-        fetch(`../Controlador/insertErabiltzailea.php?email=${$email.value}&izena=${$izena.value}&abizena=${$abizena.value}&pasahitza=${$pasahitza.value}&admin=0&helbidea=${$helbidea.value}`);
         fetch("../Controlador/ErabiltzaileakIkusi.php")
         .then(response => response.json())
         .then(erabiltzaile => {
             for (let i = 0; i < erabiltzaile.length; i++){
                 if ($email.value == erabiltzaile[i].email){
-                    localStorage.setItem('saioaHasita', true);
-                    localStorage.setItem('id', erabiltzaile[i].id);
-                    localStorage.setItem('admin', erabiltzaile[i].administratzailea);
-                    location.href = "../index.html";
-
+                    emailErabilita = true;
                     break;
                 }
             }
+
+            if (emailErabilita){
+                $email.classList.add('mal');
+                $emailMsg.innerHTML = '<i class="bi bi-exclamation-circle"></i> Email hori erregistratuta dago';
+            }else{
+                fetch(`../Controlador/insertErabiltzailea.php?email=${$email.value}&izena=${$izena.value}&abizena=${$abizena.value}&pasahitza=${$pasahitza.value}&admin=0&helbidea=${$helbidea.value}`);
+                fetch("../Controlador/ErabiltzaileakIkusi.php")
+                .then(response => response.json())
+                .then(erabiltzaile => {
+                    for (let i = 0; i < erabiltzaile.length; i++){
+                        if ($email.value == erabiltzaile[i].email){
+                            localStorage.setItem('saioaHasita', true);
+                            localStorage.setItem('id', erabiltzaile[i].id);
+                            localStorage.setItem('admin', erabiltzaile[i].administratzailea);
+                            location.href = "../index.html";
+        
+                            break;
+                        }
+                    }
+                });
+            }
         });
+        
     }
 });
 

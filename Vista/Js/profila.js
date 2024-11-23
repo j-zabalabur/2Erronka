@@ -15,7 +15,7 @@ function taula_eskaeren_produktuak_txertatu(datuak){
             <td>${datuak.izena}</td>
             <td>${datuak.eragina}</td>
             <td>${datuak.kopurua}</td>
-            <td>${datuak.eskaera_lerroa_prezioa_hasieran}€</td>
+            <td>${datuak.prezioa}€</td>
             <td>${datuak.deskontua_prod}%</td>    
         </tr>
     `

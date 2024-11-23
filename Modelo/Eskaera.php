@@ -84,14 +84,14 @@ class Eskaera extends Konexioa{
         eskaerak.id AS id_eskaera, 
         eskaera_lerroak.id_produktua, 
         eskaera_lerroak.kopurua,
-        eskaera_lerroak.prezioa_hasieran AS eskaera_lerroa_prezioa_hasieran,
         eskaera_lerroak.deskontua_prod, 
         eskaerak.egoera,
         eskaerak.data,
         eskaerak.deskontua_cod,
         eskaerak.prezioa_amaieran AS eskaera_prezioa_amaieran,
         produktuak.izena,
-        produktuak.eragina
+        produktuak.eragina,
+        produktuak.prezioa
         FROM eskaerak
         JOIN erabiltzaileak ON eskaerak.id_erabiltzailea = erabiltzaileak.id
         LEFT JOIN eskaera_lerroak ON eskaerak.id = eskaera_lerroak.id_eskaera

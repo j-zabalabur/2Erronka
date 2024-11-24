@@ -329,7 +329,6 @@ erosiBtn.onclick = () =>{
                                 fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                                 .then(response => response.json())
                                 .then(produktuak => {
-                                    procesarProductos(produktuak);
                                     produktuak.forEach(produktu =>{
                                         fetch(`../Controlador/ProduktuaIkusi.php?id=${produktu.id_produktua}`)
                                         .then(response => response.json())

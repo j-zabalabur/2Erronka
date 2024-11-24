@@ -329,14 +329,16 @@ erosiBtn.onclick = () =>{
                                 fetch(`../Controlador/orgaIkusi.php?idErabiltzaile=${idEra}`)
                                 .then(response => response.json())
                                 .then(produktuak => {
-                                    produktuak.forEach(produktu =>{
-                                        fetch("../Controlador/produktuaIkusi.php?id=" + produktu.id_produktua)
-                                        .then(response => response.json())
-                                        .then(pro =>{
-                                            fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}&preHasi=${pro.prezioa * produktu.kopurua}&deskontua=${pro.beherapena}&preAmai=${((pro.prezioa * produktu.kopurua) - ((pro.prezioa * produktu.kopurua) * (pro.beherapena / 100))).toFixed(2)}`);
-                                            fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);    
-                                        });
-                                    });
+                                    procesarProductos(produktuak);
+                                    // produktuak.forEach(produktu =>{
+                                    //     fetch("../Controlador/produktuaIkusi.php?id=" + produktu.id_produktua)
+                                    //     .then(response => response.json())
+                                    //     .then(pro =>{
+                                    //         fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}&preHasi=${pro.prezioa * produktu.kopurua}&deskontua=${pro.beherapena}&preAmai=${((pro.prezioa * produktu.kopurua) - ((pro.prezioa * produktu.kopurua) * (pro.beherapena / 100))).toFixed(2)}`);
+                                    //         fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);    
+                                    //     });
+                                    // });
+
                                     produktuPanela.innerHTML = '<h5 class="text-center"><i class="bi bi-exclamation-circle"></i> Gehitu gustuko duzun zapaturen bat.</h5>';
                                     guztira.textContent = "0€";
 
@@ -387,4 +389,23 @@ erosiBtn.onclick = () =>{
         }
     });
     
+}
+
+
+
+//
+async function procesarProductos(produktuak) {
+    for (const produktu of produktuak) {
+        try {
+            const response = await fetch("../Controlador/produktuaIkusi.php?id=" + produktu.id_produktua);
+            if (!response.ok) {
+                throw new Error(`Error en produktuaIkusi.php: ${response.statusText}`);
+            }
+            const pro = await response.json();
+            await fetch(`../Controlador/EskaeraLerroaInsert.php?idEsk=${eskaera[0].id}&idPro=${produktu.id_produktua}&kop=${produktu.kopurua}&preHasi=${pro.prezioa * produktu.kopurua}&deskontua=${pro.beherapena}&preAmai=${((pro.prezioa * produktu.kopurua) - ((pro.prezioa * produktu.kopurua) * (pro.beherapena / 100))).toFixed(2)}`);
+            await fetch(`../Controlador/OrgaEzabatu.php?idEra=${idEra}&idPro=${produktu.id_produktua}`);
+        } catch (error) {
+            console.error("Error al procesar el producto:", error);
+        }
+    }
 }

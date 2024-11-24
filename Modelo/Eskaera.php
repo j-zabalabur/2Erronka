@@ -60,7 +60,7 @@ class Eskaera extends Konexioa{
     public static function eskaeraInsert($id, $egoera, $prezioHasieran, $deskontuaCod, $prezioAmaieran){
         $konexioa = new Konexioa();
         $query = $konexioa->getCon()->prepare("INSERT INTO eskaerak (id_erabiltzailea, egoera, prezioa_hasieran, deskontua_cod, prezioa_amaieran) VALUES (?, ?, ?, ?, ?)");        
-        $query->bind_param("isiii", $id, $egoera,$prezioHasieran, $deskontuaCod, $prezioAmaieran);
+        $query->bind_param("isdid", $id, $egoera,$prezioHasieran, $deskontuaCod, $prezioAmaieran);
         $query->execute();
         $query->close();
     }

@@ -397,7 +397,7 @@ erosiBtn.onclick = () =>{
 async function procesarProductos(produktuak) {
     for (const produktu of produktuak) {
         try {
-            const response = await fetch("../Controlador/produktuaIkusi.php?id=" + produktu.id_produktua);
+            const response = await fetch(`../Controlador/ProduktuaIkusi.php?id=${produktu.id_produktua}`);
             if (!response.ok) {
                 throw new Error(`Error en produktuaIkusi.php: ${response.statusText}`);
             }

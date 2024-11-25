@@ -133,7 +133,7 @@ async function eskaerakIkusi(){
                     //Eskaria amaitu da, taula itxi
                 } else if (id_eskaera!=item.id_eskaera){
                     //Taula amaiera inprimatu
-                    eskaeraTaulaAmaiera(id_eskaera, item);
+                    eskaeraTaulaAmaiera(id_eskaera, itemGorde);
                     // prezioa=0;
                     // guztira=0;
                     id_eskaera=item.id_eskaera;
